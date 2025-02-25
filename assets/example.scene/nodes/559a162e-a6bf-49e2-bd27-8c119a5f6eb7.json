@@ -1,0 +1,50 @@
+{
+    "tags": null,
+    "position": [
+        -2724.4877424383485,
+        0,
+        897.1331460251281
+    ],
+    "rotation": [
+        0,
+        0,
+        0
+    ],
+    "scaling": [
+        1,
+        1,
+        1
+    ],
+    "billboardMode": 0,
+    "scalingDeterminant": 1,
+    "infiniteDistance": false,
+    "ignoreNonUniformScaling": false,
+    "reIntegrateRotationIntoRotationQuaternion": false,
+    "name": "Dead Trees",
+    "id": "559a162e-a6bf-49e2-bd27-8c119a5f6eb7",
+    "state": "",
+    "type": "TransformNode",
+    "uniqueId": 1740481942415,
+    "localMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "isEnabled": true,
+    "animations": [],
+    "ranges": [],
+    "metadata": {}
+}

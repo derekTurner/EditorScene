@@ -6,20 +6,20 @@
             "uniqueId": 1740401435881,
             "type": "Mesh",
             "position": [
-                -2415.3808674780635,
+                -428.60633817991766,
                 0,
-                -169.047247835608
+                2129.093727965616
             ],
             "rotationQuaternion": [
                 0,
-                1,
                 0,
+                1,
                 0
             ],
             "scaling": [
                 100,
-                100,
-                -100
+                -100,
+                100
             ],
             "localMatrix": [
                 1,
@@ -62,9 +62,11 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 132,
+            "materialUniqueId": 996,
             "materialId": "default material",
-            "metadata": {},
+            "metadata": {
+                "parentId": 1740481942415
+            },
             "instances": [],
             "animations": [],
             "ranges": [],
@@ -84,7 +86,9 @@
     "cameras": [],
     "lights": [],
     "materials": [],
-    "metadata": {},
+    "metadata": {
+        "parentId": 1740481942415
+    },
     "basePoseMatrix": [
         -1,
         0,

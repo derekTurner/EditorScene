@@ -1,0 +1,50 @@
+{
+    "tags": null,
+    "position": [
+        541.8056666815785,
+        0,
+        174.33969247410778
+    ],
+    "rotation": [
+        0,
+        0,
+        0
+    ],
+    "scaling": [
+        1,
+        1,
+        1
+    ],
+    "billboardMode": 0,
+    "scalingDeterminant": 1,
+    "infiniteDistance": false,
+    "ignoreNonUniformScaling": false,
+    "reIntegrateRotationIntoRotationQuaternion": false,
+    "name": "Grass Patch",
+    "id": "647a27f3-41b0-4fd5-8fd7-d7ca4043a69e",
+    "state": "",
+    "type": "TransformNode",
+    "uniqueId": 1740483674882,
+    "localMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "isEnabled": true,
+    "animations": [],
+    "ranges": [],
+    "metadata": {}
+}

@@ -1,7 +1,7 @@
 {
     "meshes": [
         {
-            "name": "__root__",
+            "name": "Common Tree 5",
             "id": "2b9520ba-f434-41fa-8047-ae9408661a50",
             "uniqueId": 1740401255138,
             "type": "Mesh",
@@ -62,9 +62,11 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 132,
+            "materialUniqueId": 996,
             "materialId": "default material",
-            "metadata": {},
+            "metadata": {
+                "parentId": 1740482825846
+            },
             "instances": [],
             "animations": [],
             "ranges": [],
@@ -84,7 +86,9 @@
     "cameras": [],
     "lights": [],
     "materials": [],
-    "metadata": {},
+    "metadata": {
+        "parentId": 1740482825846
+    },
     "basePoseMatrix": [
         -1,
         0,

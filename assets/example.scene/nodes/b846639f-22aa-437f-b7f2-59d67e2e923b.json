@@ -1,0 +1,50 @@
+{
+    "tags": null,
+    "position": [
+        -538.7095720090995,
+        0,
+        0
+    ],
+    "rotation": [
+        0,
+        0,
+        0
+    ],
+    "scaling": [
+        1,
+        1,
+        1
+    ],
+    "billboardMode": 0,
+    "scalingDeterminant": 1,
+    "infiniteDistance": false,
+    "ignoreNonUniformScaling": false,
+    "reIntegrateRotationIntoRotationQuaternion": false,
+    "name": "Common Trees",
+    "id": "b846639f-22aa-437f-b7f2-59d67e2e923b",
+    "state": "",
+    "type": "TransformNode",
+    "uniqueId": 1740482825846,
+    "localMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "isEnabled": true,
+    "animations": [],
+    "ranges": [],
+    "metadata": {}
+}

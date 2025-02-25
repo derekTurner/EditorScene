@@ -62,9 +62,11 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 132,
+            "materialUniqueId": 996,
             "materialId": "default material",
-            "metadata": {},
+            "metadata": {
+                "parentId": 1740483213136
+            },
             "instances": [],
             "animations": [],
             "ranges": [],
@@ -84,7 +86,9 @@
     "cameras": [],
     "lights": [],
     "materials": [],
-    "metadata": {},
+    "metadata": {
+        "parentId": 1740483213136
+    },
     "basePoseMatrix": [
         -1,
         0,

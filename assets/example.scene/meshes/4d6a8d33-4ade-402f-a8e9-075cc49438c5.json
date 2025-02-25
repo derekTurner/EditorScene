@@ -6,20 +6,20 @@
             "uniqueId": 1740400974639,
             "type": "Mesh",
             "position": [
+                1.7542408370331586,
                 0,
-                0,
-                0
+                11.238381273393575
             ],
             "rotationQuaternion": [
                 0,
+                0.06800388745579114,
                 0,
-                0,
-                1
+                0.9976850561629657
             ],
             "scaling": [
-                1,
-                1,
-                1
+                1.0000000000000024,
+                0.9241472842645081,
+                0.9999999999999999
             ],
             "localMatrix": [
                 1,
@@ -70,18 +70,80 @@
             "metadata": {
                 "parentId": 1740400974638
             },
-            "instances": [],
+            "instances": [
+                {
+                    "name": "Clover_2 (Mesh Instance)",
+                    "id": "3ed39a6c-335b-4e4e-8d3a-4af968142ae5",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        2.482956400424883,
+                        0,
+                        7.797791833309945
+                    ],
+                    "scaling": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "animations": [],
+                    "ranges": [],
+                    "metadata": {
+                        "parentId": 1740400974638
+                    },
+                    "uniqueId": 1740480726760
+                },
+                {
+                    "name": "Clover_2 (Mesh Instance)",
+                    "id": "0d01a64a-6b15-4ba3-81ef-229db6ffac1c",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        0.87487335975774,
+                        -0.038360043023312765,
+                        10.286140143506138
+                    ],
+                    "scaling": [
+                        1.0000000000000036,
+                        1.0000000000000042,
+                        0.9999999999999997
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        0.10128985880254435,
+                        0,
+                        0.9948569568052288
+                    ],
+                    "animations": [],
+                    "ranges": [],
+                    "metadata": {
+                        "parentId": 1740400974638
+                    },
+                    "uniqueId": 1740480756220
+                }
+            ],
             "animations": [],
             "ranges": [],
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
             "hasVertexAlpha": true,
-            "overlayAlpha": 0.5,
+            "overlayAlpha": 0,
             "overlayColor": [
-                1,
+                0,
                 0,
                 0
             ],
+            "renderOverlay": true,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/b9437c21-ff63-4b56-96ba-5310277a920d.babylonbinarymeshdata",
             "boundingBoxMaximum": [
