@@ -197,7 +197,7 @@
                 "animations": [],
                 "invertY": false,
                 "samplingMode": 3,
-                "_useSRGBBuffer": true,
+                "_useSRGBBuffer": false,
                 "internalTextureLabel": "Leaves_TwistedTree_C",
                 "noMipmap": false
             },

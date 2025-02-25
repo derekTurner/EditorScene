@@ -6,9 +6,9 @@
             "uniqueId": 1740401435882,
             "type": "Mesh",
             "position": [
+                0.13972386367110445,
                 0,
-                0,
-                0
+                -3.552713678800501e-15
             ],
             "rotationQuaternion": [
                 0,
@@ -76,12 +76,13 @@
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
             "hasVertexAlpha": true,
-            "overlayAlpha": 0.5,
+            "overlayAlpha": 0,
             "overlayColor": [
-                1,
+                0,
                 0,
                 0
             ],
+            "renderOverlay": true,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/4b06fe64-23cf-4dc6-90f5-2a6dd6ef8517.babylonbinarymeshdata",
             "boundingBoxMaximum": [
@@ -196,7 +197,7 @@
                 "animations": [],
                 "invertY": false,
                 "samplingMode": 3,
-                "_useSRGBBuffer": true,
+                "_useSRGBBuffer": false,
                 "internalTextureLabel": "Bark_DeadTree",
                 "noMipmap": false
             },

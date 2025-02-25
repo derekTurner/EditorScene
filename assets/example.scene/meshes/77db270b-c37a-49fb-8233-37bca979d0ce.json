@@ -76,12 +76,13 @@
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
             "hasVertexAlpha": true,
-            "overlayAlpha": 0.5,
+            "overlayAlpha": 0,
             "overlayColor": [
-                1,
+                0,
                 0,
                 0
             ],
+            "renderOverlay": true,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/cebe326c-14ee-45c0-bd20-6cc600ccd960.babylonbinarymeshdata",
             "boundingBoxMaximum": [
@@ -196,7 +197,7 @@
                 "animations": [],
                 "invertY": false,
                 "samplingMode": 3,
-                "_useSRGBBuffer": true,
+                "_useSRGBBuffer": false,
                 "internalTextureLabel": "Leaves_TwistedTree_C",
                 "noMipmap": false
             },

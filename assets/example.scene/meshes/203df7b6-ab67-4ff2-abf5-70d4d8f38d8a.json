@@ -62,9 +62,67 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 373,
+            "materialUniqueId": 132,
             "materialId": "default material",
-            "instances": [],
+            "metadata": {},
+            "instances": [
+                {
+                    "name": "__root__ (Mesh Instance)",
+                    "id": "2067483d-9924-49e3-a5e7-97227817a280",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        -1619.858929384507,
+                        2.2737367544323206e-13,
+                        261.3956032136075
+                    ],
+                    "scaling": [
+                        100,
+                        100,
+                        -100
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        1,
+                        0,
+                        0
+                    ],
+                    "metadata": {},
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1740417206228
+                },
+                {
+                    "name": "__root__ (Mesh Instance)",
+                    "id": "b65fb774-1ead-4245-a0c2-c11f1a656183",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        -900,
+                        2.2737367544323206e-13,
+                        261.3956032136075
+                    ],
+                    "scaling": [
+                        100,
+                        100,
+                        -100
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        1,
+                        0,
+                        0
+                    ],
+                    "metadata": {},
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1740417317840
+                }
+            ],
             "animations": [],
             "ranges": [],
             "layerMask": 268435455,
@@ -83,7 +141,7 @@
     "cameras": [],
     "lights": [],
     "materials": [],
-    "metadata": null,
+    "metadata": {},
     "basePoseMatrix": [
         -1,
         0,
