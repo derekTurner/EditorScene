@@ -23,6 +23,7 @@
     "name": "Clover",
     "id": "21c7df0a-56a8-4c28-a3de-57e9e6233a06",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740484375357,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }

@@ -23,6 +23,7 @@
     "name": "Bushes",
     "id": "e6e557c3-cc87-4e54-9458-2b269663af62",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740483213136,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }

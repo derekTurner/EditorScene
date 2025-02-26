@@ -1,0 +1,171 @@
+{
+    "tags": null,
+    "position": [
+        0,
+        0,
+        0.07228865474462509
+    ],
+    "rotation": [
+        0,
+        0,
+        0
+    ],
+    "rotationQuaternion": [
+        0,
+        1.1920928244535389e-7,
+        0,
+        1
+    ],
+    "scaling": [
+        1,
+        1,
+        1
+    ],
+    "billboardMode": 0,
+    "scalingDeterminant": 1,
+    "infiniteDistance": false,
+    "ignoreNonUniformScaling": false,
+    "reIntegrateRotationIntoRotationQuaternion": false,
+    "name": "Root",
+    "id": "57088adb-a3f6-43a8-a3df-6df6cab1285c",
+    "state": "",
+    "metadata": {
+        "parentId": 1740502453822
+    },
+    "type": "TransformNode",
+    "uniqueId": 1740502453814,
+    "localMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "isEnabled": true,
+    "animations": [
+        {
+            "name": "Run_Left_channel0_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0,
+                        0,
+                        0.07228865474462509
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        0,
+                        0,
+                        0.07228865474462509
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Left_channel1_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0,
+                        1.1920928244535389e-7,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        0,
+                        1.1920928244535389e-7,
+                        0,
+                        1
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Right_channel0_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0,
+                        0,
+                        0.07228865474462509
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        0,
+                        0,
+                        0.07228865474462509
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Right_channel1_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0,
+                        1.1920928244535389e-7,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        0,
+                        1.1920928244535389e-7,
+                        0,
+                        1
+                    ]
+                }
+            ],
+            "ranges": []
+        }
+    ],
+    "ranges": []
+}

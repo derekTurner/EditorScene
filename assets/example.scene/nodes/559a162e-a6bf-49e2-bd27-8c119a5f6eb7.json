@@ -23,6 +23,7 @@
     "name": "Dead Trees",
     "id": "559a162e-a6bf-49e2-bd27-8c119a5f6eb7",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740481942415,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }

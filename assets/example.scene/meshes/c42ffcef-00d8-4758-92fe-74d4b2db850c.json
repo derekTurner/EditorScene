@@ -62,8 +62,11 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 996,
+            "materialUniqueId": 1140,
             "materialId": "default material",
+            "metadata": {
+                "parentId": 1740483674882
+            },
             "instances": [],
             "animations": [],
             "ranges": [],
@@ -76,17 +79,16 @@
                 0,
                 0
             ],
-            "applyFog": true,
-            "metadata": {
-                "parentId": 1740483674882
-            }
+            "applyFog": true
         }
     ],
     "transformNodes": [],
     "cameras": [],
     "lights": [],
     "materials": [],
-    "metadata": null,
+    "metadata": {
+        "parentId": 1740483674882
+    },
     "basePoseMatrix": [
         -1,
         0,

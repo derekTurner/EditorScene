@@ -23,6 +23,7 @@
     "name": "Common Trees",
     "id": "b846639f-22aa-437f-b7f2-59d67e2e923b",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740482825846,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }
