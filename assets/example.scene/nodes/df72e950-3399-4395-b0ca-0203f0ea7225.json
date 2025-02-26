@@ -3,7 +3,7 @@
     "position": [
         0,
         0,
-        0
+        -447.34649179280893
     ],
     "rotation": [
         0,
@@ -23,6 +23,7 @@
     "name": "Pines",
     "id": "df72e950-3399-4395-b0ca-0203f0ea7225",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740501089195,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }

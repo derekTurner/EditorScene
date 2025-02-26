@@ -1,0 +1,1403 @@
+{
+    "tags": null,
+    "position": [
+        -3.951657425618996e-8,
+        0.12436739197341924,
+        -5.5541088782319154e-9
+    ],
+    "rotation": [
+        0,
+        0,
+        0
+    ],
+    "rotationQuaternion": [
+        -0.052857187864278773,
+        0.03364067689481544,
+        -0.06648864597082138,
+        0.9958181048875121
+    ],
+    "scaling": [
+        1.0000001192092896,
+        1,
+        1
+    ],
+    "billboardMode": 0,
+    "scalingDeterminant": 1,
+    "infiniteDistance": false,
+    "ignoreNonUniformScaling": false,
+    "reIntegrateRotationIntoRotationQuaternion": false,
+    "name": "Index2.R",
+    "id": "02420cc8-6ffa-4114-aef0-e4f8f33fe608",
+    "state": "",
+    "metadata": {
+        "parentId": 1740580717404
+    },
+    "type": "TransformNode",
+    "uniqueId": 1740580717403,
+    "localMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "isEnabled": true,
+    "animations": [
+        {
+            "name": "Death_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 64.00000333786011,
+                    "values": [
+                        -1.2639078761367273e-7,
+                        0.1243673712015152,
+                        -3.2884956979728486e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Death_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                },
+                {
+                    "frame": 64.00000333786011,
+                    "values": [
+                        -0.05285719409584999,
+                        0.033640678972005844,
+                        -0.06648864597082138,
+                        0.9958181381225586
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Gun_Shoot_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                },
+                {
+                    "frame": 36.000001430511475,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Gun_Shoot_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0.09144622087478638,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                },
+                {
+                    "frame": 36.000001430511475,
+                    "values": [
+                        0.09144622087478638,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "HitRecieve_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 33.99999976158142,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "HitRecieve_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                },
+                {
+                    "frame": 33.99999976158142,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "HitRecieve_2_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        5.882362330567048e-8,
+                        0.12436740845441818,
+                        -1.0046804277408228e-8
+                    ]
+                },
+                {
+                    "frame": 33.99999976158142,
+                    "values": [
+                        5.882362330567048e-8,
+                        0.12436740845441818,
+                        -1.0046804277408228e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "HitRecieve_2_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.0528571717441082,
+                        0.03364069387316704,
+                        -0.06648864597082138,
+                        0.9958181381225586
+                    ]
+                },
+                {
+                    "frame": 33.99999976158142,
+                    "values": [
+                        -0.0528571717441082,
+                        0.03364069387316704,
+                        -0.06648864597082138,
+                        0.9958181381225586
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Gun_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        1.470590582641762e-8,
+                        0.12436741590499878,
+                        -6.004160724160101e-9
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        1.470590582641762e-8,
+                        0.12436741590499878,
+                        -6.004160724160101e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Gun_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0.09144620597362518,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        0.09144620597362518,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Gun_Pointing_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Gun_Pointing_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0.09144622087478638,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        0.09144622087478638,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Gun_Shoot_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                },
+                {
+                    "frame": 40.000001192092896,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Gun_Shoot_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0.09144622087478638,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                },
+                {
+                    "frame": 40.000001192092896,
+                    "values": [
+                        0.09144622087478638,
+                        0.025758812204003334,
+                        -0.052698295563459396,
+                        0.9940810203552246
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Neutral_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        3.1414678858254774e-8,
+                        0.12436740845441818,
+                        2.1953022510956544e-8
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        3.1414678858254774e-8,
+                        0.12436740845441818,
+                        2.1953022510956544e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Neutral_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.0528571791946888,
+                        0.03364068269729614,
+                        -0.06648864597082138,
+                        0.9958181381225586
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        -0.0528571791946888,
+                        0.03364068269729614,
+                        -0.06648864597082138,
+                        0.9958181381225586
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Sword_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Idle_Sword_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.0458296537399292,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.0458296537399292,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Interact_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 75.99999904632568,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Interact_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                },
+                {
+                    "frame": 75.99999904632568,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Kick_Left_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -1.1789760634428603e-7,
+                        0.12436743080615997,
+                        2.4606794379877783e-9
+                    ]
+                },
+                {
+                    "frame": 56.00000023841858,
+                    "values": [
+                        -1.1789760634428603e-7,
+                        0.12436743080615997,
+                        2.4606794379877783e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Kick_Left_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164891391992569,
+                        -0.045829687267541885,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 56.00000023841858,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164891391992569,
+                        -0.045829687267541885,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Kick_Right_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 56.00000023841858,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Kick_Right_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164886921644211,
+                        -0.04582967236638069,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 56.00000023841858,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164886921644211,
+                        -0.04582967236638069,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Punch_Left_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -1.1789760634428603e-7,
+                        0.12436743080615997,
+                        2.4606794379877783e-9
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        -1.1789760634428603e-7,
+                        0.12436743080615997,
+                        2.4606794379877783e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Punch_Left_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164891391992569,
+                        -0.045829687267541885,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164891391992569,
+                        -0.045829687267541885,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Punch_Right_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Punch_Right_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164886921644211,
+                        -0.04582967236638069,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164886921644211,
+                        -0.04582967236638069,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Roll_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        1.074640998410814e-8,
+                        0.12436746805906296,
+                        3.406038473485751e-8
+                    ]
+                },
+                {
+                    "frame": 80.00000238418579,
+                    "values": [
+                        2.0028689817763734e-9,
+                        0.12436740845441818,
+                        2.464811821312196e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Roll_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488990187645,
+                        -0.045829642564058304,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 80.00000238418579,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164892137050629,
+                        -0.04582963138818741,
+                        0.663425087928772
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        1.074640998410814e-8,
+                        0.12436746805906296,
+                        3.406038473485751e-8
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        2.0028689817763734e-9,
+                        0.12436740845441818,
+                        2.464811821312196e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488990187645,
+                        -0.045829642564058304,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.0458296462893486,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Back_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        1.2839365126637858e-7,
+                        0.12436745315790176,
+                        2.3280001926195837e-8
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        1.2839365126637858e-7,
+                        0.12436745315790176,
+                        2.3280001926195837e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Back_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.045829661190509796,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.045829661190509796,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Left_channel72_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        5.882362330567048e-8,
+                        0.12436740845441818,
+                        -1.0046804277408228e-8
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        0,
+                        0.12436741590499878,
+                        -4.6566128730773926e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Left_channel73_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.045829664915800095,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164890646934509,
+                        -0.0458296462893486,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Right_channel72_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        7.631070531033401e-8,
+                        0.12436752766370773,
+                        8.777728766062864e-9
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        8.743541002331767e-9,
+                        0.12436747550964355,
+                        4.7556536486581535e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Right_channel73_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932945251465,
+                        0.09164886921644211,
+                        -0.04582962393760681,
+                        0.6634250283241272
+                    ]
+                },
+                {
+                    "frame": 48.00000071525574,
+                    "values": [
+                        -0.7411932349205017,
+                        0.09164885431528091,
+                        -0.0458296537399292,
+                        0.6634250283241272
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Shoot_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        -8.743541002331767e-9,
+                        0.124367356300354,
+                        -1.4068879394812939e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Run_Shoot_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.04582963511347771,
+                        0.6634249687194824
+                    ]
+                },
+                {
+                    "frame": 49.999998807907104,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488915681839,
+                        -0.04582963511347771,
+                        0.6634249687194824
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Sword_Slash_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.0668270650503473e-8,
+                        0.124367356300354,
+                        -1.6763975096978356e-8
+                    ]
+                },
+                {
+                    "frame": 61.99999809265137,
+                    "values": [
+                        2.0668270650503473e-8,
+                        0.124367356300354,
+                        -1.6763975096978356e-8
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Sword_Slash_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488766670227,
+                        -0.0458296500146389,
+                        0.6634249687194824
+                    ]
+                },
+                {
+                    "frame": 61.99999809265137,
+                    "values": [
+                        -0.7411932349205017,
+                        0.0916488766670227,
+                        -0.0458296500146389,
+                        0.6634249687194824
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Walk_channel68_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        0,
+                        0.12436741590499878,
+                        -4.6566128730773926e-9
+                    ]
+                },
+                {
+                    "frame": 80.00000238418579,
+                    "values": [
+                        0,
+                        0.12436741590499878,
+                        -4.6566128730773926e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Walk_channel69_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.0408908873796463,
+                        0.03214562311768532,
+                        -0.06704346090555191,
+                        0.9963933825492859
+                    ]
+                },
+                {
+                    "frame": 80.00000238418579,
+                    "values": [
+                        -0.0408908873796463,
+                        0.03214562311768532,
+                        -0.06704346090555191,
+                        0.9963933825492859
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Wave_channel60_0",
+            "property": "position",
+            "framePerSecond": 60,
+            "dataType": 1,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        2.941181165283524e-8,
+                        0.12436740845441818,
+                        -7.35170857524281e-9
+                    ]
+                }
+            ],
+            "ranges": []
+        },
+        {
+            "name": "Wave_channel61_0",
+            "property": "rotationQuaternion",
+            "framePerSecond": 60,
+            "dataType": 2,
+            "loopBehavior": 1,
+            "blendingSpeed": 0.01,
+            "keys": [
+                {
+                    "frame": 0,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                },
+                {
+                    "frame": 99.99999761581421,
+                    "values": [
+                        -0.052857182919979095,
+                        0.033640675246715546,
+                        -0.06648864597082138,
+                        0.9958180785179138
+                    ]
+                }
+            ],
+            "ranges": []
+        }
+    ],
+    "ranges": []
+}

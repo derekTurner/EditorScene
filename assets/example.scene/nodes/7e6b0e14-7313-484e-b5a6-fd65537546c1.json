@@ -23,6 +23,7 @@
     "name": "Path",
     "id": "7e6b0e14-7313-484e-b5a6-fd65537546c1",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740502176546,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }

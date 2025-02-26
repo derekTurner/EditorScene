@@ -1,0 +1,108 @@
+{
+    "meshes": [
+        {
+            "name": "__root__",
+            "id": "1fb51129-1428-4e6a-9655-3e3c1194ec69",
+            "uniqueId": 1740581258090,
+            "type": "Mesh",
+            "position": [
+                2775.1211301593953,
+                0,
+                2054.6101872219933
+            ],
+            "rotationQuaternion": [
+                -0.6196148264981653,
+                0,
+                0.784906024173371,
+                0
+            ],
+            "scaling": [
+                100.00000000000097,
+                -87.06755790033895,
+                100.00000000000018
+            ],
+            "localMatrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "isEnabled": true,
+            "isVisible": true,
+            "infiniteDistance": false,
+            "pickable": true,
+            "receiveShadows": false,
+            "billboardMode": 0,
+            "visibility": 1,
+            "alwaysSelectAsActiveMesh": false,
+            "checkCollisions": false,
+            "ellipsoid": [
+                0.5,
+                1,
+                0.5
+            ],
+            "ellipsoidOffset": [
+                0,
+                0,
+                0
+            ],
+            "doNotSyncBoundingInfo": false,
+            "isBlocker": false,
+            "sideOrientation": 1,
+            "isUnIndexed": false,
+            "materialUniqueId": 1293,
+            "materialId": "default material",
+            "instances": [],
+            "animations": [],
+            "ranges": [],
+            "layerMask": 268435455,
+            "alphaIndex": 1.7976931348623157e+308,
+            "hasVertexAlpha": false,
+            "overlayAlpha": 0.5,
+            "overlayColor": [
+                1,
+                0,
+                0
+            ],
+            "applyFog": true,
+            "metadata": {
+                "parentId": 1740581825984
+            }
+        }
+    ],
+    "transformNodes": [],
+    "cameras": [],
+    "lights": [],
+    "materials": [],
+    "metadata": null,
+    "basePoseMatrix": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ]
+}
