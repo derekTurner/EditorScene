@@ -94,11 +94,11 @@
                         0,
                         0.9753600203638262
                     ],
-                    "animations": [],
-                    "ranges": [],
                     "metadata": {
                         "parentId": 1740501193401
                     },
+                    "animations": [],
+                    "ranges": [],
                     "uniqueId": 1740501611465
                 },
                 {
@@ -124,11 +124,11 @@
                         0,
                         0.9557019126693769
                     ],
-                    "animations": [],
-                    "ranges": [],
                     "metadata": {
                         "parentId": 1740501193401
                     },
+                    "animations": [],
+                    "ranges": [],
                     "uniqueId": 1740501627786
                 }
             ],
@@ -251,7 +251,7 @@
                 "animations": [],
                 "invertY": false,
                 "samplingMode": 3,
-                "_useSRGBBuffer": true,
+                "_useSRGBBuffer": false,
                 "internalTextureLabel": "PathRocks_Diffuse",
                 "noMipmap": false
             },

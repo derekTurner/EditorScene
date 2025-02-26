@@ -86,14 +86,14 @@
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/01601fc0-9b90-4a04-9850-b32773f23a40.babylonbinarymeshdata",
             "boundingBoxMaximum": [
-                0.26984360814094543,
-                1.0058743953704834,
-                0.3368927538394928
+                0.2699643671512604,
+                1.005542516708374,
+                0.3370667099952698
             ],
             "boundingBoxMinimum": [
-                -0.15095320343971252,
-                0.10991108417510986,
-                -0.16140425205230713
+                -0.15114828944206238,
+                0.10989760607481003,
+                -0.1611078828573227
             ],
             "_binaryInfo": {
                 "positionsAttrDesc": {

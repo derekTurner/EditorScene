@@ -94,11 +94,11 @@
                         0,
                         0.9614570480235979
                     ],
-                    "animations": [],
-                    "ranges": [],
                     "metadata": {
                         "parentId": 1740501185144
                     },
+                    "animations": [],
+                    "ranges": [],
                     "uniqueId": 1740501643482
                 }
             ],
@@ -221,7 +221,7 @@
                 "animations": [],
                 "invertY": false,
                 "samplingMode": 3,
-                "_useSRGBBuffer": true,
+                "_useSRGBBuffer": false,
                 "internalTextureLabel": "PathRocks_Diffuse",
                 "noMipmap": false
             },
