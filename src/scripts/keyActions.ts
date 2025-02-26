@@ -9,7 +9,9 @@ export default class SceneComponent implements IScript {
      }
 
 public keyDownMap: { [key: string]: boolean } = {};
-    public onStart(): void {
+   
+
+public onStart(): void {
         
         this.scene.actionManager = new ActionManager(this.scene);
 
@@ -21,6 +23,7 @@ public keyDownMap: { [key: string]: boolean } = {};
       },
       (evt) => {
         this.keyDownMap[evt.sourceEvent.key] = true;
+        console.log(this.keyDownMap);
       }    )
   );
   this.scene.actionManager.registerAction(

@@ -7,7 +7,7 @@ export default class SceneComponent implements IScript {
 
     public onStart(): void {
         this.mesh.getScene().getAnimationGroupByName("Death")!.stop();
-        this.mesh.getScene().getAnimationGroupByName("Idle")!.start(true);
+        this.mesh.getScene().getAnimationGroupByName("Walk")!.start(true);
     }
 
     public onUpdate(): void {
