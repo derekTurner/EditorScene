@@ -70,7 +70,38 @@
             "metadata": {
                 "parentId": 1740400959965
             },
-            "instances": [],
+            "instances": [
+                {
+                    "name": "Clover_1 (Mesh Instance)",
+                    "id": "96b9a2bd-763c-4c77-aa5b-e61a8e0013ee",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        2.757555083896719,
+                        0,
+                        6.7293447504923485
+                    ],
+                    "scaling": [
+                        1.0000000000000047,
+                        0.9697622210046124,
+                        0.9999999999999998
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        -0.29320229262929726,
+                        0,
+                        0.9560504252375625
+                    ],
+                    "metadata": {
+                        "parentId": 1740400959965
+                    },
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1740585776713
+                }
+            ],
             "animations": [],
             "ranges": [],
             "layerMask": 268435455,

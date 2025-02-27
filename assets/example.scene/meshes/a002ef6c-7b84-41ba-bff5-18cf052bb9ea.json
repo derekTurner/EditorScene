@@ -6,9 +6,9 @@
             "uniqueId": 1740502452996,
             "type": "Mesh",
             "position": [
-                109.15571818398973,
-                -4.547473508864641e-13,
-                794.7686987785312
+                109,
+                0,
+                794
             ],
             "rotationQuaternion": [
                 0,
@@ -62,7 +62,7 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 1293,
+            "materialUniqueId": 733,
             "materialId": "default material",
             "metadata": {
                 "scripts": [

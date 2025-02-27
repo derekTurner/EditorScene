@@ -23,6 +23,7 @@
     "name": "TwistedTrees",
     "id": "68cf3ef4-7699-418a-860e-58fadface899",
     "state": "",
+    "metadata": {},
     "type": "TransformNode",
     "uniqueId": 1740581825984,
     "localMatrix": [
@@ -45,6 +46,5 @@
     ],
     "isEnabled": true,
     "animations": [],
-    "ranges": [],
-    "metadata": {}
+    "ranges": []
 }
