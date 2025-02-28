@@ -8,6 +8,7 @@ export default class SceneComponent implements IScript {
   public constructor(public scene: Scene) {}
 
   public onStart(): void {
+    this.scene.addExternalData("keyDownMap", this.keyDownMap);
     this.scene.actionManager = new ActionManager(this.scene);
 
     this.scene.actionManager.registerAction(
@@ -17,8 +18,8 @@ export default class SceneComponent implements IScript {
         },
         (evt) => {
           this.keyDownMap[evt.sourceEvent.key] = true;
-          console.log("key down");
-          console.log(this.keyDownMap);
+          //console.log("key down");
+          //console.log(this.keyDownMap);
         }
       )
     );
@@ -29,7 +30,7 @@ export default class SceneComponent implements IScript {
         },
         (evt) => {
           this.keyDownMap[evt.sourceEvent.key] = false;
-          console.log("key up");
+          //console.log("key up");
         }
       )
     );
