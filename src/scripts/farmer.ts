@@ -131,7 +131,7 @@ export default class SceneComponent implements IScript {
 
   public onUpdate(): void {
     this.keyDownMap = this.mesh.getScene().getExternalData("keyDownMap");
-    console.log(this.keyDownMap);
+    // console.log(this.keyDownMap); // checking if keydownmap is working
     // using jkli to move as wasd is used for camera movement
     // GLTF use quaternions for rotation so not mesh.rotation.y = value;
     //https://doc.babylonjs.com/features/featuresDeepDive/mesh/transforms/center_origin/rotation_quaternions
