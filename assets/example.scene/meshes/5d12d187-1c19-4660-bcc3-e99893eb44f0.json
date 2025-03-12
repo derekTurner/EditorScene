@@ -1,0 +1,239 @@
+{
+    "meshes": [
+        {
+            "name": "Ball",
+            "id": "5d12d187-1c19-4660-bcc3-e99893eb44f0",
+            "uniqueId": 1741180171839,
+            "type": "Mesh",
+            "position": [
+                0,
+                186.82118477776265,
+                0
+            ],
+            "rotationQuaternion": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "scaling": [
+                1,
+                1,
+                1
+            ],
+            "localMatrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "isEnabled": true,
+            "isVisible": true,
+            "infiniteDistance": false,
+            "pickable": false,
+            "receiveShadows": true,
+            "billboardMode": 0,
+            "visibility": 1,
+            "alwaysSelectAsActiveMesh": false,
+            "checkCollisions": false,
+            "ellipsoid": [
+                0.5,
+                1,
+                0.5
+            ],
+            "ellipsoidOffset": [
+                0,
+                0,
+                0
+            ],
+            "doNotSyncBoundingInfo": false,
+            "isBlocker": false,
+            "sideOrientation": 1,
+            "isUnIndexed": false,
+            "geometryUniqueId": 1741180171840,
+            "geometryId": "564b4538-79e6-46f9-95e8-1bdc196ec03c",
+            "subMeshes": null,
+            "materialUniqueId": 637,
+            "materialId": "default material",
+            "metadata": {
+                "type": "Sphere",
+                "diameter": 100,
+                "segments": 32,
+                "physicsAggregate": {
+                    "shape": {
+                        "type": 0,
+                        "density": 1000
+                    },
+                    "body": {
+                        "motionType": 2
+                    },
+                    "massProperties": {
+                        "mass": 1,
+                        "inertia": [
+                            1000.0000610351562,
+                            1000.0000610351562,
+                            1000.0000610351562
+                        ],
+                        "centerOfMass": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "inertiaOrientation": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    },
+                    "material": {
+                        "friction": 0.2,
+                        "restitution": 0.2
+                    }
+                }
+            },
+            "instances": [],
+            "animations": [],
+            "ranges": [],
+            "layerMask": 268435455,
+            "alphaIndex": 1.7976931348623157e+308,
+            "hasVertexAlpha": false,
+            "overlayAlpha": 0.5,
+            "overlayColor": [
+                1,
+                0,
+                0
+            ],
+            "applyFog": true,
+            "delayLoadingFile": "assets/example.scene/geometries/564b4538-79e6-46f9-95e8-1bdc196ec03c.babylonbinarymeshdata",
+            "boundingBoxMaximum": [
+                50,
+                50,
+                50
+            ],
+            "boundingBoxMinimum": [
+                -50,
+                -50,
+                -50
+            ],
+            "_binaryInfo": {
+                "positionsAttrDesc": {
+                    "count": 7245,
+                    "stride": 3,
+                    "offset": 0,
+                    "dataType": 1
+                },
+                "normalsAttrDesc": {
+                    "count": 7245,
+                    "stride": 3,
+                    "offset": 28980,
+                    "dataType": 1
+                },
+                "uvsAttrDesc": {
+                    "count": 4830,
+                    "stride": 2,
+                    "offset": 57960,
+                    "dataType": 1
+                },
+                "indicesAttrDesc": {
+                    "count": 13872,
+                    "stride": 1,
+                    "offset": 77280,
+                    "dataType": 0
+                },
+                "subMeshesAttrDesc": {
+                    "count": 1,
+                    "stride": 5,
+                    "offset": 132768,
+                    "dataType": 0
+                }
+            },
+            "positions": null,
+            "normals": null,
+            "uvs": null,
+            "hasUVs": true,
+            "indices": null
+        }
+    ],
+    "transformNodes": [],
+    "cameras": [],
+    "lights": [],
+    "materials": [],
+    "geometries": {
+        "boxes": [],
+        "spheres": [],
+        "cylinders": [],
+        "toruses": [],
+        "grounds": [],
+        "planes": [],
+        "torusKnots": [],
+        "vertexData": []
+    },
+    "metadata": {
+        "type": "Sphere",
+        "diameter": 100,
+        "segments": 32,
+        "physicsAggregate": {
+            "shape": {
+                "type": 0,
+                "density": 1000
+            },
+            "body": {
+                "motionType": 2
+            },
+            "massProperties": {
+                "mass": 1,
+                "inertia": [
+                    1000.0000610351562,
+                    1000.0000610351562,
+                    1000.0000610351562
+                ],
+                "centerOfMass": [
+                    0,
+                    0,
+                    0
+                ],
+                "inertiaOrientation": [
+                    0,
+                    0,
+                    0,
+                    1
+                ]
+            },
+            "material": {
+                "friction": 0.2,
+                "restitution": 0.2
+            }
+        }
+    },
+    "basePoseMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ]
+}
