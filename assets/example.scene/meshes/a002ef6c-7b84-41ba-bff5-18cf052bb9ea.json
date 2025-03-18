@@ -68,7 +68,11 @@
                 "scripts": [
                     {
                         "enabled": true,
-                        "key": "scripts/farmer.ts"
+                        "key": "scripts/farmerAnim.ts"
+                    },
+                    {
+                        "enabled": true,
+                        "key": "scripts/farmerControlled.ts"
                     }
                 ]
             },
@@ -95,7 +99,11 @@
         "scripts": [
             {
                 "enabled": true,
-                "key": "scripts/farmer.ts"
+                "key": "scripts/farmerAnim.ts"
+            },
+            {
+                "enabled": true,
+                "key": "scripts/farmerControlled.ts"
             }
         ]
     },
