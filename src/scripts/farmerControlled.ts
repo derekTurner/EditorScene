@@ -5,12 +5,23 @@ import {
   Quaternion,
   Vector3,
   KeyboardEventTypes,
+  CharacterSurfaceInfo,
+  MeshBuilder,
 } from "@babylonjs/core";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 
 import { IScript } from "babylonjs-editor-tools";
 // https://playground.babylonjs.com/#WO0H1U#13
+// https://doc.babylonjs.com/typedoc/classes/BABYLON.PhysicsCharacterController
+// https://doc.babylonjs.com/typedoc/classes/BABYLON.PhysicsCharacterController#checksupport
+// https://doc.babylonjs.com/typedoc/interfaces/BABYLON.CharacterSurfaceInfo
+// https://doc.babylonjs.com/typedoc/enums/BABYLON.CharacterSupportedState // unsupported 0, sliding 1, supported 2,
+
 export default class SceneComponent implements IScript {
+  public farmerPosition = new Vector3(0, 0, 0);
+  private h = 4;
+  private r = 0.6;
+
   // Character state
   private state: String = "ON_GROUND";
   private inAirSpeed = 8.0;
@@ -28,16 +39,19 @@ export default class SceneComponent implements IScript {
   private characterPosition!: Vector3;
   private characterController!: PhysicsCharacterController;
   private camera!: FreeCamera;
+  private down = new Vector3(0, -1, 0);
+  private dt: number = 0;
+  private displayCapsule!: Mesh; // for debugging
 
   //Support information
-  private supportInfo: any = "ON_GROUND";
+  private supportInfo!: CharacterSurfaceInfo;
 
   public constructor(public mesh: Mesh) {
     this.camera = this.mesh.getScene().activeCamera as FreeCamera;
   }
 
   private getNextState() {
-    // rotates state START_JUMP -> IN_AIR -> ON_GROUND
+    // rotates state START_JUMP -> IN_AIR -> ON_GROUND -> IN_AIR
     // rotation triggered by wantjump true
     if (this.state == "IN_AIR") {
       if (
@@ -62,13 +76,16 @@ export default class SceneComponent implements IScript {
     }
   }
 
-  private getDesiredVelocity(deltaTime: number) {
+  private getDesiredVelocity() {
+    // this.inputDirection is correct at this point
+    // state is stuck on IN_AIR
+    console.log(this.inputDirection);
     // Update state
     let nextState = this.getNextState();
     if (nextState != this.state) {
       this.state = nextState!;
     }
-
+    console.log(this.state);
     // Get important directions
     let upWorld = this.characterGravity.normalizeToNew();
     upWorld.scaleInPlace(-1.0);
@@ -77,6 +94,26 @@ export default class SceneComponent implements IScript {
     );
 
     if (this.state == "IN_AIR") {
+      let desiredVelocity = this.inputDirection
+        .scale(this.inAirSpeed)
+        .applyRotationQuaternion(this.characterOrientation);
+      let outputVelocity = this.characterController.calculateMovement(
+        this.dt,
+        forwardWorld,
+        this.supportInfo.averageSurfaceNormal,
+        this.currentVelocity,
+        this.supportInfo.averageSurfaceVelocity,
+        desiredVelocity,
+        upWorld
+      );
+      // Restore to original vertical component
+      outputVelocity.addInPlace(upWorld.scale(-outputVelocity.dot(upWorld)));
+      outputVelocity.addInPlace(
+        upWorld.scale(this.currentVelocity.dot(upWorld))
+      );
+      // Add gravity
+      outputVelocity.addInPlace(this.characterGravity.scale(this.dt));
+      return outputVelocity;
     } // TODO
     else if (this.state == "ON_GROUND") {
       // Move character relative to the surface we're standing on
@@ -84,12 +121,13 @@ export default class SceneComponent implements IScript {
       // avoid artifacts caused by filtering of the output velocity when standing on moving objects.
       console.log(this.inputDirection);
       let desiredVelocity = this.inputDirection
-      
+
         .scale(this.onGroundSpeed)
         .applyRotationQuaternion(this.characterOrientation);
+      console.log(this.supportInfo.averageSurfaceNormal);
 
       let outputVelocity = this.characterController.calculateMovement(
-        deltaTime,
+        this.dt,
         forwardWorld,
         this.supportInfo.averageSurfaceNormal,
         this.currentVelocity,
@@ -123,12 +161,31 @@ export default class SceneComponent implements IScript {
   }
 
   public onStart(): void {
+    this.farmerPosition = new Vector3(0, 0, 0);
+    this.characterController = new PhysicsCharacterController(
+      this.farmerPosition,
+      { capsuleHeight: this.h, capsuleRadius: this.r },
+      this.mesh.getScene()
+    );
+    this.mesh.setPositionWithLocalVector(
+      this.characterController.getPosition()
+    );
+
+    this.displayCapsule = MeshBuilder.CreateCapsule(
+      "CharacterDisplay",
+      { height: 4, radius: 0.6 },
+      this.mesh.getScene()
+    ); // for debugging
+    // this.displayCapsule.parent = this.mesh;
+
     // set up event handlers
 
     this.mesh.getScene().onBeforeRenderObservable.add((_) => {
-      this.characterController = this.mesh.getScene().getExternalData("farmerController")!;
-      //console.log(this.characterPosition = this.characterController.getPosition());
+      // this.characterController = this.mesh.getScene().getExternalData("farmerController")!;
       this.mesh.position.copyFrom(this.characterController.getPosition());
+      this.displayCapsule.position.copyFrom(
+        this.characterController.getPosition()
+      );
 
       // camera following
       var cameraDirection = this.camera.getDirection(new Vector3(0, 0, 1));
@@ -140,18 +197,19 @@ export default class SceneComponent implements IScript {
       var dist = Vector3.Distance(this.camera.position, this.mesh.position);
       const amount = (Math.min(dist - 6, 0) + Math.max(dist - 9, 0)) * 0.04;
       cameraDirection.scaleAndAddToRef(amount, this.camera.position);
-      // console.log(this.camera.position); // not changing
       this.camera.position.y +=
         (this.mesh.position.y + 2 - this.camera.position.y) * 0.04;
     });
 
     this.mesh.getScene().onAfterPhysicsObservable.add((_) => {
       if (this.mesh.getScene().deltaTime == undefined) return;
-      let dt = this.mesh.getScene().deltaTime / 1000.0;
-      if (dt == 0) return;
+      this.dt = this.mesh.getScene().deltaTime / 1000.0;
+      if (this.dt == 0) return;
 
-      let down = new Vector3(0, -1, 0);
-      let support = this.characterController.checkSupport(dt, down);
+      this.supportInfo = this.characterController.checkSupport(
+        this.dt,
+        this.down
+      );
       this.mesh.getScene().cameras[0];
       Quaternion.FromEulerAnglesToRef(
         0,
@@ -159,45 +217,68 @@ export default class SceneComponent implements IScript {
         0,
         this.characterOrientation
       );
-      let desiredLinearVelocity = this.getDesiredVelocity(dt);
+      let desiredLinearVelocity = this.getDesiredVelocity();
       this.characterController.setVelocity(desiredLinearVelocity!);
-      this.characterController.integrate(dt, support, this.characterGravity);
+      this.characterController.integrate(
+        this.dt,
+        this.supportInfo,
+        this.characterGravity
+      );
     });
 
     this.mesh.getScene().onKeyboardObservable.add((kbInfo) => {
       switch (kbInfo.type) {
-          case KeyboardEventTypes.KEYDOWN:
-              if (kbInfo.event.key == 'i' || kbInfo.event.key == 'ArrowUp') {
-                  this.inputDirection.z = 1;
-                  console.log("up");
-              } else if (kbInfo.event.key == 'k' || kbInfo.event.key == 'ArrowDown') {
-                  this.inputDirection.z = -1;
-                  console.log("down");
-              } else if (kbInfo.event.key == 'j' || kbInfo.event.key == 'ArrowLeft') {
-                  this.inputDirection.x = -1;
-                  console.log("left");
-              } else if (kbInfo.event.key == 'l' || kbInfo.event.key == 'ArrowRight') {
-                  this.inputDirection.x = 1;
-                  console.log("right");
-              } else if (kbInfo.event.key == ' ') {
-                  this.wantJump = true;
-              }
-              break;
-          case KeyboardEventTypes.KEYUP:
-              if (kbInfo.event.key == 'w' || kbInfo.event.key == 's' || kbInfo.event.key == 'ArrowUp' || kbInfo.event.key == 'ArrowDown') {
-                  this.inputDirection.z = 0;    
-              }
-              if (kbInfo.event.key == 'a' || kbInfo.event.key == 'd' || kbInfo.event.key == 'ArrowLeft' || kbInfo.event.key == 'ArrowRight') {
-                  this.inputDirection.x = 0;
-              } else if (kbInfo.event.key == ' ') {
-                  this.wantJump = false;
-              }
-              break;
+        case KeyboardEventTypes.KEYDOWN:
+          if (kbInfo.event.key == "i" || kbInfo.event.key == "ArrowUp") {
+            this.inputDirection.z = 1;
+            console.log("up");
+          } else if (
+            kbInfo.event.key == "k" ||
+            kbInfo.event.key == "ArrowDown"
+          ) {
+            this.inputDirection.z = -1;
+            console.log("down");
+          } else if (
+            kbInfo.event.key == "j" ||
+            kbInfo.event.key == "ArrowLeft"
+          ) {
+            this.inputDirection.x = -1;
+            console.log("left");
+          } else if (
+            kbInfo.event.key == "l" ||
+            kbInfo.event.key == "ArrowRight"
+          ) {
+            this.inputDirection.x = 1;
+            console.log("right");
+          } else if (kbInfo.event.key == " ") {
+            this.wantJump = true;
+          }
+          break;
+        case KeyboardEventTypes.KEYUP:
+          if (
+            kbInfo.event.key == "w" ||
+            kbInfo.event.key == "s" ||
+            kbInfo.event.key == "ArrowUp" ||
+            kbInfo.event.key == "ArrowDown"
+          ) {
+            this.inputDirection.z = 0;
+          }
+          if (
+            kbInfo.event.key == "a" ||
+            kbInfo.event.key == "d" ||
+            kbInfo.event.key == "ArrowLeft" ||
+            kbInfo.event.key == "ArrowRight"
+          ) {
+            this.inputDirection.x = 0;
+          } else if (kbInfo.event.key == " ") {
+            this.wantJump = false;
+          }
+          break;
       }
     });
-  }  
+  }
 
   public onUpdate(): void {
-      // Nothing here action is all in onStart
+    // Nothing here action is all in onStart
   }
 }
