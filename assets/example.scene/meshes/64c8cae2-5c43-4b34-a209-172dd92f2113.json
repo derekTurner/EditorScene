@@ -1,0 +1,242 @@
+{
+    "meshes": [
+        {
+            "name": "New Box",
+            "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
+            "uniqueId": 1742386756857,
+            "type": "Mesh",
+            "position": [
+                0,
+                0,
+                260.63274498536464
+            ],
+            "rotationQuaternion": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "scaling": [
+                1,
+                1,
+                1
+            ],
+            "localMatrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "isEnabled": true,
+            "isVisible": true,
+            "infiniteDistance": false,
+            "pickable": true,
+            "receiveShadows": true,
+            "billboardMode": 0,
+            "visibility": 1,
+            "alwaysSelectAsActiveMesh": false,
+            "checkCollisions": false,
+            "ellipsoid": [
+                0.5,
+                1,
+                0.5
+            ],
+            "ellipsoidOffset": [
+                0,
+                0,
+                0
+            ],
+            "doNotSyncBoundingInfo": false,
+            "isBlocker": false,
+            "sideOrientation": 1,
+            "isUnIndexed": false,
+            "geometryUniqueId": 1742386756858,
+            "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
+            "subMeshes": null,
+            "materialUniqueId": 735,
+            "materialId": "default material",
+            "metadata": {
+                "type": "Box",
+                "width": 100,
+                "depth": 100,
+                "height": 100,
+                "physicsAggregate": {
+                    "shape": {
+                        "type": 3,
+                        "density": 1000
+                    },
+                    "body": {
+                        "motionType": 2
+                    },
+                    "massProperties": {
+                        "mass": 0.3199999928474426,
+                        "inertia": [
+                            1666.6666259765625,
+                            1666.6666259765625,
+                            1666.6666259765625
+                        ],
+                        "centerOfMass": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "inertiaOrientation": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    },
+                    "material": {
+                        "friction": 0.2,
+                        "restitution": 0.77
+                    }
+                }
+            },
+            "instances": [],
+            "animations": [],
+            "ranges": [],
+            "layerMask": 268435455,
+            "alphaIndex": 1.7976931348623157e+308,
+            "hasVertexAlpha": false,
+            "overlayAlpha": 0,
+            "overlayColor": [
+                0,
+                0,
+                0
+            ],
+            "renderOverlay": true,
+            "applyFog": true,
+            "delayLoadingFile": "assets/example.scene/geometries/e50f4437-5d41-471a-ac16-2b23dadd1a12.babylonbinarymeshdata",
+            "boundingBoxMaximum": [
+                50,
+                50,
+                50
+            ],
+            "boundingBoxMinimum": [
+                -50,
+                -50,
+                -50
+            ],
+            "_binaryInfo": {
+                "positionsAttrDesc": {
+                    "count": 72,
+                    "stride": 3,
+                    "offset": 0,
+                    "dataType": 1
+                },
+                "normalsAttrDesc": {
+                    "count": 72,
+                    "stride": 3,
+                    "offset": 288,
+                    "dataType": 1
+                },
+                "uvsAttrDesc": {
+                    "count": 48,
+                    "stride": 2,
+                    "offset": 576,
+                    "dataType": 1
+                },
+                "indicesAttrDesc": {
+                    "count": 36,
+                    "stride": 1,
+                    "offset": 768,
+                    "dataType": 0
+                },
+                "subMeshesAttrDesc": {
+                    "count": 1,
+                    "stride": 5,
+                    "offset": 912,
+                    "dataType": 0
+                }
+            },
+            "positions": null,
+            "normals": null,
+            "uvs": null,
+            "hasUVs": true,
+            "indices": null
+        }
+    ],
+    "transformNodes": [],
+    "cameras": [],
+    "lights": [],
+    "materials": [],
+    "geometries": {
+        "boxes": [],
+        "spheres": [],
+        "cylinders": [],
+        "toruses": [],
+        "grounds": [],
+        "planes": [],
+        "torusKnots": [],
+        "vertexData": []
+    },
+    "metadata": {
+        "type": "Box",
+        "width": 100,
+        "depth": 100,
+        "height": 100,
+        "physicsAggregate": {
+            "shape": {
+                "type": 3,
+                "density": 1000
+            },
+            "body": {
+                "motionType": 2
+            },
+            "massProperties": {
+                "mass": 0.3199999928474426,
+                "inertia": [
+                    1666.6666259765625,
+                    1666.6666259765625,
+                    1666.6666259765625
+                ],
+                "centerOfMass": [
+                    0,
+                    0,
+                    0
+                ],
+                "inertiaOrientation": [
+                    0,
+                    0,
+                    0,
+                    1
+                ]
+            },
+            "material": {
+                "friction": 0.2,
+                "restitution": 0.77
+            }
+        }
+    },
+    "basePoseMatrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+    ]
+}

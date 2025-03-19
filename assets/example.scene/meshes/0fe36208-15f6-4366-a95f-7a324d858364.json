@@ -10,10 +10,11 @@
                 0,
                 -161.67832333200874
             ],
-            "rotation": [
+            "rotationQuaternion": [
                 0,
                 0,
-                0
+                0,
+                1
             ],
             "scaling": [
                 1,
@@ -69,7 +70,39 @@
             "metadata": {
                 "type": "Ground",
                 "width": 102400,
-                "height": 102400
+                "height": 102400,
+                "physicsAggregate": {
+                    "shape": {
+                        "type": 3,
+                        "density": 1000
+                    },
+                    "body": {
+                        "motionType": 0
+                    },
+                    "massProperties": {
+                        "mass": 1,
+                        "inertia": [
+                            873813376,
+                            1747626752,
+                            873813376
+                        ],
+                        "centerOfMass": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "inertiaOrientation": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    },
+                    "material": {
+                        "friction": 0.46,
+                        "restitution": 0.2
+                    }
+                }
             },
             "instances": [],
             "animations": [],
@@ -500,7 +533,39 @@
     "metadata": {
         "type": "Ground",
         "width": 102400,
-        "height": 102400
+        "height": 102400,
+        "physicsAggregate": {
+            "shape": {
+                "type": 3,
+                "density": 1000
+            },
+            "body": {
+                "motionType": 0
+            },
+            "massProperties": {
+                "mass": 1,
+                "inertia": [
+                    873813376,
+                    1747626752,
+                    873813376
+                ],
+                "centerOfMass": [
+                    0,
+                    0,
+                    0
+                ],
+                "inertiaOrientation": [
+                    0,
+                    0,
+                    0,
+                    1
+                ]
+            },
+            "material": {
+                "friction": 0.46,
+                "restitution": 0.2
+            }
+        }
     },
     "basePoseMatrix": [
         1,
