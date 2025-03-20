@@ -99,7 +99,7 @@
                         ]
                     },
                     "material": {
-                        "friction": 0.46,
+                        "friction": 0.23,
                         "restitution": 0.2
                     }
                 }
@@ -562,7 +562,7 @@
                 ]
             },
             "material": {
-                "friction": 0.46,
+                "friction": 0.23,
                 "restitution": 0.2
             }
         }

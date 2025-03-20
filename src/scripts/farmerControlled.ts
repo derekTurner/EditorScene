@@ -7,6 +7,8 @@ import {
   KeyboardEventTypes,
   CharacterSurfaceInfo,
   MeshBuilder,
+  ConversionMode,
+  Scene,
 } from "@babylonjs/core";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 
@@ -18,15 +20,17 @@ import { IScript } from "babylonjs-editor-tools";
 // https://doc.babylonjs.com/typedoc/enums/BABYLON.CharacterSupportedState // unsupported 0, sliding 1, supported 2,
 
 export default class SceneComponent implements IScript {
-  public farmerPosition = new Vector3(0, 0, 0);
-  private h = 4;
-  private r = 0.6;
+  private scene!:Scene;
+
+  private farmerPosition = new Vector3(0, 0, 0);
+  private h = 180;
+  private r = 25;
 
   // Character state
-  private state: String = "ON_GROUND";
-  private inAirSpeed = 80.0;
-  private onGroundSpeed = 100.0;
-  private jumpHeight = 1.5;
+  private state: String = "IN_AIR";
+  private inAirSpeed = 800.0;
+  private onGroundSpeed = 1000.0;
+  private jumpHeight = 500;
   private wantJump = false;
   private inputDirection = new Vector3(0, 0, 0);
   private forwardLocalSpace = new Vector3(0, 0, 1);
@@ -36,7 +40,6 @@ export default class SceneComponent implements IScript {
 
   //Character properties
 
-  private characterPosition!: Vector3;
   private characterController!: PhysicsCharacterController;
   private camera!: FreeCamera;
   private down = new Vector3(0, -1, 0);
@@ -46,18 +49,16 @@ export default class SceneComponent implements IScript {
   //Support information
   private supportInfo!: CharacterSurfaceInfo;
 
-  //Camera 
+  //Camera
   private cameraMaxDistance = 900;
   private cameraMinDistance = 600;
   private cameraMotionRate = 0.04;
-  private cameraOffsetY = 500;  // hold camera above target
-
+  private cameraOffsetY = 500; // hold camera above target
 
   public constructor(public mesh: Mesh) {
-    this.camera = this.mesh.getScene().activeCamera as FreeCamera;
+    this.scene = this.mesh.getScene();
+    this.camera = this.scene.activeCamera as FreeCamera;
   }
- 
-
 
   private getNextState() {
     // rotates state START_JUMP -> IN_AIR -> ON_GROUND -> IN_AIR
@@ -91,7 +92,7 @@ export default class SceneComponent implements IScript {
     if (nextState != this.state) {
       this.state = nextState!;
     }
-    
+
     // Get important directions
     let upWorld = this.characterGravity.normalizeToNew();
     upWorld.scaleInPlace(-1.0);
@@ -126,7 +127,6 @@ export default class SceneComponent implements IScript {
       // Correct input velocity to apply instantly any changes in the velocity of the standing surface and this way
       // avoid artifacts caused by filtering of the output velocity when standing on moving objects.
       let desiredVelocity = this.inputDirection
-
         .scale(this.onGroundSpeed)
         .applyRotationQuaternion(this.characterOrientation);
 
@@ -140,6 +140,7 @@ export default class SceneComponent implements IScript {
         upWorld
       );
       // Horizontal projection
+      
       {
         outputVelocity.subtractInPlace(this.supportInfo.averageSurfaceVelocity);
         let inv1k = 1e-3;
@@ -159,16 +160,22 @@ export default class SceneComponent implements IScript {
         outputVelocity.addInPlace(this.supportInfo.averageSurfaceVelocity);
         return outputVelocity;
       }
-    } 
-    else if (this.state == "START_JUMP") {} // TODO
+    } else if (this.state == "START_JUMP") {
+
+      let u = Math.sqrt(2 * this.characterGravity.length() * this.jumpHeight);
+      let curRelVel = this.currentVelocity.dot(upWorld);
+      return this.currentVelocity.add(upWorld.scale(u - curRelVel));
+
+    } // TODO
+    console.log("Error: Unknown state");
     return Vector3.Zero(); // only gets here is the state is not supported
   }
 
   public onStart(): void {
     this.characterController = new PhysicsCharacterController(
-      this.farmerPosition,
+      (this.farmerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
       { capsuleHeight: this.h, capsuleRadius: this.r },
-      this.mesh.getScene()
+      this.scene
     );
     this.mesh.setPositionWithLocalVector(
       this.characterController.getPosition()
@@ -176,16 +183,28 @@ export default class SceneComponent implements IScript {
 
     this.displayCapsule = MeshBuilder.CreateCapsule(
       "CharacterDisplay",
-      { height: 40, radius: 5, tessellation: 12 , orientation: Vector3.Up() },
-      this.mesh.getScene()
-    ); // for debugging
-
+      {
+        height: this.h,
+        radius: this.r,
+        tessellation: 12,
+        orientation: Vector3.Up(),
+      },
+      this.scene
+    );
+    this.displayCapsule.setPositionWithLocalVector(
+      this.characterController.getPosition()
+    );
+    
+    // cylinder displayed for debugging
 
     // set up event handlers
 
-    this.mesh.getScene().onBeforeRenderObservable.add((_) => {
-      // this.characterController = this.mesh.getScene().getExternalData("farmerController")!;
-      this.mesh.position.copyFrom(this.characterController.getPosition());
+    this.scene.onBeforeRenderObservable.add(() => {
+      this.mesh.position.copyFrom(
+        this.characterController
+          .getPosition()
+          .add(new Vector3(0, -this.h / 2, 0))
+      );
       this.displayCapsule.position.copyFrom(
         this.characterController.getPosition()
       );
@@ -199,26 +218,29 @@ export default class SceneComponent implements IScript {
       cameraDirection.normalize();
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#lerp
       this.camera.setTarget(
-        Vector3.Lerp(this.camera.getTarget(), this.mesh.position, 0.1)// moves the target towards the mesh position
+        Vector3.Lerp(this.camera.getTarget(), this.mesh.position, 0.1) // moves the target towards the mesh position
       );
-      var dist = Vector3.Distance(this.camera.position, this.mesh.position);// distance between camera and target
-      const amount = (Math.min(dist - this.cameraMinDistance, 0) + Math.max(dist - this.cameraMaxDistance, 0)) * this.cameraMotionRate;// scaling factor for movement towads target
+      var dist = Vector3.Distance(this.camera.position, this.mesh.position); // distance between camera and target
+      const amount =
+        (Math.min(dist - this.cameraMinDistance, 0) +
+          Math.max(dist - this.cameraMaxDistance, 0)) *
+        this.cameraMotionRate; // scaling factor for movement towads target
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#scaleandaddtoref
-      cameraDirection.scaleAndAddToRef(amount, this.camera.position);//scales and moves the camera direction
+      cameraDirection.scaleAndAddToRef(amount, this.camera.position); //scales and moves the camera direction
       this.camera.position.y +=
-        (this.mesh.position.y + this.cameraOffsetY - this.camera.position.y) * this.cameraMotionRate;
+        (this.mesh.position.y + this.cameraOffsetY - this.camera.position.y) *
+        this.cameraMotionRate;
     });
 
-    this.mesh.getScene().onAfterPhysicsObservable.add((_) => {
-      if (this.mesh.getScene().deltaTime == undefined) return;
-      this.dt = this.mesh.getScene().deltaTime / 1000.0;
+    this.scene.onAfterPhysicsObservable.add(() => {
+      if (this.scene.deltaTime == undefined) return;
+      this.dt = this.scene.deltaTime / 1000.0;
       if (this.dt == 0) return;
 
       this.supportInfo = this.characterController.checkSupport(
         this.dt,
         this.down
       );
-      this.mesh.getScene().cameras[0];
       Quaternion.FromEulerAnglesToRef(
         0,
         this.camera.rotation.y,
@@ -234,50 +256,51 @@ export default class SceneComponent implements IScript {
       );
     });
 
-    this.mesh.getScene().onKeyboardObservable.add((kbInfo) => {
+    this.scene.onKeyboardObservable.add((kbInfo) => {
       switch (kbInfo.type) {
         case KeyboardEventTypes.KEYDOWN:
           if (kbInfo.event.key == "i" || kbInfo.event.key == "ArrowUp") {
             this.inputDirection.z = 1;
             console.log("up");
-            this.characterController.getPosition()
+            console.log(this.state);
           } else if (
             kbInfo.event.key == "k" ||
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = -1;
             console.log("down");
-            this.characterController.getPosition()
+            console.log(this.state);
           } else if (
             kbInfo.event.key == "j" ||
             kbInfo.event.key == "ArrowLeft"
           ) {
             this.inputDirection.x = -1;
             console.log("left");
-            this.characterController.getPosition()
+            console.log(this.state);
           } else if (
             kbInfo.event.key == "l" ||
             kbInfo.event.key == "ArrowRight"
           ) {
             this.inputDirection.x = 1;
             console.log("right");
-            this.characterController.getPosition()
+            console.log(this.state);
           } else if (kbInfo.event.key == " ") {
             this.wantJump = true;
           }
+          console.log(kbInfo.type)
           break;
         case KeyboardEventTypes.KEYUP:
           if (
-            kbInfo.event.key == "w" ||
-            kbInfo.event.key == "s" ||
+            kbInfo.event.key == "i" ||
+            kbInfo.event.key == "k" ||
             kbInfo.event.key == "ArrowUp" ||
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = 0;
           }
           if (
-            kbInfo.event.key == "a" ||
-            kbInfo.event.key == "d" ||
+            kbInfo.event.key == "j" ||
+            kbInfo.event.key == "l" ||
             kbInfo.event.key == "ArrowLeft" ||
             kbInfo.event.key == "ArrowRight"
           ) {
@@ -285,6 +308,7 @@ export default class SceneComponent implements IScript {
           } else if (kbInfo.event.key == " ") {
             this.wantJump = false;
           }
+          console.log(kbInfo.type)
           break;
       }
     });
