@@ -4,8 +4,8 @@
  */
 export const scriptsMap = {
     "scripts/keyActions.ts": require("@/scripts/keyActions"),
+	"scripts/beach.ts": require("@/scripts/beach"),
 	"scripts/farmerControlled.ts": require("@/scripts/farmerControlled"),
 	"scripts/box.ts": require("@/scripts/box"),
-	"scripts/farmerAnim.ts": require("@/scripts/farmerAnim"),
-	"scripts/beach.ts": require("@/scripts/beach")
+	"scripts/farmerAnim.ts": require("@/scripts/farmerAnim")
 };

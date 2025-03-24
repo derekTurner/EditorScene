@@ -65,7 +65,7 @@
             "geometryUniqueId": 1742386756858,
             "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
             "subMeshes": null,
-            "materialUniqueId": 630,
+            "materialUniqueId": 647,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
@@ -81,7 +81,7 @@
                         "motionType": 2
                     },
                     "massProperties": {
-                        "mass": 0.3199999928474426,
+                        "mass": 0.10000000149011612,
                         "inertia": [
                             1666.6666259765625,
                             1666.6666259765625,
@@ -100,7 +100,7 @@
                         ]
                     },
                     "material": {
-                        "friction": 0.2,
+                        "friction": 0.11749999999999998,
                         "restitution": 0.77
                     }
                 }
@@ -197,7 +197,7 @@
                 "motionType": 2
             },
             "massProperties": {
-                "mass": 0.3199999928474426,
+                "mass": 0.10000000149011612,
                 "inertia": [
                     1666.6666259765625,
                     1666.6666259765625,
@@ -216,7 +216,7 @@
                 ]
             },
             "material": {
-                "friction": 0.2,
+                "friction": 0.11749999999999998,
                 "restitution": 0.77
             }
         }

@@ -21,13 +21,22 @@ import { IScript } from "babylonjs-editor-tools";
 
 export default class SceneComponent implements IScript {
   private scene!:Scene;
-  private stash = {outputVelocity:new Vector3(0, 0, 0),
-    desiredVelocity: new Vector3(0, 0, 0)
+  private stash = {
+    outputVelocity:new Vector3(0, 0, 0),
+    desiredVelocity: new Vector3(0, 0, 0),
+    jumpVelocity: new Vector3(0, 0, 0),
+    currentVelocity: new Vector3(0, 0, 0)
   };
 
   private farmerPosition = new Vector3(0, 0, 0);
   private h = 180;
   private r = 25;
+
+  private facingAngle: number = (2 * Math.PI) / 2;
+  private forwardAngle: number = (2 * Math.PI) / 2;
+  private backwardAngle: number = (0 * Math.PI) / 2;
+  private leftAngle: number = (1 * Math.PI) / 2;
+  private rightAngle: number = (3 * Math.PI) / 2;
 
   // Character state
   private state: String = "IN_AIR";
@@ -90,6 +99,7 @@ export default class SceneComponent implements IScript {
   }
 
   private getDesiredVelocity() {
+    let desiredVelocity:Vector3;
     // Update state
     let nextState = this.getNextState();
     if (nextState != this.state) {
@@ -102,11 +112,16 @@ export default class SceneComponent implements IScript {
     let forwardWorld = this.forwardLocalSpace.applyRotationQuaternion(
       this.characterOrientation
     );
+    this.currentVelocity = this.characterController.getVelocity();
 
     if (this.state == "IN_AIR") {
-      let desiredVelocity = this.inputDirection
-        .scale(this.inAirSpeed)
+      console.log("IN_AIR");
+      desiredVelocity = this.inputDirection
+      .scale(this.inAirSpeed)
         .applyRotationQuaternion(this.characterOrientation);
+
+    this.stash.desiredVelocity = desiredVelocity;    
+        
       let outputVelocity = this.characterController.calculateMovement(
         this.dt,
         forwardWorld,
@@ -130,8 +145,16 @@ export default class SceneComponent implements IScript {
       // Move character relative to the surface we're standing on
       // Correct input velocity to apply instantly any changes in the velocity of the standing surface and this way
       // avoid artifacts caused by filtering of the output velocity when standing on moving objects.
-      let desiredVelocity = this.inputDirection
-        .scale(this.onGroundSpeed)
+      
+      Quaternion.FromEulerAnglesToRef(
+        0,
+        (this.camera.rotation.y + this.facingAngle),
+        0,
+        this.mesh.rotationQuaternion!
+      );
+
+      desiredVelocity = this.inputDirection
+      .scale(this.onGroundSpeed)
         .applyRotationQuaternion(this.characterOrientation);
 
       let outputVelocity = this.characterController.calculateMovement(
@@ -148,7 +171,7 @@ export default class SceneComponent implements IScript {
       // Horizontal projection
       
       {
-        /*
+        
         outputVelocity.subtractInPlace(this.supportInfo.averageSurfaceVelocity);
         let inv1k = 1e-3;
         if (outputVelocity.dot(upWorld) > inv1k) {
@@ -165,14 +188,16 @@ export default class SceneComponent implements IScript {
           outputVelocity.scaleInPlace(horizLen);
         }
         outputVelocity.addInPlace(this.supportInfo.averageSurfaceVelocity);
-        */
+        
         return outputVelocity;
       }
     } else if (this.state == "START_JUMP") {
 
       let u = Math.sqrt(2 * this.characterGravity.length() * this.jumpHeight);
       let curRelVel = this.currentVelocity.dot(upWorld);
+      this.stash.jumpVelocity = this.currentVelocity.add(upWorld.scale(u - curRelVel));
       return this.currentVelocity.add(upWorld.scale(u - curRelVel));
+      
 
     } // TODO
     console.log("Error: Unknown state");
@@ -194,7 +219,7 @@ export default class SceneComponent implements IScript {
       {
         height: this.h,
         radius: this.r,
-        tessellation: 12,
+        tessellation: 5,
         orientation: Vector3.Up(),
       },
       this.scene
@@ -256,6 +281,7 @@ export default class SceneComponent implements IScript {
         this.characterOrientation
       );
       let desiredLinearVelocity = this.getDesiredVelocity();
+      this.stash.currentVelocity = desiredLinearVelocity!;
       this.characterController.setVelocity(desiredLinearVelocity!);
       this.characterController.integrate(
         this.dt,
@@ -269,6 +295,7 @@ export default class SceneComponent implements IScript {
         case KeyboardEventTypes.KEYDOWN:
           if (kbInfo.event.key == "i" || kbInfo.event.key == "ArrowUp") {
             this.inputDirection.z = 1;
+            this.facingAngle = this.forwardAngle;
             console.log("up");
             console.log(this.state);
           } else if (
@@ -276,6 +303,7 @@ export default class SceneComponent implements IScript {
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = -1;
+            this.facingAngle = this.backwardAngle;
             console.log("down");
             console.log(this.state);
           } else if (
@@ -283,6 +311,7 @@ export default class SceneComponent implements IScript {
             kbInfo.event.key == "ArrowLeft"
           ) {
             this.inputDirection.x = -1;
+            this.facingAngle  = this.leftAngle;
             console.log("left");
             console.log(this.state);
           } else if (
@@ -290,6 +319,7 @@ export default class SceneComponent implements IScript {
             kbInfo.event.key == "ArrowRight"
           ) {
             this.inputDirection.x = 1;
+            this.facingAngle = this.rightAngle;
             console.log("right");
             console.log(this.state);
           } else if (kbInfo.event.key == " ") {
@@ -297,6 +327,8 @@ export default class SceneComponent implements IScript {
           }
           console.log("desire",this.stash.desiredVelocity)
           console.log("output",this.stash.outputVelocity);
+          console.log("current",this.stash.currentVelocity);
+          console.log("jumpVelocity",this.stash.jumpVelocity);
           break;
         case KeyboardEventTypes.KEYUP:
           if (
@@ -317,7 +349,6 @@ export default class SceneComponent implements IScript {
           } else if (kbInfo.event.key == " ") {
             this.wantJump = false;
           }
-          console.log(kbInfo.type)
           break;
       }
     });
