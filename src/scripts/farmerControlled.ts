@@ -21,6 +21,9 @@ import { IScript } from "babylonjs-editor-tools";
 
 export default class SceneComponent implements IScript {
   private scene!:Scene;
+  private stash = {outputVelocity:new Vector3(0, 0, 0),
+    desiredVelocity: new Vector3(0, 0, 0)
+  };
 
   private farmerPosition = new Vector3(0, 0, 0);
   private h = 180;
@@ -120,6 +123,7 @@ export default class SceneComponent implements IScript {
       );
       // Add gravity
       outputVelocity.addInPlace(this.characterGravity.scale(this.dt));
+      this.stash.outputVelocity = outputVelocity;
       return outputVelocity;
     } // TODO
     else if (this.state == "ON_GROUND") {
@@ -139,9 +143,12 @@ export default class SceneComponent implements IScript {
         desiredVelocity,
         upWorld
       );
+      this.stash.desiredVelocity = desiredVelocity;
+      this.stash.outputVelocity = outputVelocity;
       // Horizontal projection
       
       {
+        /*
         outputVelocity.subtractInPlace(this.supportInfo.averageSurfaceVelocity);
         let inv1k = 1e-3;
         if (outputVelocity.dot(upWorld) > inv1k) {
@@ -158,6 +165,7 @@ export default class SceneComponent implements IScript {
           outputVelocity.scaleInPlace(horizLen);
         }
         outputVelocity.addInPlace(this.supportInfo.averageSurfaceVelocity);
+        */
         return outputVelocity;
       }
     } else if (this.state == "START_JUMP") {
@@ -287,7 +295,8 @@ export default class SceneComponent implements IScript {
           } else if (kbInfo.event.key == " ") {
             this.wantJump = true;
           }
-          console.log(kbInfo.type)
+          console.log("desire",this.stash.desiredVelocity)
+          console.log("output",this.stash.outputVelocity);
           break;
         case KeyboardEventTypes.KEYUP:
           if (
