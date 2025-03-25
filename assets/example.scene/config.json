@@ -126,6 +126,10 @@
             {
                 "enabled": true,
                 "key": "scripts/keyActions.ts"
+            },
+            {
+                "enabled": true,
+                "key": "scripts/gui.ts"
             }
         ],
         "rendering": {
