@@ -62,14 +62,10 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 647,
+            "materialUniqueId": 640,
             "materialId": "default material",
             "metadata": {
                 "scripts": [
-                    {
-                        "enabled": true,
-                        "key": "scripts/farmerAnim.ts"
-                    },
                     {
                         "enabled": true,
                         "key": "scripts/farmerControlled.ts"
@@ -97,10 +93,6 @@
     "materials": [],
     "metadata": {
         "scripts": [
-            {
-                "enabled": true,
-                "key": "scripts/farmerAnim.ts"
-            },
             {
                 "enabled": true,
                 "key": "scripts/farmerControlled.ts"
