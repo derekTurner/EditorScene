@@ -6,7 +6,7 @@
             "uniqueId": 1742987523749,
             "type": "Mesh",
             "position": [
-                217.48391742050643,
+                200,
                 3,
                 0
             ],
@@ -105,7 +105,130 @@
                     }
                 }
             },
-            "instances": [],
+            "instances": [
+                {
+                    "name": "Platform2  (Mesh Instance)",
+                    "id": "2fa18ffc-285d-4c85-8b6f-f5cda4049c86",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": false,
+                    "checkCollisions": false,
+                    "position": [
+                        300,
+                        9,
+                        0
+                    ],
+                    "scaling": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1742988118635,
+                    "metadata": {
+                        "physicsAggregate": {
+                            "shape": {
+                                "type": 3,
+                                "density": 1000
+                            },
+                            "body": {
+                                "motionType": 2
+                            },
+                            "massProperties": {
+                                "mass": 1,
+                                "inertia": [
+                                    836.3333129882812,
+                                    1666.666748046875,
+                                    836.3333129882812
+                                ],
+                                "centerOfMass": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "inertiaOrientation": [
+                                    0,
+                                    0,
+                                    0,
+                                    1
+                                ]
+                            },
+                            "material": {
+                                "friction": 0.2,
+                                "restitution": 0.2
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Platform3 (Mesh Instance)",
+                    "id": "879e8e60-83ca-49dc-9c5e-68ea4423f0bc",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        400,
+                        15,
+                        0
+                    ],
+                    "scaling": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "rotationQuaternion": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1742988307350,
+                    "metadata": {
+                        "physicsAggregate": {
+                            "shape": {
+                                "type": 3,
+                                "density": 1000
+                            },
+                            "body": {
+                                "motionType": 2
+                            },
+                            "massProperties": {
+                                "mass": 1,
+                                "inertia": [
+                                    836.3333129882812,
+                                    1666.666748046875,
+                                    836.3333129882812
+                                ],
+                                "centerOfMass": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "inertiaOrientation": [
+                                    0,
+                                    0,
+                                    0,
+                                    1
+                                ]
+                            },
+                            "material": {
+                                "friction": 0.2,
+                                "restitution": 0.2
+                            }
+                        }
+                    }
+                }
+            ],
             "animations": [],
             "ranges": [],
             "layerMask": 268435455,

@@ -201,7 +201,7 @@ export default class SceneComponent implements IScript {
   public onStart(): void {
     this.scene.addExternalData("stash", this.stash);
 
-
+    this.farmerPosition = this.mesh.getAbsolutePosition();
     this.characterController = new PhysicsCharacterController(
       (this.farmerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
       { capsuleHeight: this.h, capsuleRadius: this.r },
