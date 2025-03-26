@@ -9,6 +9,7 @@ import {
   MeshBuilder,
   Scene,
 } from "@babylonjs/core";
+
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 
 import { IScript } from "babylonjs-editor-tools";
@@ -20,7 +21,6 @@ import { IScript } from "babylonjs-editor-tools";
 
 export default class SceneComponent implements IScript {
   private scene!: Scene;
-  private stash = {};
 
   private farmerPosition = new Vector3(0, 0, 0);
   private h = 180;
@@ -32,11 +32,12 @@ export default class SceneComponent implements IScript {
   private leftAngle: number = (1 * Math.PI) / 2;
   private rightAngle: number = (3 * Math.PI) / 2;
 
+
   // Character state
-  private state: String = "IN_AIR";
+  private state: string = "IN_AIR";
   private inAirSpeed = 800.0;
   private onGroundSpeed = 1000.0;
-  private jumpHeight = 500;
+  private jumpHeight = 100.0;
   private wantJump = false;
   private inputDirection = Vector3.Zero();
   private forwardLocalSpace = new Vector3(0, 0, 1);
@@ -59,6 +60,9 @@ export default class SceneComponent implements IScript {
   private cameraMinDistance = 600;
   private cameraMotionRate = 0.04;
   private cameraOffsetY = 500; // hold camera above target
+
+  //stash for messages to other scripts via externalData
+  public  stash: { [key: string]: string } = {"message": "Empty Stash"};
 
   public constructor(public mesh: Mesh) {
     this.scene = this.mesh.getScene();
@@ -101,6 +105,12 @@ export default class SceneComponent implements IScript {
     if (nextState != this.state) {
       this.state = nextState!;
     }
+    // want to display value on GUI;
+    //let debugLine = this.scene.myUI.getControlByName('debug') as TextBlock;
+    //debugLine.text = "00001";
+    this.stash.message = this.state;
+    this.stash.x = this.inputDirection.x.toString();
+    this.stash.z = this.inputDirection.z.toString();
 
     // Get important directions
     upWorld = this.characterGravity.normalizeToNew();
@@ -113,10 +123,6 @@ export default class SceneComponent implements IScript {
       desiredVelocity = this.inputDirection
         .scale(this.inAirSpeed)
         .applyRotationQuaternion(this.characterOrientation);
-      //desiredVelocity = new Vector3(0, 0, 1)
-      //  .scale(this.inAirSpeed)
-      //  .applyRotationQuaternion(this.characterOrientation);
-      //console.log(desiredVelocity);
       outputVelocity = this.characterController.calculateMovement(
         this.dt,
         forwardWorld,
@@ -192,8 +198,10 @@ export default class SceneComponent implements IScript {
     console.log("Error: Unknown state");
     return Vector3.Zero(); // only gets here is the state is not supported
   }
-
   public onStart(): void {
+    this.scene.addExternalData("stash", this.stash);
+
+
     this.characterController = new PhysicsCharacterController(
       (this.farmerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
       { capsuleHeight: this.h, capsuleRadius: this.r },
@@ -277,6 +285,8 @@ export default class SceneComponent implements IScript {
         this.characterGravity
       );
     });
+
+
 
     this.scene.onKeyboardObservable.add((kbInfo) => {
       switch (kbInfo.type) {
