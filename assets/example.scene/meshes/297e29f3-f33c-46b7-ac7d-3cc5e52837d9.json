@@ -1,14 +1,14 @@
 {
     "meshes": [
         {
-            "name": "New Box",
-            "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
-            "uniqueId": 1742386756857,
+            "name": "Platform",
+            "id": "297e29f3-f33c-46b7-ac7d-3cc5e52837d9",
+            "uniqueId": 1742987523749,
             "type": "Mesh",
             "position": [
-                0,
-                122.59633721147725,
-                206.58096253288835
+                217.48391742050643,
+                3,
+                0
             ],
             "rotationQuaternion": [
                 0,
@@ -62,8 +62,8 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "geometryUniqueId": 1742386756858,
-            "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
+            "geometryUniqueId": 1742987523750,
+            "geometryId": "f1802538-447c-4458-9b68-df9408b2240f",
             "subMeshes": null,
             "materialUniqueId": 631,
             "materialId": "default material",
@@ -71,7 +71,7 @@
                 "type": "Box",
                 "width": 100,
                 "depth": 100,
-                "height": 100,
+                "height": 6,
                 "physicsAggregate": {
                     "shape": {
                         "type": 3,
@@ -81,11 +81,11 @@
                         "motionType": 2
                     },
                     "massProperties": {
-                        "mass": 0.10000000149011612,
+                        "mass": 1,
                         "inertia": [
-                            1666.6666259765625,
-                            1666.6666259765625,
-                            1666.6666259765625
+                            881.3333740234375,
+                            1666.666748046875,
+                            881.3333740234375
                         ],
                         "centerOfMass": [
                             0,
@@ -100,8 +100,8 @@
                         ]
                     },
                     "material": {
-                        "friction": 0.11749999999999998,
-                        "restitution": 0.77
+                        "friction": 0.2,
+                        "restitution": 0.2
                     }
                 }
             },
@@ -119,15 +119,15 @@
             ],
             "renderOverlay": true,
             "applyFog": true,
-            "delayLoadingFile": "assets/example.scene/geometries/e50f4437-5d41-471a-ac16-2b23dadd1a12.babylonbinarymeshdata",
+            "delayLoadingFile": "assets/example.scene/geometries/f1802538-447c-4458-9b68-df9408b2240f.babylonbinarymeshdata",
             "boundingBoxMaximum": [
                 50,
-                50,
+                3,
                 50
             ],
             "boundingBoxMinimum": [
                 -50,
-                -50,
+                -3,
                 -50
             ],
             "_binaryInfo": {
@@ -187,7 +187,7 @@
         "type": "Box",
         "width": 100,
         "depth": 100,
-        "height": 100,
+        "height": 6,
         "physicsAggregate": {
             "shape": {
                 "type": 3,
@@ -197,11 +197,11 @@
                 "motionType": 2
             },
             "massProperties": {
-                "mass": 0.10000000149011612,
+                "mass": 1,
                 "inertia": [
-                    1666.6666259765625,
-                    1666.6666259765625,
-                    1666.6666259765625
+                    881.3333740234375,
+                    1666.666748046875,
+                    881.3333740234375
                 ],
                 "centerOfMass": [
                     0,
@@ -216,8 +216,8 @@
                 ]
             },
             "material": {
-                "friction": 0.11749999999999998,
-                "restitution": 0.77
+                "friction": 0.2,
+                "restitution": 0.2
             }
         }
     },

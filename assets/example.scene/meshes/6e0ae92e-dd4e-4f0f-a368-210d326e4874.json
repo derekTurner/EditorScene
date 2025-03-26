@@ -76,12 +76,13 @@
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
             "hasVertexAlpha": false,
-            "overlayAlpha": 0.5,
+            "overlayAlpha": 0,
             "overlayColor": [
-                1,
+                0,
                 0,
                 0
             ],
+            "renderOverlay": true,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/e7758818-9b80-4efc-a0dc-94ae4e38ac21.babylonbinarymeshdata",
             "boundingBoxMaximum": [
