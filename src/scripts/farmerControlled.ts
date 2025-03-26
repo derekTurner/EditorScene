@@ -207,6 +207,8 @@ export default class SceneComponent implements IScript {
       { capsuleHeight: this.h, capsuleRadius: this.r },
       this.scene
     );
+    this.characterController.characterMass = 1.0; // default is 1.0
+    this.characterController.characterStrength = 100; // default is 1e38
     this.mesh.setPositionWithLocalVector(
       this.characterController.getPosition()
     );
