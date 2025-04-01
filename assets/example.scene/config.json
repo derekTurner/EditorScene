@@ -122,12 +122,7 @@
         }
     },
     "metadata": {
-        "scripts": [
-            {
-                "enabled": true,
-                "key": "scripts/keyActions.ts"
-            }
-        ],
+        "scripts": [],
         "rendering": {
             "ssrRenderingPipeline": null,
             "motionBlurPostProcess": null,
@@ -179,9 +174,9 @@
         ],
         "speed": 200,
         "position": [
-            -507.6479680302909,
-            729.0062623934126,
-            -459.6360890428678
+            -524.259984099322,
+            752.7892466446988,
+            -469.23077696498285
         ],
         "upVector": [
             0,
