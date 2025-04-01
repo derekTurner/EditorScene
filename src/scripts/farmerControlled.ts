@@ -1,4 +1,5 @@
 import {
+  AnimationGroup,
   FreeCamera,
   CharacterSupportedState,
   PhysicsCharacterController,
@@ -34,14 +35,18 @@ export default class SceneComponent implements IScript {
 
   // Character state
   private state: String = "IN_AIR";
-  private inAirSpeed = 800.0;
+  private inAirSpeed = 80.0;
   private onGroundSpeed = 1000.0;
-  private jumpHeight = 500;
+  private jumpHeight = 30;
   private wantJump = false;
   private inputDirection = Vector3.Zero();
-  private forwardLocalSpace = new Vector3(0, 0, 1);
+
   private characterOrientation = Quaternion.Identity();
-  private characterGravity = new Vector3(0, -18, 0);
+  private characterGravity = new Vector3(0, -100, 0);// not same as physics gravity
+
+  // Spatial paramenters
+  private forwardLocalSpace = new Vector3(0, 0, 1);
+  private upWorld: Vector3 = this.characterGravity.normalizeToNew().scaleInPlace(-1.0);
 
   //Character properties
 
@@ -60,9 +65,112 @@ export default class SceneComponent implements IScript {
   private cameraMotionRate = 0.04;
   private cameraOffsetY = 500; // hold camera above target
 
+  //Animation
+    private ratio: number;
+    private stepf: Vector3 = new Vector3(0, 0, 9); // +z
+    private stepb: Vector3 = new Vector3(0, 0, -9); // -z
+    private stepr: Vector3 = new Vector3(9, 0, 0); // +x
+    private stepl: Vector3 = new Vector3(-9, 0, 0); // -x
+  
+    private deathAnim: AnimationGroup | null;
+    private gun_ShootAnim: AnimationGroup | null;
+    private hitRecieveAnim: AnimationGroup | null;
+    private hitRecieve_2Anim: AnimationGroup | null;
+    private idleAnim: AnimationGroup | null;
+    private idle_GunAnim: AnimationGroup | null;
+    private idle_Gun_PointingAnim: AnimationGroup | null;
+    private idle_Gun_ShootAnim: AnimationGroup | null;
+    private idle_NeutralAnim: AnimationGroup | null;
+    private idle_SwordAnim: AnimationGroup | null;
+    private interactAnim: AnimationGroup | null;
+    private kick_LeftAnim: AnimationGroup | null;
+    private kick_RightAnim: AnimationGroup | null;
+    private punch_LeftAnim: AnimationGroup | null;
+    private punch_RightAnim: AnimationGroup | null;
+    private rollAnim: AnimationGroup | null;
+    private runAnim: AnimationGroup | null;
+    private run_backAnim: AnimationGroup | null;
+    private run_LeftAnim: AnimationGroup | null;
+    private run_RightAnim: AnimationGroup | null;
+    private run_ShootAnim: AnimationGroup | null;
+    private sword_slashAnim: AnimationGroup | null;
+    private walkAnim: AnimationGroup | null;
+    private waveAnim: AnimationGroup | null;
+  
+    private animating: boolean = false;
+    private keyDownMap: { [key: string]: boolean } | null = null;
+
   public constructor(public mesh: Mesh) {
     this.scene = this.mesh.getScene();
     this.camera = this.scene.activeCamera as FreeCamera;
+    //animations
+    this.ratio = this.mesh.getScene().getAnimationRatio();
+    this.stepr = this.stepr.scale(this.ratio);
+    this.stepl = this.stepl.scale(this.ratio);
+    this.stepf = this.stepf.scale(this.ratio);
+    this.stepb = this.stepb.scale(this.ratio);
+
+     //model animation groups
+     this.deathAnim = this.mesh.getScene().getAnimationGroupByName("Death"); //x
+     this.gun_ShootAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Gun_Shoot"); //T
+     this.hitRecieveAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("HitRecieve"); //Y
+     this.hitRecieve_2Anim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("HitRecieve_2"); //U
+     this.idleAnim = this.mesh.getScene().getAnimationGroupByName("Idle"); //I
+     this.idle_GunAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Idle_Gun"); //O
+     this.idle_Gun_PointingAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Idle_Gun_Pointing"); //R
+     this.idle_Gun_ShootAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Idle_Gun_Shoot"); //F
+     this.idle_NeutralAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Idle_Neutral"); //G
+     this.idle_SwordAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Idle_Sword"); //H
+     this.interactAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Interact"); //I
+     this.kick_LeftAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Kick_Left"); //v
+     this.kick_RightAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Kick_Right"); //V
+     this.punch_LeftAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Punch_Left"); //p
+     this.punch_RightAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Punch_Right"); //P
+     this.rollAnim = this.mesh.getScene().getAnimationGroupByName("Roll"); //J
+     this.runAnim = this.mesh.getScene().getAnimationGroupByName("Run"); //
+     this.run_backAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Run_back"); //
+     this.run_LeftAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Run_Left"); //
+     this.run_RightAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Run_Right"); //
+     this.sword_slashAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Sword_slash"); //
+     this.run_ShootAnim = this.mesh
+       .getScene()
+       .getAnimationGroupByName("Run_Shoot"); //
+     this.walkAnim = this.mesh.getScene().getAnimationGroupByName("Walk"); //wasd
+     this.waveAnim = this.mesh.getScene().getAnimationGroupByName("Wave"); //
   }
 
   private getNextState() {
@@ -94,7 +202,7 @@ export default class SceneComponent implements IScript {
   private getDesiredVelocity() {
     let desiredVelocity: Vector3;
     let outputVelocity: Vector3;
-    let upWorld: Vector3;
+    
     let forwardWorld: Vector3;
     // Update state
     let nextState = this.getNextState();
@@ -103,8 +211,7 @@ export default class SceneComponent implements IScript {
     }
 
     // Get important directions
-    upWorld = this.characterGravity.normalizeToNew();
-    upWorld.scaleInPlace(-1.0);
+
     forwardWorld = this.forwardLocalSpace.applyRotationQuaternion(
       this.characterOrientation
     );
@@ -113,23 +220,19 @@ export default class SceneComponent implements IScript {
       desiredVelocity = this.inputDirection
         .scale(this.inAirSpeed)
         .applyRotationQuaternion(this.characterOrientation);
-      //desiredVelocity = new Vector3(0, 0, 1)
-      //  .scale(this.inAirSpeed)
-      //  .applyRotationQuaternion(this.characterOrientation);
-      //console.log(desiredVelocity);
       outputVelocity = this.characterController.calculateMovement(
         this.dt,
         forwardWorld,
-        this.supportInfo.averageSurfaceNormal,
+        this.upWorld,//this.supportInfo.averageSurfaceNormal,
         this.characterController.getVelocity(),
-        this.supportInfo.averageSurfaceVelocity,
+        new Vector3 (0,0,0),//this.supportInfo.averageSurfaceVelocity,
         desiredVelocity,
-        upWorld
+        this.upWorld
       );
       // Restore to original vertical component
-      outputVelocity.addInPlace(upWorld.scale(-outputVelocity.dot(upWorld)));
+      outputVelocity.addInPlace(this.upWorld.scale(-outputVelocity.dot(this.upWorld)));
       outputVelocity.addInPlace(
-        upWorld.scale(this.characterController.getVelocity().dot(upWorld))
+        this.upWorld.scale(this.characterController.getVelocity().dot(this.upWorld))
       );
       // Add gravity
       outputVelocity.addInPlace(this.characterGravity.scale(this.dt));
@@ -157,7 +260,7 @@ export default class SceneComponent implements IScript {
         this.characterController.getVelocity(),
         this.supportInfo.averageSurfaceVelocity,
         desiredVelocity,
-        upWorld
+        this.upWorld
       );
 
       // Horizontal projection
@@ -165,17 +268,17 @@ export default class SceneComponent implements IScript {
       {
         outputVelocity.subtractInPlace(this.supportInfo.averageSurfaceVelocity);
         let inv1k = 1e-3;
-        if (outputVelocity.dot(upWorld) > inv1k) {
+        if (outputVelocity.dot(this.upWorld) > inv1k) {
           let velLen = outputVelocity.length();
           outputVelocity.normalizeFromLength(velLen);
 
           // Get the desired length in the horizontal direction
           let horizLen =
-            velLen / this.supportInfo.averageSurfaceNormal.dot(upWorld);
+            velLen / this.supportInfo.averageSurfaceNormal.dot(this.upWorld);
 
           // Re project the velocity onto the horizontal plane
           let c = this.supportInfo.averageSurfaceNormal.cross(outputVelocity);
-          outputVelocity = c.cross(upWorld);
+          outputVelocity = c.cross(this.upWorld);
           outputVelocity.scaleInPlace(horizLen);
         }
         outputVelocity.addInPlace(this.supportInfo.averageSurfaceVelocity);
@@ -184,12 +287,12 @@ export default class SceneComponent implements IScript {
       }
     } else if (this.state == "START_JUMP") {
       let u = Math.sqrt(2 * this.characterGravity.length() * this.jumpHeight);
-      let curRelVel = this.characterController.getVelocity().dot(upWorld);
+      let curRelVel = this.characterController.getVelocity().dot(this.upWorld);
       return this.characterController
         .getVelocity()
-        .add(upWorld.scale(u - curRelVel));
-    } // TODO
-    console.log("Error: Unknown state");
+        .add(this.upWorld.scale(u - curRelVel));
+    } 
+    //console.log("Error: Unknown state");
     return Vector3.Zero(); // only gets here is the state is not supported
   }
 
@@ -202,6 +305,9 @@ export default class SceneComponent implements IScript {
     this.mesh.setPositionWithLocalVector(
       this.characterController.getPosition()
     );
+    // stop andmation[0] running by default
+    this.deathAnim!.stop();
+    this.idleAnim!.start(true);
 
     this.displayCapsule = MeshBuilder.CreateCapsule(
       "CharacterDisplay",
@@ -284,32 +390,37 @@ export default class SceneComponent implements IScript {
           if (kbInfo.event.key == "i" || kbInfo.event.key == "ArrowUp") {
             this.inputDirection.z = 1;
             this.facingAngle = this.forwardAngle;
-            //console.log("up");
-            //console.log(this.state);
+            if (this.idleAnim!.isPlaying){
+              this.idleAnim!.stop();
+              this.walkAnim!.start(true);}
+            
           } else if (
             kbInfo.event.key == "k" ||
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = -1;
             this.facingAngle = this.backwardAngle;
-            //console.log("down");
-            //console.log(this.state);
+            if (this.idleAnim!.isPlaying){
+              this.idleAnim!.stop();
+              this.walkAnim!.start(true);}
           } else if (
             kbInfo.event.key == "j" ||
             kbInfo.event.key == "ArrowLeft"
           ) {
             this.inputDirection.x = -1;
             this.facingAngle = this.leftAngle;
-            //console.log("left");
-            //console.log(this.state);
+            if (this.idleAnim!.isPlaying){
+              this.idleAnim!.stop();
+              this.walkAnim!.start(true);}
           } else if (
             kbInfo.event.key == "l" ||
             kbInfo.event.key == "ArrowRight"
           ) {
             this.inputDirection.x = 1;
             this.facingAngle = this.rightAngle;
-            //console.log("right");
-            //console.log(this.state);
+            if (this.idleAnim!.isPlaying){
+              this.idleAnim!.stop();
+              this.walkAnim!.start(true);}
           } else if (kbInfo.event.key == " ") {
             this.wantJump = true;
           }
@@ -322,7 +433,9 @@ export default class SceneComponent implements IScript {
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = 0;
-            console.log("key up");
+            if (this.walkAnim!.isPlaying){
+              this.walkAnim!.stop();
+              this.idleAnim!.start(true);}
           }
           if (
             kbInfo.event.key == "j" ||
@@ -331,7 +444,9 @@ export default class SceneComponent implements IScript {
             kbInfo.event.key == "ArrowRight"
           ) {
             this.inputDirection.x = 0;
-            console.log("key up");
+            if (this.walkAnim!.isPlaying){
+              this.walkAnim!.stop();
+              this.idleAnim!.start(true);}
           } else if (kbInfo.event.key == " ") {
             this.wantJump = false;
           }
