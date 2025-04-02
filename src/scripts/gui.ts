@@ -41,7 +41,6 @@ export default class SceneComponent implements IScript {
       button.textBlock!.text = toggle;
       console.log(toggle);
     });
-   // advtex.addControl(button);
     return button;
   }
 
