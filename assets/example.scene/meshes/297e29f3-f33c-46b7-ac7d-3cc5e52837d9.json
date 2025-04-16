@@ -1,7 +1,7 @@
 {
     "meshes": [
         {
-            "name": "Platform",
+            "name": "Platform1",
             "id": "297e29f3-f33c-46b7-ac7d-3cc5e52837d9",
             "uniqueId": 1742987523749,
             "type": "Mesh",
@@ -65,7 +65,7 @@
             "geometryUniqueId": 1742987523750,
             "geometryId": "f1802538-447c-4458-9b68-df9408b2240f",
             "subMeshes": null,
-            "materialUniqueId": 455,
+            "materialUniqueId": 360,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
@@ -107,7 +107,7 @@
             },
             "instances": [
                 {
-                    "name": "Platform2  (Mesh Instance)",
+                    "name": "Platform2",
                     "id": "2fa18ffc-285d-4c85-8b6f-f5cda4049c86",
                     "isEnabled": true,
                     "isVisible": true,
@@ -168,7 +168,7 @@
                     "uniqueId": 1742988118635
                 },
                 {
-                    "name": "Platform3 (Mesh Instance)",
+                    "name": "Platform3",
                     "id": "879e8e60-83ca-49dc-9c5e-68ea4423f0bc",
                     "isEnabled": true,
                     "isVisible": true,

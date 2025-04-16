@@ -1,14 +1,14 @@
 {
     "meshes": [
         {
-            "name": "Box2",
+            "name": "Cube2",
             "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
             "uniqueId": 1742386756857,
             "type": "Mesh",
             "position": [
-                0,
-                122.59633721147725,
-                206.58096253288835
+                193.0008808018751,
+                197.66720977687868,
+                1.776128196904864
             ],
             "rotationQuaternion": [
                 0,
@@ -65,7 +65,7 @@
             "geometryUniqueId": 1742386756858,
             "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
             "subMeshes": null,
-            "materialUniqueId": 455,
+            "materialUniqueId": 360,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",

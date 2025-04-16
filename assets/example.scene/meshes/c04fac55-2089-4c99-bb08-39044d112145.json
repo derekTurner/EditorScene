@@ -1,7 +1,7 @@
 {
     "meshes": [
         {
-            "name": "box1",
+            "name": "Cube1",
             "id": "c04fac55-2089-4c99-bb08-39044d112145",
             "uniqueId": 1715251501025,
             "type": "Mesh",

@@ -125,11 +125,11 @@
         "scripts": [
             {
                 "enabled": true,
-                "key": "scripts/gui.ts"
+                "key": "scripts/collisions.ts"
             },
             {
                 "enabled": true,
-                "key": "scripts/trigger.ts"
+                "key": "scripts/gui.ts"
             }
         ],
         "rendering": {
@@ -177,15 +177,15 @@
         "ignoreParentScaling": false,
         "updateUpVectorFromRotation": false,
         "rotation": [
-            0.489388240843463,
-            0.6598731417827974,
+            0.41188824084346287,
+            1.0648731417827966,
             0
         ],
         "speed": 200,
         "position": [
-            -575.2242286267824,
-            778.224004735659,
-            -523.1065679043256
+            -1135.4054994608318,
+            626.242077923721,
+            -133.02080623489573
         ],
         "upVector": [
             0,
