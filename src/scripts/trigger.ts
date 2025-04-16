@@ -46,7 +46,7 @@ export default class SceneComponent implements IScript {
 
   public onStart(): void {
     this.goHavok(this.scene).then((hk) => {
-      
+      console.log("trigger.ts onStart");
       console.log("hk", hk);
 
       // define sphere shape

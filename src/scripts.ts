@@ -4,7 +4,7 @@
  */
 export const scriptsMap = {
     "scripts/gui.ts": require("@/scripts/gui"),
+	"scripts/trigger.ts": require("@/scripts/trigger"),
 	"scripts/farmerControlled.ts": require("@/scripts/farmerControlled"),
-	"scripts/box.ts": require("@/scripts/box"),
-	"scripts/trigger.ts": require("@/scripts/trigger")
+	"scripts/box.ts": require("@/scripts/box")
 };
