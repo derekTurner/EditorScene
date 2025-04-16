@@ -1,7 +1,7 @@
 {
     "meshes": [
         {
-            "name": "New Box",
+            "name": "Box2",
             "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
             "uniqueId": 1742386756857,
             "type": "Mesh",
@@ -65,7 +65,7 @@
             "geometryUniqueId": 1742386756858,
             "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
             "subMeshes": null,
-            "materialUniqueId": 463,
+            "materialUniqueId": 455,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",

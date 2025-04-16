@@ -24,7 +24,7 @@ export default class SceneComponent implements IScript {
     //stash for messages to other scripts via externalData
     public  stash: { [key: string]: string } = {"message": "Empty Stash"};
 
-  private farmerPosition = new Vector3(0, 0, 0);
+  private farmerPosition = new Vector3(-40, 0, 0);
   private h = 180;
   private r = 25;
 
