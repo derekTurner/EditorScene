@@ -16,11 +16,13 @@ export default class SceneComponent implements IScript {
   private platform2: Nullable<TransformNode> = null;
   private platform3: Nullable<TransformNode> = null;
   private cube2: Nullable<TransformNode> = null;
+  private player: Nullable<TransformNode> = null;
   private groundAggregate: Nullable<PhysicsAggregate> = null;
   private platform1Aggregate: Nullable<PhysicsAggregate> = null;
   private platform2Aggregate: Nullable<PhysicsAggregate> = null;
   private platform3Aggregate: Nullable<PhysicsAggregate> = null;
   private cube2Aggregate: Nullable<PhysicsAggregate> = null;
+  private playerAggregate: Nullable<PhysicsAggregate> = null;
 
 
   private async goHavok(scene: Scene): Promise<HavokPlugin> {
@@ -37,7 +39,7 @@ export default class SceneComponent implements IScript {
   public constructor(public scene: Scene) {}
 
   public onStart(): void {
-    console.log("onStart");
+    console.log("collisions.ts onStart");
     this.goHavok(this.scene).then((hk) => {
       this.ground = this.scene.getMeshByName("ground");
       this.ground?.setEnabled(true);
@@ -49,8 +51,11 @@ export default class SceneComponent implements IScript {
       this.platform3?.setEnabled(true);
       this.cube2 = this.scene.getMeshByName("Cube2");
       this.cube2?.setEnabled(true);
+      this.player = this.scene.getMeshByName("CharacterDisplay");
+      this.player?.setEnabled(true);
 
       //physics aggregates
+      /*
       this.groundAggregate = new PhysicsAggregate(
         this.ground!,
         PhysicsShapeType.BOX,
@@ -58,11 +63,11 @@ export default class SceneComponent implements IScript {
         this.scene
       );
       this.groundAggregate.body.setCollisionCallbackEnabled(true);
-
+      */
       this.platform1Aggregate = new PhysicsAggregate(
         this.platform1!,
         PhysicsShapeType.BOX,
-        { mass: 1, restitution: 0.3, friction: 0.7 },
+        { mass: 0, restitution: 0.3, friction: 0.7 },
         this.scene
       );
       this.platform1Aggregate.body.setCollisionCallbackEnabled(true);
@@ -70,7 +75,7 @@ export default class SceneComponent implements IScript {
       this.platform2Aggregate = new PhysicsAggregate(
         this.platform2!,
         PhysicsShapeType.BOX,
-        { mass: 0.5, restitution: 0.3, friction: 0.7 },
+        { mass: 0, restitution: 0.3, friction: 0.7 },
         this.scene
       );
       this.platform2Aggregate.body.setCollisionCallbackEnabled(true);
@@ -78,7 +83,7 @@ export default class SceneComponent implements IScript {
       this.platform3Aggregate = new PhysicsAggregate(
         this.platform3!,
         PhysicsShapeType.BOX,
-        { mass: 0.5, restitution: 0.3, friction: 0.7 },
+        { mass: 0, restitution: 0.3, friction: 0.7 },
         this.scene
       );
       this.platform3Aggregate.body.setCollisionCallbackEnabled(true);
@@ -90,6 +95,13 @@ export default class SceneComponent implements IScript {
         this.scene
       );
       this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
+
+      this.playerAggregate = new PhysicsAggregate(
+        this.player!,
+        PhysicsShapeType.BOX,
+        { mass: 0, restitution: 0.3, friction: 0.7 },
+        this.scene
+      );
 
       // functions to call on collision  
       var collideCB = function (collision: {
@@ -109,11 +121,11 @@ export default class SceneComponent implements IScript {
           collision.normal
         );
       };
-      this.groundAggregate.body.getCollisionObservable().add(collideCB);
+      //this.groundAggregate.body.getCollisionObservable().add(collideCB);
       this.platform1Aggregate.body.getCollisionObservable().add(collideCB);
       this.platform2Aggregate.body.getCollisionObservable().add(collideCB);
       this.platform3Aggregate.body.getCollisionObservable().add(collideCB);
-      this.cube2Aggregate.body.getCollisionObservable().add(collideCB);
+      //this.cube2Aggregate.body.getCollisionObservable().add(collideCB);
       
       
     });

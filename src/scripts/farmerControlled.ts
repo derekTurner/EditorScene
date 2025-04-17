@@ -38,7 +38,7 @@ export default class SceneComponent implements IScript {
   private state: string = "IN_AIR";
   private inAirSpeed = 80.0;
   private onGroundSpeed = 1000.0;
-  private jumpHeight = 30;
+  private jumpHeight = 50;
   private wantJump = false;
   private inputDirection = Vector3.Zero();
 
@@ -302,7 +302,7 @@ export default class SceneComponent implements IScript {
   }
 
   public onStart(): void {
-
+    console.log("farmerControlled.ts onStart");
     this.scene.addExternalData("stash", this.stash);
     
     this.characterController = new PhysicsCharacterController(

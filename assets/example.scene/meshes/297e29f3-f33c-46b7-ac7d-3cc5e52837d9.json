@@ -65,7 +65,7 @@
             "geometryUniqueId": 1742987523750,
             "geometryId": "f1802538-447c-4458-9b68-df9408b2240f",
             "subMeshes": null,
-            "materialUniqueId": 449,
+            "materialUniqueId": 456,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
@@ -78,10 +78,10 @@
                         "density": 1000
                     },
                     "body": {
-                        "motionType": 2
+                        "motionType": 1
                     },
                     "massProperties": {
-                        "mass": 1,
+                        "mass": 0,
                         "inertia": [
                             881.3333740234375,
                             1666.666748046875,
@@ -100,7 +100,7 @@
                         ]
                     },
                     "material": {
-                        "friction": 0.2,
+                        "friction": 0.6500000000000001,
                         "restitution": 0.2
                     }
                 }
@@ -114,8 +114,8 @@
                     "isPickable": false,
                     "checkCollisions": false,
                     "position": [
-                        300,
-                        15,
+                        424.65855774417673,
+                        30,
                         0
                     ],
                     "scaling": [
@@ -136,7 +136,7 @@
                                 "density": 1000
                             },
                             "body": {
-                                "motionType": 2
+                                "motionType": 0
                             },
                             "massProperties": {
                                 "mass": 1,
@@ -158,7 +158,7 @@
                                 ]
                             },
                             "material": {
-                                "friction": 0.2,
+                                "friction": 0.4800000000000002,
                                 "restitution": 0.2
                             }
                         }
@@ -175,8 +175,8 @@
                     "isPickable": true,
                     "checkCollisions": false,
                     "position": [
-                        400,
-                        15,
+                        631.0626130404187,
+                        45,
                         0
                     ],
                     "scaling": [
@@ -197,10 +197,10 @@
                                 "density": 1000
                             },
                             "body": {
-                                "motionType": 2
+                                "motionType": 1
                             },
                             "massProperties": {
-                                "mass": 1,
+                                "mass": 0,
                                 "inertia": [
                                     836.3333129882812,
                                     1666.666748046875,
@@ -219,7 +219,7 @@
                                 ]
                             },
                             "material": {
-                                "friction": 0.2,
+                                "friction": 0.53,
                                 "restitution": 0.2
                             }
                         }
@@ -317,10 +317,10 @@
                 "density": 1000
             },
             "body": {
-                "motionType": 2
+                "motionType": 1
             },
             "massProperties": {
-                "mass": 1,
+                "mass": 0,
                 "inertia": [
                     881.3333740234375,
                     1666.666748046875,
@@ -339,7 +339,7 @@
                 ]
             },
             "material": {
-                "friction": 0.2,
+                "friction": 0.6500000000000001,
                 "restitution": 0.2
             }
         }
