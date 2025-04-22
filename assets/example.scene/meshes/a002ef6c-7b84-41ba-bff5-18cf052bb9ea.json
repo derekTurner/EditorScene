@@ -1,7 +1,7 @@
 {
     "meshes": [
         {
-            "name": "Farmer",
+            "name": "Player",
             "id": "a002ef6c-7b84-41ba-bff5-18cf052bb9ea",
             "uniqueId": 1740502452996,
             "type": "Mesh",
@@ -62,15 +62,10 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 477,
+            "materialUniqueId": 476,
             "materialId": "default material",
             "metadata": {
-                "scripts": [
-                    {
-                        "enabled": true,
-                        "key": "scripts/farmerControlled.ts"
-                    }
-                ]
+                "scripts": []
             },
             "instances": [],
             "animations": [],
@@ -92,12 +87,7 @@
     "lights": [],
     "materials": [],
     "metadata": {
-        "scripts": [
-            {
-                "enabled": true,
-                "key": "scripts/farmerControlled.ts"
-            }
-        ]
+        "scripts": []
     },
     "basePoseMatrix": [
         -1,

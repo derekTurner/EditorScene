@@ -173,6 +173,7 @@ this.scene.registerBeforeRender(() => {
   this.text1.text = mystash.message;
   this.text2.text = mystash.x; // Desired direction
   this.text3.text = mystash.z; // Desired direction
+  this.text4.text = mystash.debug; // Desired direction
 });  }
 
 

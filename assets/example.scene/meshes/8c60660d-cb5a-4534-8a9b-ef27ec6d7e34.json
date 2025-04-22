@@ -2,19 +2,18 @@
     "meshes": [
         {
             "name": "Cube2",
-            "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
-            "uniqueId": 1742386756857,
+            "id": "8c60660d-cb5a-4534-8a9b-ef27ec6d7e34",
+            "uniqueId": 1745356676178,
             "type": "Mesh",
             "position": [
-                193.0008808018751,
-                197.66720977687868,
-                -105.62105024501949
+                168.82681353112116,
+                198.79805472439153,
+                -133.22698724641495
             ],
-            "rotationQuaternion": [
+            "rotation": [
                 0,
                 0,
-                0,
-                1
+                0
             ],
             "scaling": [
                 1,
@@ -62,48 +61,16 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "geometryUniqueId": 1742386756858,
-            "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
+            "geometryUniqueId": 1745356676179,
+            "geometryId": "b163c9bd-d076-4e1b-a6e0-53eaca918b6f",
             "subMeshes": null,
-            "materialUniqueId": 477,
+            "materialUniqueId": 476,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
                 "width": 100,
                 "depth": 100,
-                "height": 100,
-                "physicsAggregate": {
-                    "shape": {
-                        "type": 3,
-                        "density": 1000
-                    },
-                    "body": {
-                        "motionType": 2
-                    },
-                    "massProperties": {
-                        "mass": 0.10000000149011612,
-                        "inertia": [
-                            1666.6666259765625,
-                            1666.6666259765625,
-                            1666.6666259765625
-                        ],
-                        "centerOfMass": [
-                            0,
-                            0,
-                            0
-                        ],
-                        "inertiaOrientation": [
-                            0,
-                            0,
-                            0,
-                            1
-                        ]
-                    },
-                    "material": {
-                        "friction": 0.11749999999999998,
-                        "restitution": 0.77
-                    }
-                }
+                "height": 100
             },
             "instances": [],
             "animations": [],
@@ -119,7 +86,7 @@
             ],
             "renderOverlay": true,
             "applyFog": true,
-            "delayLoadingFile": "assets/example.scene/geometries/e50f4437-5d41-471a-ac16-2b23dadd1a12.babylonbinarymeshdata",
+            "delayLoadingFile": "assets/example.scene/geometries/b163c9bd-d076-4e1b-a6e0-53eaca918b6f.babylonbinarymeshdata",
             "boundingBoxMaximum": [
                 50,
                 50,
@@ -187,39 +154,7 @@
         "type": "Box",
         "width": 100,
         "depth": 100,
-        "height": 100,
-        "physicsAggregate": {
-            "shape": {
-                "type": 3,
-                "density": 1000
-            },
-            "body": {
-                "motionType": 2
-            },
-            "massProperties": {
-                "mass": 0.10000000149011612,
-                "inertia": [
-                    1666.6666259765625,
-                    1666.6666259765625,
-                    1666.6666259765625
-                ],
-                "centerOfMass": [
-                    0,
-                    0,
-                    0
-                ],
-                "inertiaOrientation": [
-                    0,
-                    0,
-                    0,
-                    1
-                ]
-            },
-            "material": {
-                "friction": 0.11749999999999998,
-                "restitution": 0.77
-            }
-        }
+        "height": 100
     },
     "basePoseMatrix": [
         1,
