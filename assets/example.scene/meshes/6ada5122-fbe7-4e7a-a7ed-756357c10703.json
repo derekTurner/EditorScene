@@ -1,14 +1,14 @@
 {
     "meshes": [
         {
-            "name": "Pine_5_primitive0",
-            "id": "d9f80f7a-6d37-445e-a51d-a6e2b2e11181",
-            "uniqueId": 1740501071842,
+            "name": "Platform1",
+            "id": "6ada5122-fbe7-4e7a-a7ed-756357c10703",
+            "uniqueId": 1745248338349,
             "type": "Mesh",
             "position": [
-                0,
-                0,
-                0
+                139.08208061122173,
+                31,
+                -185.09135520837424
             ],
             "rotation": [
                 0,
@@ -42,7 +42,7 @@
             "isVisible": true,
             "infiniteDistance": false,
             "pickable": true,
-            "receiveShadows": false,
+            "receiveShadows": true,
             "billboardMode": 0,
             "visibility": 1,
             "alwaysSelectAsActiveMesh": false,
@@ -59,22 +59,80 @@
             ],
             "doNotSyncBoundingInfo": false,
             "isBlocker": false,
-            "sideOrientation": 0,
+            "sideOrientation": 1,
             "isUnIndexed": false,
-            "geometryUniqueId": 1740501071845,
-            "geometryId": "c2e72c21-debd-4a8c-8265-78323fdef06c",
+            "geometryUniqueId": 1745248338350,
+            "geometryId": "b28c98f9-5fea-4c7b-9d03-cc6d986264eb",
             "subMeshes": null,
-            "materialUniqueId": 1740501071846,
-            "materialId": "9658f39b-09db-43bb-9e85-0448998a4557",
+            "materialUniqueId": 1711813856778,
+            "materialId": "9f2b8769-ac8e-4289-b8a4-171c5b7d3139",
             "metadata": {
-                "parentId": 1740501071844
+                "type": "Box",
+                "width": 100,
+                "depth": 100,
+                "height": 60
             },
-            "instances": [],
+            "instances": [
+                {
+                    "name": "Platform2",
+                    "id": "9216aec7-5019-4fbb-a9ea-f73c08fe0240",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        398.65751081273424,
+                        61,
+                        -185.09135520837424
+                    ],
+                    "scaling": [
+                        1,
+                        2,
+                        1
+                    ],
+                    "rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "metadata": {},
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1745248392311
+                },
+                {
+                    "name": "Platform3",
+                    "id": "6f902f0e-d194-4b7d-8830-d496fc97229e",
+                    "isEnabled": true,
+                    "isVisible": true,
+                    "isPickable": true,
+                    "checkCollisions": false,
+                    "position": [
+                        670.6631678128244,
+                        91,
+                        -185.09135520837424
+                    ],
+                    "scaling": [
+                        1,
+                        3,
+                        1
+                    ],
+                    "rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "metadata": {},
+                    "animations": [],
+                    "ranges": [],
+                    "uniqueId": 1745248399882
+                }
+            ],
             "animations": [],
             "ranges": [],
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
-            "hasVertexAlpha": true,
+            "hasVertexAlpha": false,
             "overlayAlpha": 0,
             "overlayColor": [
                 0,
@@ -83,52 +141,46 @@
             ],
             "renderOverlay": true,
             "applyFog": true,
-            "delayLoadingFile": "assets/example.scene/geometries/c2e72c21-debd-4a8c-8265-78323fdef06c.babylonbinarymeshdata",
+            "delayLoadingFile": "assets/example.scene/geometries/b28c98f9-5fea-4c7b-9d03-cc6d986264eb.babylonbinarymeshdata",
             "boundingBoxMaximum": [
-                0.6472557783126831,
-                8.332257270812988,
-                0.4739142060279846
+                50,
+                30,
+                50
             ],
             "boundingBoxMinimum": [
-                -0.47391438484191895,
-                -0.23508861660957336,
-                -1.5000479221343994
+                -50,
+                -30,
+                -50
             ],
             "_binaryInfo": {
                 "positionsAttrDesc": {
-                    "count": 1626,
+                    "count": 72,
                     "stride": 3,
                     "offset": 0,
                     "dataType": 1
                 },
                 "normalsAttrDesc": {
-                    "count": 1626,
+                    "count": 72,
                     "stride": 3,
-                    "offset": 6504,
+                    "offset": 288,
                     "dataType": 1
                 },
                 "uvsAttrDesc": {
-                    "count": 1084,
+                    "count": 48,
                     "stride": 2,
-                    "offset": 13008,
-                    "dataType": 1
-                },
-                "colorsAttrDesc": {
-                    "count": 2168,
-                    "stride": 4,
-                    "offset": 17344,
+                    "offset": 576,
                     "dataType": 1
                 },
                 "indicesAttrDesc": {
-                    "count": 1464,
+                    "count": 36,
                     "stride": 1,
-                    "offset": 26016,
+                    "offset": 768,
                     "dataType": 0
                 },
                 "subMeshesAttrDesc": {
                     "count": 1,
                     "stride": 5,
-                    "offset": 31872,
+                    "offset": 912,
                     "dataType": 0
                 }
             },
@@ -136,7 +188,6 @@
             "normals": null,
             "uvs": null,
             "hasUVs": true,
-            "colors": null,
             "indices": null
         }
     ],
@@ -153,7 +204,7 @@
             "disableBumpMap": false,
             "albedoTexture": {
                 "tags": null,
-                "url": "assets/nature/GLTF/editor-generated_Bark_NormalTree (Base Color)_6440c306-9874-4712-8767-0147d0f938ef.png",
+                "url": "assets/amiga.jpg",
                 "uOffset": 0,
                 "vOffset": 0,
                 "uScale": 1,
@@ -166,71 +217,11 @@
                 "wRotationCenter": 0.5,
                 "homogeneousRotationInUVTransform": false,
                 "isBlocking": true,
-                "name": "assets/nature/GLTF/editor-generated_Bark_NormalTree (Base Color)_6440c306-9874-4712-8767-0147d0f938ef.png",
+                "name": "assets/amiga.jpg",
                 "metadata": {
                     "baseSize": {
-                        "width": 2048,
-                        "height": 2048
-                    }
-                },
-                "hasAlpha": true,
-                "getAlphaFromRGB": false,
-                "level": 1,
-                "coordinatesIndex": 0,
-                "optimizeUVAllocation": true,
-                "coordinatesMode": 0,
-                "wrapU": 1,
-                "wrapV": 1,
-                "wrapR": 1,
-                "anisotropicFilteringLevel": 4,
-                "isCube": false,
-                "is3D": false,
-                "is2DArray": false,
-                "gammaSpace": false,
-                "invertZ": false,
-                "lodLevelInAlpha": false,
-                "lodGenerationOffset": 0,
-                "lodGenerationScale": 0,
-                "linearSpecularLOD": false,
-                "isRenderTarget": false,
-                "animations": [],
-                "invertY": false,
-                "samplingMode": 3,
-                "_useSRGBBuffer": false,
-                "internalTextureLabel": "Bark_NormalTree",
-                "noMipmap": false
-            },
-            "ambientTextureStrength": 1,
-            "ambientTextureImpactOnAnalyticalLights": 0,
-            "metallic": 0,
-            "roughness": 1,
-            "metallicF0Factor": 1,
-            "metallicReflectanceColor": [
-                1,
-                1,
-                1
-            ],
-            "useOnlyMetallicFromMetallicReflectanceTexture": false,
-            "bumpTexture": {
-                "tags": null,
-                "url": "assets/nature/GLTF/editor-generated_Bark_NormalTree (Normal)_2564e9b6-a305-4353-b5e8-f3aa3e497f0d.png",
-                "uOffset": 0,
-                "vOffset": 0,
-                "uScale": 1,
-                "vScale": 1,
-                "uAng": 0,
-                "vAng": 0,
-                "wAng": 0,
-                "uRotationCenter": 0.5,
-                "vRotationCenter": 0.5,
-                "wRotationCenter": 0.5,
-                "homogeneousRotationInUVTransform": false,
-                "isBlocking": true,
-                "name": "assets/nature/GLTF/editor-generated_Bark_NormalTree (Normal)_2564e9b6-a305-4353-b5e8-f3aa3e497f0d.png",
-                "metadata": {
-                    "baseSize": {
-                        "width": 2048,
-                        "height": 2048
+                        "width": 128,
+                        "height": 128
                     }
                 },
                 "hasAlpha": false,
@@ -254,12 +245,22 @@
                 "linearSpecularLOD": false,
                 "isRenderTarget": false,
                 "animations": [],
-                "invertY": false,
+                "invertY": true,
                 "samplingMode": 3,
                 "_useSRGBBuffer": false,
-                "internalTextureLabel": "Bark_NormalTree_Normal",
                 "noMipmap": false
             },
+            "ambientTextureStrength": 1,
+            "ambientTextureImpactOnAnalyticalLights": 0,
+            "metallic": 0,
+            "roughness": 1,
+            "metallicF0Factor": 1,
+            "metallicReflectanceColor": [
+                1,
+                1,
+                1
+            ],
+            "useOnlyMetallicFromMetallicReflectanceTexture": false,
             "ambient": [
                 0,
                 0,
@@ -289,7 +290,7 @@
             "useLightmapAsShadowmap": false,
             "useAlphaFromAlbedoTexture": false,
             "forceAlphaTest": false,
-            "alphaCutOff": 0.20000000298023224,
+            "alphaCutOff": 0.4,
             "useSpecularOverAlpha": true,
             "useMicroSurfaceFromReflectivityMapAlpha": false,
             "useRoughnessFromMetallicTextureAlpha": true,
@@ -306,15 +307,15 @@
             "useParallaxOcclusion": false,
             "parallaxScaleBias": 0.05,
             "disableLighting": false,
-            "forceIrradianceInFragment": true,
+            "forceIrradianceInFragment": false,
             "maxSimultaneousLights": 32,
-            "invertNormalMapX": true,
+            "invertNormalMapX": false,
             "invertNormalMapY": false,
-            "twoSidedLighting": true,
+            "twoSidedLighting": false,
             "useAlphaFresnel": false,
             "useLinearAlphaFresnel": false,
             "forceNormalForward": false,
-            "enableSpecularAntiAliasing": true,
+            "enableSpecularAntiAliasing": false,
             "useHorizonOcclusion": true,
             "useRadianceOcclusion": true,
             "unlit": false,
@@ -361,17 +362,17 @@
                 "_ditheringIntensity": 0.00392156862745098,
                 "_skipFinalColorClamp": false,
                 "_applyByPostProcess": false,
-                "_isEnabled": false
+                "_isEnabled": true
             },
-            "id": "9658f39b-09db-43bb-9e85-0448998a4557",
-            "name": "Bark_NormalTree",
-            "metadata": {},
+            "id": "9f2b8769-ac8e-4289-b8a4-171c5b7d3139",
+            "name": "box",
             "checkReadyOnEveryCall": false,
             "checkReadyOnlyOnce": false,
             "state": "",
             "alpha": 1,
-            "backFaceCulling": false,
+            "backFaceCulling": true,
             "cullBackFaces": true,
+            "sideOrientation": 1,
             "alphaMode": 2,
             "_needDepthPrePass": false,
             "disableDepthWrite": false,
@@ -385,7 +386,7 @@
             "zOffsetUnits": 0,
             "pointsCloud": false,
             "fillMode": 0,
-            "transparencyMode": 1,
+            "transparencyMode": 0,
             "stencil": {
                 "tags": null,
                 "func": 519,
@@ -397,7 +398,7 @@
                 "mask": 255,
                 "enabled": false
             },
-            "uniqueId": 1740501071846,
+            "uniqueId": 1711813856778,
             "plugins": {
                 "PBRBRDFConfiguration": {
                     "tags": null,
@@ -505,7 +506,7 @@
                         1
                     ],
                     "useMaskFromThicknessTexture": false,
-                    "useGltfStyleTextures": true,
+                    "useGltfStyleTextures": false,
                     "name": "PBRSubSurface",
                     "priority": 130,
                     "resolveIncludes": false,
@@ -545,10 +546,13 @@
         "vertexData": []
     },
     "metadata": {
-        "parentId": 1740501071844
+        "type": "Box",
+        "width": 100,
+        "depth": 100,
+        "height": 60
     },
     "basePoseMatrix": [
-        -1,
+        1,
         0,
         0,
         0,
