@@ -19,6 +19,9 @@ interface PositionArray {
 }
 
 export default class SceneComponent implements IScript {
+ 
+  
+
   private ground: Nullable<TransformNode> = null;
   private platform1: Nullable<TransformNode> = null;
   private platform2: Nullable<TransformNode> = null;
@@ -34,6 +37,7 @@ export default class SceneComponent implements IScript {
   private cube2Aggregate: Nullable<PhysicsAggregate> = null;
   private playerAggregate: Nullable<PhysicsAggregate> = null;
 
+  
   //animation parameters
   private  frameRate: number = 30;
   private anim1: Animatable ;
@@ -87,10 +91,10 @@ export default class SceneComponent implements IScript {
       "collideCB",
       collision.collider.transformNode.name,
       collision.collidedAgainst.transformNode.name,
-      collision.point,
-      collision.distance,
-      collision.impulse,
-      collision.normal
+      //collision.point,
+      //collision.distance,
+      //collision.impulse,
+      //collision.normal
     );
     this.anim1 = this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
     //setTimeout(() => {this.anim1.stop()}, 5000);// loop for 5 seconds
@@ -119,6 +123,7 @@ export default class SceneComponent implements IScript {
       this.player = this.scene.getMeshByName("CharacterDisplay");
       this.player?.setEnabled(true);
 
+
       //physics aggregates
       /*
       this.groundAggregate = new PhysicsAggregate(
@@ -127,8 +132,9 @@ export default class SceneComponent implements IScript {
         { mass: 0, restitution: 0.2, friction: 0.7 },
         this.scene
       );
-      this.groundAggregate.body.setCollisionCallbackEnabled(true);
+      this.groundAggregate.body.setCollisionCallbackEnabled(false);
       */
+      
 
       this.cube1Aggregate = new PhysicsAggregate(
         this.cube1!,
@@ -139,7 +145,7 @@ export default class SceneComponent implements IScript {
       this.cube1Aggregate.body.setCollisionCallbackEnabled(true);
       this.cube1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
       this.cube1Aggregate.transformNode.animations.push(this.animation1());
-      this.scene.beginAnimation(this.cube1, 0, 2 * this.frameRate, true);
+      //this.scene.beginAnimation(this.cube1, 0, 2 * this.frameRate, true);
 
       this.platform1Aggregate = new PhysicsAggregate(
         this.platform1!,
@@ -177,22 +183,22 @@ export default class SceneComponent implements IScript {
       this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
 
       this.playerAggregate = new PhysicsAggregate(
-        this.player!,
+        this.player!,  
         PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
+        { mass: 0.5, restitution: 0.3, friction: 0.9 },
         this.scene
       );
 
       
       //this.groundAggregate.body.getCollisionObservable().add(this.collideCB);
       this.platform1Aggregate.body.getCollisionObservable().add(this.collideCB);
-      //this.platform2Aggregate.body.getCollisionObservable().add(this.collideCB);
-      //this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
-      //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
-      
-    });
-  }
+      this.platform2Aggregate.body.getCollisionObservable().add(this.collideCB);
+      this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
 
+      //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
+      //this.playerAggregate.body.getCollisionObservable().add(this.collideCB);
+      
+    });  }
   public onUpdate(): void {
     //this.platform2?.dispose();
   }
