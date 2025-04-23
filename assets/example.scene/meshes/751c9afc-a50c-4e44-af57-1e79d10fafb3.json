@@ -1,14 +1,14 @@
 {
     "meshes": [
         {
-            "name": "Cube2",
-            "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
-            "uniqueId": 1742386756857,
+            "name": "Detector",
+            "id": "751c9afc-a50c-4e44-af57-1e79d10fafb3",
+            "uniqueId": 1745379890739,
             "type": "Mesh",
             "position": [
-                193.0008808018751,
-                197.66720977687868,
-                -92.71202796432905
+                0,
+                58.6947269065451,
+                414.24280963714534
             ],
             "rotationQuaternion": [
                 0,
@@ -17,9 +17,9 @@
                 1
             ],
             "scaling": [
-                1,
-                1,
-                1
+                0.7646185598450354,
+                2.3163256504005765,
+                0.7759044221313098
             ],
             "localMatrix": [
                 1,
@@ -62,8 +62,8 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "geometryUniqueId": 1742386756858,
-            "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
+            "geometryUniqueId": 1745379890740,
+            "geometryId": "090856fa-cca2-4a1e-b033-4926c4e07a30",
             "subMeshes": null,
             "materialUniqueId": 447,
             "materialId": "default material",
@@ -78,14 +78,14 @@
                         "density": 1000
                     },
                     "body": {
-                        "motionType": 2
+                        "motionType": 0
                     },
                     "massProperties": {
-                        "mass": 1,
+                        "mass": 1.0099999904632568,
                         "inertia": [
-                            1666.6666259765625,
-                            1666.6666259765625,
-                            1666.6666259765625
+                            4972.8271484375,
+                            988.8910522460938,
+                            4958.3388671875
                         ],
                         "centerOfMass": [
                             0,
@@ -119,7 +119,7 @@
             ],
             "renderOverlay": true,
             "applyFog": true,
-            "delayLoadingFile": "assets/example.scene/geometries/e50f4437-5d41-471a-ac16-2b23dadd1a12.babylonbinarymeshdata",
+            "delayLoadingFile": "assets/example.scene/geometries/090856fa-cca2-4a1e-b033-4926c4e07a30.babylonbinarymeshdata",
             "boundingBoxMaximum": [
                 50,
                 50,
@@ -194,14 +194,14 @@
                 "density": 1000
             },
             "body": {
-                "motionType": 2
+                "motionType": 0
             },
             "massProperties": {
-                "mass": 1,
+                "mass": 1.0099999904632568,
                 "inertia": [
-                    1666.6666259765625,
-                    1666.6666259765625,
-                    1666.6666259765625
+                    4972.8271484375,
+                    988.8910522460938,
+                    4958.3388671875
                 ],
                 "centerOfMass": [
                     0,
