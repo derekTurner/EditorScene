@@ -17,7 +17,7 @@ import {
   KeyboardEventTypes,
   CharacterSurfaceInfo,
   MeshBuilder,
-  AbstractMesh
+  AbstractMesh,
 } from "@babylonjs/core";
 
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
@@ -37,7 +37,7 @@ export default class SceneComponent implements IScript {
   private cube1: Nullable<TransformNode> = null;
   private cube2: Nullable<TransformNode> = null;
 
- private groundAggregate: Nullable<PhysicsAggregate> = null;
+  // private groundAggregate: Nullable<PhysicsAggregate> = null;
   private platform1Aggregate: Nullable<PhysicsAggregate> = null;
   private platform2Aggregate: Nullable<PhysicsAggregate> = null;
   private platform3Aggregate: Nullable<PhysicsAggregate> = null;
@@ -46,9 +46,8 @@ export default class SceneComponent implements IScript {
   private playerAggregate: Nullable<PhysicsAggregate> = null;
 
   //animation parameters
-  private  frameRate: number = 30;
+  private frameRate: number = 30;
   private anim1!: Animatable;
-
 
   private async goHavok(scene: Scene): Promise<HavokPlugin> {
     HavokPhysics().then((havok) => {
@@ -85,7 +84,7 @@ export default class SceneComponent implements IScript {
   };
 
   // functions to call on collision
-  private collideCB =  (collision: {
+  private collideCB = (collision: {
     // log collisions
     collider: { transformNode: { name: any } };
     collidedAgainst: { transformNode: { name: any } };
@@ -97,28 +96,33 @@ export default class SceneComponent implements IScript {
     console.log(
       "collideCB",
       collision.collider.transformNode.name,
-      collision.collidedAgainst.transformNode.name,
+      collision.collidedAgainst.transformNode.name
       //collision.point,
       //collision.distance,
       //collision.impulse,
       //collision.normal
     );
-    this.anim1 = this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
+    this.anim1 = this.scene.beginAnimation(
+      this.platform1,
+      0,
+      2 * this.frameRate,
+      true
+    );
     //setTimeout(() => {this.anim1.stop()}, 5000);// loop for 5 seconds
     this.anim1.onAnimationLoop = () => {
       this.anim1.stop();
     }; // stops on one cycle
   };
 
-// parameters for the player (moved over from farmerControlled.ts)
-// https://playground.babylonjs.com/#WO0H1U#13
-// https://doc.babylonjs.com/typedoc/classes/BABYLON.PhysicsCharacterController
-// https://doc.babylonjs.com/typedoc/classes/BABYLON.PhysicsCharacterController#checksupport
-// https://doc.babylonjs.com/typedoc/interfaces/BABYLON.CharacterSurfaceInfo
-// https://doc.babylonjs.com/typedoc/enums/BABYLON.CharacterSupportedState // unsupported 0, sliding 1, supported 2,
+  // parameters for the player (moved over from farmerControlled.ts)
+  // https://playground.babylonjs.com/#WO0H1U#13
+  // https://doc.babylonjs.com/typedoc/classes/BABYLON.PhysicsCharacterController
+  // https://doc.babylonjs.com/typedoc/classes/BABYLON.PhysicsCharacterController#checksupport
+  // https://doc.babylonjs.com/typedoc/interfaces/BABYLON.CharacterSurfaceInfo
+  // https://doc.babylonjs.com/typedoc/enums/BABYLON.CharacterSupportedState // unsupported 0, sliding 1, supported 2,
 
-    //stash for messages to other scripts via externalData
-    public  stash: { [key: string]: string } = {"message": "Empty Stash"};
+  //stash for messages to other scripts via externalData
+  public stash: { [key: string]: string } = { message: "Empty Stash" };
 
   private player: Nullable<AbstractMesh> = null;
   private playerPosition = new Vector3(-40, 0, 0);
@@ -140,11 +144,13 @@ export default class SceneComponent implements IScript {
   private inputDirection = Vector3.Zero();
 
   private characterOrientation = Quaternion.Identity();
-  private characterGravity = new Vector3(0, -100, 0);// not same as physics gravity
+  private characterGravity = new Vector3(0, -100, 0); // not same as physics gravity
 
-  // Spatial paramenters
+  // Spatial parameters
   private forwardLocalSpace = new Vector3(0, 0, 1);
-  private upWorld: Vector3 = this.characterGravity.normalizeToNew().scaleInPlace(-1.0);
+  private upWorld: Vector3 = this.characterGravity
+    .normalizeToNew()
+    .scaleInPlace(-1.0);
 
   //Character properties
 
@@ -164,262 +170,238 @@ export default class SceneComponent implements IScript {
   private cameraOffsetY = 500; // hold camera above target
 
   //Animation
-    private ratio: number;
-    private stepf: Vector3 = new Vector3(0, 0, 9); // +z
-    private stepb: Vector3 = new Vector3(0, 0, -9); // -z
-    private stepr: Vector3 = new Vector3(9, 0, 0); // +x
-    private stepl: Vector3 = new Vector3(-9, 0, 0); // -x
-  
-    private deathAnim: AnimationGroup | null;
-    private gun_ShootAnim: AnimationGroup | null;
-    private hitRecieveAnim: AnimationGroup | null;
-    private hitRecieve_2Anim: AnimationGroup | null;
-    private idleAnim: AnimationGroup | null;
-    private idle_GunAnim: AnimationGroup | null;
-    private idle_Gun_PointingAnim: AnimationGroup | null;
-    private idle_Gun_ShootAnim: AnimationGroup | null;
-    private idle_NeutralAnim: AnimationGroup | null;
-    private idle_SwordAnim: AnimationGroup | null;
-    private interactAnim: AnimationGroup | null;
-    private kick_LeftAnim: AnimationGroup | null;
-    private kick_RightAnim: AnimationGroup | null;
-    private punch_LeftAnim: AnimationGroup | null;
-    private punch_RightAnim: AnimationGroup | null;
-    private rollAnim: AnimationGroup | null;
-    private runAnim: AnimationGroup | null;
-    private run_backAnim: AnimationGroup | null;
-    private run_LeftAnim: AnimationGroup | null;
-    private run_RightAnim: AnimationGroup | null;
-    private run_ShootAnim: AnimationGroup | null;
-    private sword_slashAnim: AnimationGroup | null;
-    private walkAnim: AnimationGroup | null;
-    private waveAnim: AnimationGroup | null;
-  
-    private animating: boolean = false;
-    private keyDownMap: { [key: string]: boolean } | null = null;
+  private ratio: number;
+  private stepf: Vector3 = new Vector3(0, 0, 9); // +z
+  private stepb: Vector3 = new Vector3(0, 0, -9); // -z
+  private stepr: Vector3 = new Vector3(9, 0, 0); // +x
+  private stepl: Vector3 = new Vector3(-9, 0, 0); // -x
 
+  private deathAnim: AnimationGroup | null;
+  private gun_ShootAnim: AnimationGroup | null;
+  private hitRecieveAnim: AnimationGroup | null;
+  private hitRecieve_2Anim: AnimationGroup | null;
+  private idleAnim: AnimationGroup | null;
+  private idle_GunAnim: AnimationGroup | null;
+  private idle_Gun_PointingAnim: AnimationGroup | null;
+  private idle_Gun_ShootAnim: AnimationGroup | null;
+  private idle_NeutralAnim: AnimationGroup | null;
+  private idle_SwordAnim: AnimationGroup | null;
+  private interactAnim: AnimationGroup | null;
+  private kick_LeftAnim: AnimationGroup | null;
+  private kick_RightAnim: AnimationGroup | null;
+  private punch_LeftAnim: AnimationGroup | null;
+  private punch_RightAnim: AnimationGroup | null;
+  private rollAnim: AnimationGroup | null;
+  private runAnim: AnimationGroup | null;
+  private run_backAnim: AnimationGroup | null;
+  private run_LeftAnim: AnimationGroup | null;
+  private run_RightAnim: AnimationGroup | null;
+  private run_ShootAnim: AnimationGroup | null;
+  private sword_slashAnim: AnimationGroup | null;
+  private walkAnim: AnimationGroup | null;
+  private waveAnim: AnimationGroup | null;
 
-
+  private animating: boolean = false;
+  private keyDownMap: { [key: string]: boolean } | null = null;
 
   public constructor(public scene: Scene) {
-   this.player = this.scene.getMeshByName("Player");
+    this.player = this.scene.getMeshByName("Player");
+    
+    this.camera = this.scene.activeCamera as FreeCamera;
+    //animations
+    this.ratio = this.scene.getAnimationRatio();
+    this.stepr = this.stepr.scale(this.ratio);
+    this.stepl = this.stepl.scale(this.ratio);
+    this.stepf = this.stepf.scale(this.ratio);
+    this.stepb = this.stepb.scale(this.ratio);
 
-   this.camera = this.scene.activeCamera as FreeCamera;
-   //animations
-   this.ratio = this.scene.getAnimationRatio();
-   this.stepr = this.stepr.scale(this.ratio);
-   this.stepl = this.stepl.scale(this.ratio);
-   this.stepf = this.stepf.scale(this.ratio);
-   this.stepb = this.stepb.scale(this.ratio);
+    //model animation groups
+    this.deathAnim = this.scene.getAnimationGroupByName("Death"); //x
+    this.gun_ShootAnim = this.scene.getAnimationGroupByName("Gun_Shoot"); //T
+    this.hitRecieveAnim = this.scene.getAnimationGroupByName("HitRecieve"); //Y
+    this.hitRecieve_2Anim = this.scene.getAnimationGroupByName("HitRecieve_2"); //U
+    this.idleAnim = this.scene.getAnimationGroupByName("Idle"); //I
+    this.idle_GunAnim = this.scene.getAnimationGroupByName("Idle_Gun"); //O
+    this.idle_Gun_PointingAnim =
+      this.scene.getAnimationGroupByName("Idle_Gun_Pointing"); //R
+    this.idle_Gun_ShootAnim =
+      this.scene.getAnimationGroupByName("Idle_Gun_Shoot"); //F
+    this.idle_NeutralAnim = this.scene.getAnimationGroupByName("Idle_Neutral"); //G
+    this.idle_SwordAnim = this.scene.getAnimationGroupByName("Idle_Sword"); //H
+    this.interactAnim = this.scene.getAnimationGroupByName("Interact"); //I
+    this.kick_LeftAnim = this.scene.getAnimationGroupByName("Kick_Left"); //v
+    this.kick_RightAnim = this.scene.getAnimationGroupByName("Kick_Right"); //V
+    this.punch_LeftAnim = this.scene.getAnimationGroupByName("Punch_Left"); //p
+    this.punch_RightAnim = this.scene.getAnimationGroupByName("Punch_Right"); //P
+    this.rollAnim = this.scene.getAnimationGroupByName("Roll"); //J
+    this.runAnim = this.scene.getAnimationGroupByName("Run"); //
+    this.run_backAnim = this.scene.getAnimationGroupByName("Run_back"); //
+    this.run_LeftAnim = this.scene.getAnimationGroupByName("Run_Left"); //
+    this.run_RightAnim = this.scene.getAnimationGroupByName("Run_Right"); //
+    this.sword_slashAnim = this.scene.getAnimationGroupByName("Sword_slash"); //
+    this.run_ShootAnim = this.scene.getAnimationGroupByName("Run_Shoot"); //
+    this.walkAnim = this.scene.getAnimationGroupByName("Walk"); //wasd
+    this.waveAnim = this.scene.getAnimationGroupByName("Wave"); //
+  }
 
-      //model animation groups
-  this.deathAnim = this.scene.getAnimationGroupByName("Death"); //x
-  this.gun_ShootAnim = this.scene
-    .getAnimationGroupByName("Gun_Shoot"); //T
-  this.hitRecieveAnim = this.scene
-    .getAnimationGroupByName("HitRecieve"); //Y
-  this.hitRecieve_2Anim = this.scene
-    .getAnimationGroupByName("HitRecieve_2"); //U
-  this.idleAnim = this.scene.getAnimationGroupByName("Idle"); //I
-  this.idle_GunAnim = this.scene
-    .getAnimationGroupByName("Idle_Gun"); //O
-  this.idle_Gun_PointingAnim = this.scene
-    .getAnimationGroupByName("Idle_Gun_Pointing"); //R
-  this.idle_Gun_ShootAnim = this.scene
-    .getAnimationGroupByName("Idle_Gun_Shoot"); //F
-  this.idle_NeutralAnim = this.scene
-    .getAnimationGroupByName("Idle_Neutral"); //G
-  this.idle_SwordAnim = this.scene
-    .getAnimationGroupByName("Idle_Sword"); //H
-  this.interactAnim = this.scene
-    .getAnimationGroupByName("Interact"); //I
-  this.kick_LeftAnim = this.scene
-    .getAnimationGroupByName("Kick_Left"); //v
-  this.kick_RightAnim = this.scene
-    .getAnimationGroupByName("Kick_Right"); //V
-  this.punch_LeftAnim = this.scene
-    .getAnimationGroupByName("Punch_Left"); //p
-  this.punch_RightAnim = this.scene
-    .getAnimationGroupByName("Punch_Right"); //P
-  this.rollAnim = this.scene.getAnimationGroupByName("Roll"); //J
-  this.runAnim = this.scene.getAnimationGroupByName("Run"); //
-  this.run_backAnim = this.scene
-    .getAnimationGroupByName("Run_back"); //
-  this.run_LeftAnim = this.scene
-    .getAnimationGroupByName("Run_Left"); //
-  this.run_RightAnim = this.scene
-    .getAnimationGroupByName("Run_Right"); //
-  this.sword_slashAnim = this.scene
-    .getAnimationGroupByName("Sword_slash"); //
-  this.run_ShootAnim = this.scene
-    .getAnimationGroupByName("Run_Shoot"); //
-  this.walkAnim = this.scene.getAnimationGroupByName("Walk"); //wasd
-  this.waveAnim = this.scene.getAnimationGroupByName("Wave"); //
-}
+  //methods for player movement
+  private getNextState() {
+    // rotates state START_JUMP -> IN_AIR -> ON_GROUND -> IN_AIR
+    // rotation triggered by wantjump true
+    if (this.state == "IN_AIR") {
+      if (
+        this.supportInfo.supportedState == CharacterSupportedState.SUPPORTED
+      ) {
+        return "ON_GROUND";
+      }
+      return "IN_AIR";
+    } else if (this.state == "ON_GROUND") {
+      if (
+        this.supportInfo.supportedState != CharacterSupportedState.SUPPORTED
+      ) {
+        return "IN_AIR";
+      }
 
-
-//methods for player movement
-private getNextState() {
-  // rotates state START_JUMP -> IN_AIR -> ON_GROUND -> IN_AIR
-  // rotation triggered by wantjump true
-  if (this.state == "IN_AIR") {
-    if (
-      this.supportInfo.supportedState == CharacterSupportedState.SUPPORTED
-    ) {
+      if (this.wantJump) {
+        return "START_JUMP";
+      }
       return "ON_GROUND";
-    }
-    return "IN_AIR";
-  } else if (this.state == "ON_GROUND") {
-    if (
-      this.supportInfo.supportedState != CharacterSupportedState.SUPPORTED
-    ) {
+    } else if (this.state == "START_JUMP") {
       return "IN_AIR";
     }
-
-    if (this.wantJump) {
-      return "START_JUMP";
-    }
-    return "ON_GROUND";
-  } else if (this.state == "START_JUMP") {
-    return "IN_AIR";
   }
-}
 
-private getDesiredVelocity() {
-  let desiredVelocity: Vector3;
-  let outputVelocity: Vector3;
-  
-  let forwardWorld: Vector3;
-  // Update state
-  let nextState = this.getNextState();
-  if (nextState != this.state) {
-    this.state = nextState!;
-  }
-// want to display value on GUI;
-  this.stash.message = this.state;
-  this.stash.x = this.inputDirection.x.toString();
-  this.stash.z = this.inputDirection.z.toString();
-  // Get important directions
-
-  forwardWorld = this.forwardLocalSpace.applyRotationQuaternion(
-    this.characterOrientation
-  );
-
-  if (this.state == "IN_AIR") {
-    desiredVelocity = this.inputDirection
-      .scale(this.inAirSpeed)
-      .applyRotationQuaternion(this.characterOrientation);
-    outputVelocity = this.characterController.calculateMovement(
-      this.dt,
-      forwardWorld,
-      this.upWorld,//this.supportInfo.averageSurfaceNormal,
-      this.characterController.getVelocity(),
-      new Vector3 (0,0,0),//this.supportInfo.averageSurfaceVelocity,
-      desiredVelocity,
-      this.upWorld
-    );
-    // Restore to original vertical component
-    outputVelocity.addInPlace(this.upWorld.scale(-outputVelocity.dot(this.upWorld)));
-    outputVelocity.addInPlace(
-      this.upWorld.scale(this.characterController.getVelocity().dot(this.upWorld))
-    );
-    // Add gravity
-    outputVelocity.addInPlace(this.characterGravity.scale(this.dt));
-    return outputVelocity;
-  } else if (this.state == "ON_GROUND") {
-    // Move character relative to the surface we're standing on
-    // Correct input velocity to apply instantly any changes in the velocity of the standing surface and this way
-    // avoid artifacts caused by filtering of the output velocity when standing on moving objects.
-
-    Quaternion.FromEulerAnglesToRef(
-      0,
-      this.camera.rotation.y + this.facingAngle,
-      0,
-      this.player!.rotationQuaternion!
-    );
-
-    desiredVelocity = this.inputDirection
-      .scale(this.onGroundSpeed)
-      .applyRotationQuaternion(this.characterOrientation);
-
-    outputVelocity = this.characterController.calculateMovement(
-      this.dt,
-      forwardWorld,
-      this.supportInfo.averageSurfaceNormal,
-      this.characterController.getVelocity(),
-      this.supportInfo.averageSurfaceVelocity,
-      desiredVelocity,
-      this.upWorld
-    );
-
-    // Horizontal projection
-
-    {
-      outputVelocity.subtractInPlace(this.supportInfo.averageSurfaceVelocity);
-      let inv1k = 1e-3;
-      if (outputVelocity.dot(this.upWorld) > inv1k) {
-        let velLen = outputVelocity.length();
-        outputVelocity.normalizeFromLength(velLen);
-
-        // Get the desired length in the horizontal direction
-        let horizLen =
-          velLen / this.supportInfo.averageSurfaceNormal.dot(this.upWorld);
-
-        // Re project the velocity onto the horizontal plane
-        let c = this.supportInfo.averageSurfaceNormal.cross(outputVelocity);
-        outputVelocity = c.cross(this.upWorld);
-        outputVelocity.scaleInPlace(horizLen);
-      }
-      outputVelocity.addInPlace(this.supportInfo.averageSurfaceVelocity);
-
-      return outputVelocity;
-    }
-  } else if (this.state == "START_JUMP") {
-    let u = Math.sqrt(2 * this.characterGravity.length() * this.jumpHeight);
-    let curRelVel = this.characterController.getVelocity().dot(this.upWorld);
-    return this.characterController
-      .getVelocity()
-      .add(this.upWorld.scale(u - curRelVel));
-  } 
-  //console.log("Error: Unknown state");
-  return Vector3.Zero(); // only gets here is the state is not supported
-}
-
+  private getDesiredVelocity() {
+     let desiredVelocity: Vector3;
+     let outputVelocity: Vector3;
+     
+     let forwardWorld: Vector3;
+     // Update state
+     let nextState = this.getNextState();
+     if (nextState != this.state) {
+       this.state = nextState!;
+     }
+ // want to display value on GUI;
+     this.stash.message = this.state;
+     this.stash.x = this.inputDirection.x.toString();
+     this.stash.z = this.inputDirection.z.toString();
+     // Get important directions
+ 
+     forwardWorld = this.forwardLocalSpace.applyRotationQuaternion(
+       this.characterOrientation
+     );
+ 
+     if (this.state == "IN_AIR") {
+       desiredVelocity = this.inputDirection
+         .scale(this.inAirSpeed)
+         .applyRotationQuaternion(this.characterOrientation);
+       outputVelocity = this.characterController.calculateMovement(
+         this.dt,
+         forwardWorld,
+         this.upWorld,//this.supportInfo.averageSurfaceNormal,
+         this.characterController.getVelocity(),
+         new Vector3 (0,0,0),//this.supportInfo.averageSurfaceVelocity,
+         desiredVelocity,
+         this.upWorld
+       );
+       // Restore to original vertical component
+       outputVelocity.addInPlace(this.upWorld.scale(-outputVelocity.dot(this.upWorld)));
+       outputVelocity.addInPlace(
+         this.upWorld.scale(this.characterController.getVelocity().dot(this.upWorld))
+       );
+       // Add gravity
+       outputVelocity.addInPlace(this.characterGravity.scale(this.dt));
+       return outputVelocity;
+     } else if (this.state == "ON_GROUND") {
+       // Move character relative to the surface we're standing on
+       // Correct input velocity to apply instantly any changes in the velocity of the standing surface and this way
+       // avoid artifacts caused by filtering of the output velocity when standing on moving objects.
+ /*
+       Quaternion.FromEulerAnglesToRef(
+         0,
+         this.camera.rotation.y + this.facingAngle,
+         0,
+         this.player!.rotationQuaternion!
+       );
+ */
+       desiredVelocity = this.inputDirection
+         .scale(this.onGroundSpeed)
+         .applyRotationQuaternion(this.characterOrientation);
+ 
+       outputVelocity = this.characterController.calculateMovement(
+         this.dt,
+         forwardWorld,
+         this.supportInfo.averageSurfaceNormal,
+         this.characterController.getVelocity(),
+         this.supportInfo.averageSurfaceVelocity,
+         desiredVelocity,
+         this.upWorld
+       );
+ 
+       // Horizontal projection
+ 
+       {
+         outputVelocity.subtractInPlace(this.supportInfo.averageSurfaceVelocity);
+         let inv1k = 1e-3;
+         if (outputVelocity.dot(this.upWorld) > inv1k) {
+           let velLen = outputVelocity.length();
+           outputVelocity.normalizeFromLength(velLen);
+ 
+           // Get the desired length in the horizontal direction
+           let horizLen =
+             velLen / this.supportInfo.averageSurfaceNormal.dot(this.upWorld);
+ 
+           // Re project the velocity onto the horizontal plane
+           let c = this.supportInfo.averageSurfaceNormal.cross(outputVelocity);
+           outputVelocity = c.cross(this.upWorld);
+           outputVelocity.scaleInPlace(horizLen);
+         }
+         outputVelocity.addInPlace(this.supportInfo.averageSurfaceVelocity);
+ 
+         return outputVelocity;
+       }
+     } else if (this.state == "START_JUMP") {
+       let u = Math.sqrt(2 * this.characterGravity.length() * this.jumpHeight);
+       let curRelVel = this.characterController.getVelocity().dot(this.upWorld);
+       return this.characterController
+         .getVelocity()
+         .add(this.upWorld.scale(u - curRelVel));
+     } 
+     //console.log("Error: Unknown state");
+     return Vector3.Zero(); // only gets here is the state is not supported
+   }
 
   public onStart(): void {
     console.log("collisions.ts with player control");
     this.scene.addExternalData("stash", this.stash);
+    //character controller
+    this.characterController = new PhysicsCharacterController(
+      (this.playerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
+      { capsuleHeight: this.h, capsuleRadius: this.r },
+      this.scene
+    );
+    this.player!.setPositionWithLocalVector(
+      this.characterController.getPosition()
+    );
+    // stop animation[0] running by default
+    this.deathAnim!.stop();
+    this.idleAnim!.start(true);
 
-    this.goHavok(this.scene).then((hk) => {
-      //charater controller
-      
-    
-      this.characterController = new PhysicsCharacterController(
-        (this.playerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
-        { capsuleHeight: this.h, capsuleRadius: this.r },
-        this.scene
-      );
-      this.player!.setPositionWithLocalVector(
-        this.characterController.getPosition()
-      );
-      // stop animation[0] running by default
-      this.deathAnim!.stop();
-      this.idleAnim!.start(true);
+    this.displayCapsule = MeshBuilder.CreateCapsule(
+      "CharacterDisplay",
+      {
+        height: this.h,
+        radius: this.r,
+        tessellation: 5,
+        orientation: Vector3.Up(),
+      },
+      this.scene
+    );
+    this.displayCapsule.setPositionWithLocalVector(
+      this.characterController.getPosition()
+    );
 
-      
-          this.displayCapsule = MeshBuilder.CreateCapsule(
-            "CharacterDisplay",
-            {
-              height: this.h,
-              radius: this.r,
-              tessellation: 5,
-              orientation: Vector3.Up(),
-            },
-            this.scene
-          );
-          this.displayCapsule.setPositionWithLocalVector(
-            this.characterController.getPosition()
-          );
+  
 
     // cylinder displayed for debugging
 
@@ -427,20 +409,18 @@ private getDesiredVelocity() {
 
     // onBeforeRenderObservable is called before rendering a frame
     this.scene.onBeforeRenderObservable.add(() => {
-      
       this.player!.position.copyFrom(
         this.characterController
           .getPosition()
           .add(new Vector3(0, -this.h / 2, 0))
       );
 
- 
-      this.stash.debug = (this.player!.position).toString();
+      this.stash.debug = this.player!.position.toString();
       this.displayCapsule.position.copyFrom(
         this.characterController.getPosition()
       );
-          
-     // camera following
+/*
+      // camera following
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.FreeCamera
       // camera direction is the direction the camera is moving towards
       //
@@ -459,8 +439,11 @@ private getDesiredVelocity() {
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#scaleandaddtoref
       cameraDirection.scaleAndAddToRef(amount, this.camera.position); //scales and moves the camera direction
       this.camera.position.y +=
-        (this.player!.position.y + this.cameraOffsetY - this.camera.position.y) *
+        (this.player!.position.y +
+          this.cameraOffsetY -
+          this.camera.position.y) *
         this.cameraMotionRate;
+        */
     });
 
     // onAfterPhysicsObservable is called after the physics simulation has been updated
@@ -495,37 +478,40 @@ private getDesiredVelocity() {
           if (kbInfo.event.key == "i" || kbInfo.event.key == "ArrowUp") {
             this.inputDirection.z = 1;
             this.facingAngle = this.forwardAngle;
-            if (this.idleAnim!.isPlaying){
+            if (this.idleAnim!.isPlaying) {
               this.idleAnim!.stop();
-              this.walkAnim!.start(true);}
-            
+              this.walkAnim!.start(true);
+            }
           } else if (
             kbInfo.event.key == "k" ||
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = -1;
             this.facingAngle = this.backwardAngle;
-            if (this.idleAnim!.isPlaying){
+            if (this.idleAnim!.isPlaying) {
               this.idleAnim!.stop();
-              this.walkAnim!.start(true);}
+              this.walkAnim!.start(true);
+            }
           } else if (
             kbInfo.event.key == "j" ||
             kbInfo.event.key == "ArrowLeft"
           ) {
             this.inputDirection.x = -1;
             this.facingAngle = this.leftAngle;
-            if (this.idleAnim!.isPlaying){
+            if (this.idleAnim!.isPlaying) {
               this.idleAnim!.stop();
-              this.walkAnim!.start(true);}
+              this.walkAnim!.start(true);
+            }
           } else if (
             kbInfo.event.key == "l" ||
             kbInfo.event.key == "ArrowRight"
           ) {
             this.inputDirection.x = 1;
             this.facingAngle = this.rightAngle;
-            if (this.idleAnim!.isPlaying){
+            if (this.idleAnim!.isPlaying) {
               this.idleAnim!.stop();
-              this.walkAnim!.start(true);}
+              this.walkAnim!.start(true);
+            }
           } else if (kbInfo.event.key == " ") {
             this.wantJump = true;
           }
@@ -538,9 +524,10 @@ private getDesiredVelocity() {
             kbInfo.event.key == "ArrowDown"
           ) {
             this.inputDirection.z = 0;
-            if (this.walkAnim!.isPlaying){
+            if (this.walkAnim!.isPlaying) {
               this.walkAnim!.stop();
-              this.idleAnim!.start(true);}
+              this.idleAnim!.start(true);
+            }
           }
           if (
             kbInfo.event.key == "j" ||
@@ -549,35 +536,39 @@ private getDesiredVelocity() {
             kbInfo.event.key == "ArrowRight"
           ) {
             this.inputDirection.x = 0;
-            if (this.walkAnim!.isPlaying){
+            if (this.walkAnim!.isPlaying) {
               this.walkAnim!.stop();
-              this.idleAnim!.start(true);}
+              this.idleAnim!.start(true);
+            }
           } else if (kbInfo.event.key == " ") {
             this.wantJump = false;
           }
           break;
       }
-  
+    });
 
-      // meshes which will be used for physics aggregates
-      this.ground = this.scene.getMeshByName("ground");
-      this.ground?.setEnabled(true);
-      this.platform1 = this.scene.getMeshByName("Platform1");
-      this.platform1?.setEnabled(true);
-      this.platform2 = this.scene.getMeshByName("Platform2");
-      this.platform2?.setEnabled(true);
-      this.platform3 = this.scene.getMeshByName("Platform3");
-      this.platform3?.setEnabled(true);
-      this.cube1 = this.scene.getMeshByName("Cube1");
-      this.cube1?.setEnabled(true);
-      this.cube2 = this.scene.getMeshByName("Cube2");
-      this.cube2?.setEnabled(true);
-      this.player = this.scene.getMeshByName("CharacterDisplay");
-      this.player?.setEnabled(true);
+      this.goHavok(this.scene).then((hk) => {
+        //character controller
 
-      //physics aggregates
-      
-      this.groundAggregate = new PhysicsAggregate(
+        // meshes which will be used for physics aggregates
+        this.ground = this.scene.getMeshByName("ground");
+        this.ground?.setEnabled(true);
+        this.platform1 = this.scene.getMeshByName("Platform1");
+        this.platform1?.setEnabled(true);
+        this.platform2 = this.scene.getMeshByName("Platform2");
+        this.platform2?.setEnabled(true);
+        this.platform3 = this.scene.getMeshByName("Platform3");
+        this.platform3?.setEnabled(true);
+        this.cube1 = this.scene.getMeshByName("Cube1");
+        this.cube1?.setEnabled(true);
+        this.cube2 = this.scene.getMeshByName("Cube2");
+        this.cube2?.setEnabled(true);
+        this.player = this.displayCapsule;
+        this.player?.setEnabled(true);
+
+        //physics aggregates
+
+        /*this.groundAggregate = new PhysicsAggregate(
         this.ground!,
         PhysicsShapeType.BOX,
         { mass: 0, restitution: 0.2, friction: 0.9 },
@@ -586,79 +577,84 @@ private getDesiredVelocity() {
       this.groundAggregate.body.setCollisionCallbackEnabled(false);
       
 
-      this.cube1Aggregate = new PhysicsAggregate(
-        this.cube1!,
-        PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
-      this.cube1Aggregate.body.setCollisionCallbackEnabled(true);
-      this.cube1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
-      this.cube1Aggregate.transformNode.animations.push(this.animation1());
-      this.scene.beginAnimation(this.cube1, 0, 2 * this.frameRate, true);
+        this.cube1Aggregate = new PhysicsAggregate(
+          this.cube1!,
+          PhysicsShapeType.BOX,
+          { mass: 0, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
+        this.cube1Aggregate.body.setCollisionCallbackEnabled(true);
+        this.cube1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+        this.cube1Aggregate.transformNode.animations.push(this.animation1());
+        this.scene.beginAnimation(this.cube1, 0, 2 * this.frameRate, true);
 
-      this.cube2Aggregate = new PhysicsAggregate(
-        this.cube2!,
-        PhysicsShapeType.BOX,
-        { mass: 0.3, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
-      this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
-      this.cube2Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
-      //this.cube2Aggregate.transformNode.animations.push(this.animation1());
-      //this.scene.beginAnimation(this.cube2, 0, 2 * this.frameRate, true);
+        this.cube2Aggregate = new PhysicsAggregate(
+          this.cube2!,
+          PhysicsShapeType.BOX,
+          { mass: 0.3, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
+        this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
+        this.cube2Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+        //this.cube2Aggregate.transformNode.animations.push(this.animation1());
+        //this.scene.beginAnimation(this.cube2, 0, 2 * this.frameRate, true);
 
-      this.platform1Aggregate = new PhysicsAggregate(
-        this.platform1!,
-        PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
-      this.platform1Aggregate.body.setCollisionCallbackEnabled(true);
-      this.platform1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
-      this.platform1Aggregate.transformNode.animations.push(this.animation1());
-      //this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
+        this.platform1Aggregate = new PhysicsAggregate(
+          this.platform1!,
+          PhysicsShapeType.BOX,
+          { mass: 0, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
+        this.platform1Aggregate.body.setCollisionCallbackEnabled(true);
+        this.platform1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+        this.platform1Aggregate.transformNode.animations.push(
+          this.animation1()
+        );
+        //this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
 
-      this.platform2Aggregate = new PhysicsAggregate(
-        this.platform2!,
-        PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
-      this.platform2Aggregate.body.setCollisionCallbackEnabled(true);
+        this.platform2Aggregate = new PhysicsAggregate(
+          this.platform2!,
+          PhysicsShapeType.BOX,
+          { mass: 0, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
+        this.platform2Aggregate.body.setCollisionCallbackEnabled(true);
 
-      this.platform3Aggregate = new PhysicsAggregate(
-        this.platform3!,
-        PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
-      this.platform3Aggregate.body.setCollisionCallbackEnabled(true);
+        this.platform3Aggregate = new PhysicsAggregate(
+          this.platform3!,
+          PhysicsShapeType.BOX,
+          { mass: 0, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
+        this.platform3Aggregate.body.setCollisionCallbackEnabled(true);
 
-      this.cube2Aggregate = new PhysicsAggregate(
-        this.cube2!,
-        PhysicsShapeType.BOX,
-        { mass: 0.5, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
-      this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
+        this.cube2Aggregate = new PhysicsAggregate(
+          this.cube2!,
+          PhysicsShapeType.BOX,
+          { mass: 0.5, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
+        this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
 
-      this.playerAggregate = new PhysicsAggregate(
-        this.player!,
-        PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );
+        this.playerAggregate = new PhysicsAggregate(
+          this.player!,
+          PhysicsShapeType.CAPSULE,
+          { mass: 0, restitution: 0.3, friction: 0.9 },
+          this.scene
+        );
 
-      
-      //this.groundAggregate.body.getCollisionObservable().add(this.collideCB);
-      this.platform1Aggregate.body.getCollisionObservable().add(this.collideCB);
-      //this.platform2Aggregate.body.getCollisionObservable().add(this.collideCB);
-      //this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
-      //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
-      
-    });
-  } );
+        //this.groundAggregate.body.getCollisionObservable().add(this.collideCB);
+        this.platform1Aggregate.body
+          .getCollisionObservable()
+          .add(this.collideCB);
+        this.platform2Aggregate.body
+          .getCollisionObservable()
+          .add(this.collideCB);
+        //this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
+        //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
+     */
+        }); // end of havok promise handler
+    
   }
 
   public onUpdate(): void {
