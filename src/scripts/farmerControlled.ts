@@ -17,6 +17,9 @@ import {
   Animation,
   PhysicsPrestepType,
   Animatable,
+  PhysicsBody,
+  PhysicsShapeCapsule,
+  PhysicsMotionType,
 } from "@babylonjs/core";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 import HavokPhysics, { HavokPhysicsWithBindings } from "@babylonjs/havok";
@@ -136,17 +139,9 @@ export default class SceneComponent implements IScript {
   //animation parameters
   private frameRate: number = 30;
   private anim1: Animatable;
+  private time: number = 0;
 
-  private async goHavok(scene: Scene): Promise<HavokPlugin> {
-    HavokPhysics().then((havok) => {
-      const initializedHavok = havok;
-    });
 
-    const havokInstance: HavokPhysicsWithBindings = await HavokPhysics();
-    const hk: HavokPlugin = new HavokPlugin(true, havokInstance);
-    scene.enablePhysics(new Vector3(0, -9.81, 0), hk);
-    return hk;
-  }
 
   // animation which can be pushed to the animations array of a mesh
   private animation1 = () => {
@@ -201,6 +196,18 @@ export default class SceneComponent implements IScript {
       this.anim1.stop();
     }; // stops on one cycle
   };
+
+  // function to check if the player is close to a platform
+  private checkPlatform = (platform: TransformNode) => {
+    const playerPos = this.characterController.getPosition();
+    const platformPos = platform.getAbsolutePosition();
+    const distance = Vector3.Distance(playerPos, platformPos);
+    if (distance < 100) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   public constructor(public mesh: Mesh) {
     this.scene = this.mesh.getScene();
@@ -409,18 +416,8 @@ export default class SceneComponent implements IScript {
     console.log("farmerControlled.ts onStart");
     this.scene.addExternalData("stash", this.stash);
 
-    this.characterController = new PhysicsCharacterController(
-      (this.farmerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
-      { capsuleHeight: this.h, capsuleRadius: this.r },
-      this.scene
-    );
-    this.mesh.setPositionWithLocalVector(
-      this.characterController.getPosition()
-    );
-    // stop andmation[0] running by default
-    this.deathAnim!.stop();
-    this.idleAnim!.start(true);
-
+    // Display capsule will be a PysicsBody which will be attached to the character controller and used as a colision shape.
+    // for the character controller.
     this.displayCapsule = MeshBuilder.CreateCapsule(
       "CharacterDisplay",
       {
@@ -431,9 +428,27 @@ export default class SceneComponent implements IScript {
       },
       this.scene
     );
-    this.displayCapsule.setPositionWithLocalVector(
+
+
+  
+
+    this.characterController = new PhysicsCharacterController(
+      (this.farmerPosition as Vector3).add(new Vector3(0, this.h / 2, 0)),
+      { capsuleHeight: this.h, capsuleRadius: this.r },
+      this.scene
+    );
+    this.mesh.setPositionWithLocalVector(
       this.characterController.getPosition()
     );
+   
+
+
+
+    // stop andmation[0] running by default
+    this.deathAnim!.stop();
+    this.idleAnim!.start(true);
+
+   
 
     // cylinder displayed for debugging
 
@@ -503,6 +518,17 @@ export default class SceneComponent implements IScript {
             }
           } else if (kbInfo.event.key == " ") {
             this.wantJump = true;
+          } else if (kbInfo.event.key == "y") {// try platform animation
+            console.log("animation loop");
+            this.anim1 = this.scene.beginAnimation(
+              this.platform1,
+              0,
+              2 * this.frameRate,
+              true
+            );
+            this.anim1.onAnimationLoop = () => {
+              this.anim1.stop();
+            }; // stops on one cycle
           }
           break;
         case KeyboardEventTypes.KEYUP:
@@ -536,7 +562,7 @@ export default class SceneComponent implements IScript {
       }
     });
 
-    this.goHavok(this.scene).then((hk) => {
+    
       this.ground = this.scene.getMeshByName("ground");
       this.ground?.setEnabled(true);
       this.platform1 = this.scene.getMeshByName("Platform1");
@@ -551,6 +577,8 @@ export default class SceneComponent implements IScript {
       this.cube2?.setEnabled(true);
       this.detector = this.scene.getMeshByName("Detector");
       this.detector?.setEnabled(true);
+
+
 
       //physics aggregates
 
@@ -585,7 +613,7 @@ export default class SceneComponent implements IScript {
       this.platform1Aggregate = new PhysicsAggregate(
         this.platform1!,
         PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
+        { mass: 0, restitution: 0.3, friction: 1 },
         this.scene
       );
       this.platform1Aggregate.body.setCollisionCallbackEnabled(true);
@@ -593,10 +621,11 @@ export default class SceneComponent implements IScript {
       this.platform1Aggregate.transformNode.animations.push(this.animation1());
       //this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
 
+
       this.platform2Aggregate = new PhysicsAggregate(
         this.platform2!,
         PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
+        { mass: 0, restitution: 0.3, friction: 1 },
         this.scene
       );
       this.platform2Aggregate.body.setCollisionCallbackEnabled(true);
@@ -604,7 +633,7 @@ export default class SceneComponent implements IScript {
       this.platform3Aggregate = new PhysicsAggregate(
         this.platform3!,
         PhysicsShapeType.BOX,
-        { mass: 0, restitution: 0.3, friction: 0.9 },
+        { mass: 0, restitution: 0.3, friction: 1 },
         this.scene
       );
       this.platform3Aggregate.body.setCollisionCallbackEnabled(true);
@@ -612,19 +641,31 @@ export default class SceneComponent implements IScript {
       this.cube2Aggregate = new PhysicsAggregate(
         this.cube2!,
         PhysicsShapeType.BOX,
-        { mass: 0.5, restitution: 0.3, friction: 0.9 },
+        { mass: 0.5, restitution: 0.3, friction: 1 },
         this.scene
       );
       this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
 
-      this.playerAggregate = new PhysicsAggregate(
-        this.displayCapsule!,
-        PhysicsShapeType.CAPSULE,
-        { mass: 0.5, restitution: 0.3, friction: 0.9 },
-        this.scene
-      );  
-      this.playerAggregate.body.setCollisionCallbackEnabled(true);
-      this.playerAggregate.body.setMassProperties({ inertia: new Vector3(1, 1, 1) });
+ // Filter grouping
+ 
+ const FILTER_GROUP_GROUND = 1;
+ const FILTER_GROUP_PLATFORM = 2;
+ const FILTER_GROUP_MOVER = 3;
+const FILTER_GROUP_OBSTACLE = 4;
+      // Filter masks
+
+    
+      this.groundAggregate.shape.filterMembershipMask = FILTER_GROUP_GROUND;
+      this.platform1Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+      this.platform2Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+      this.platform3Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+      this.cube1Aggregate.shape.filterMembershipMask = FILTER_GROUP_OBSTACLE;
+      this.cube2Aggregate.shape.filterMembershipMask = FILTER_GROUP_OBSTACLE;
+
+      
+      this.platform1Aggregate.shape.filterCollideMask = FILTER_GROUP_MOVER;
+      this.platform2Aggregate.shape.filterCollideMask = FILTER_GROUP_MOVER;
+      this.platform3Aggregate.shape.filterCollideMask = FILTER_GROUP_MOVER;
 
       //this.groundAggregate.body.getCollisionObservable().add(this.collideCB);
       this.platform1Aggregate.body.getCollisionObservable().add(this.collideCB);
@@ -632,18 +673,26 @@ export default class SceneComponent implements IScript {
       this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
 
       //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
-      this.playerAggregate.body.getCollisionObservable().add(this.collideCB);
+      
       // set up event handlers
 
       this.scene.onBeforeRenderObservable.add(() => {
-        this.farmerPosition = this.characterController.getPosition();
-        const meshOffset = new Vector3(0, -this.h / 2, 0);
-        const meshOffset1 = new Vector3(0, this.h / 2, 0);
-        this.mesh.setAbsolutePosition(this.farmerPosition.clone().add(meshOffset));
         
-        this.playerAggregate?.transformNode.setAbsolutePosition(
-          this.farmerPosition.clone()
-        );
+        this.platform1Aggregate!.transformNode.position.y = (Math.cos(this.time*0.8) + 1) * 100; 
+        this.detector!.position.y = (Math.cos(this.time*0.8) + 1) * 100;
+        this.time += this.scene.getEngine().getDeltaTime() * 0.001;     
+
+  const controllerPosition = this.characterController.getPosition().clone();
+  const meshOffset = new Vector3(0, -this.h / 2, 0);
+  // Update physics body position to match character controller
+  const physicsPosition = controllerPosition.clone();
+  this.mesh.setAbsolutePosition(controllerPosition.add(meshOffset));  
+  this.displayCapsule.setAbsolutePosition(controllerPosition);
+
+
+  this.playerAggregate?.body.setLinearVelocity(this.characterController.getVelocity());
+  this.playerAggregate?.transformNode.setAbsolutePosition(physicsPosition);
+  this.mesh.setAbsolutePosition(controllerPosition.add(meshOffset));     
 
         // camera following
         // https://doc.babylonjs.com/typedoc/classes/BABYLON.FreeCamera
@@ -653,8 +702,8 @@ export default class SceneComponent implements IScript {
         const cameraTarget = new TransformNode("cameraTarget", this.scene);
         this.mesh.parent = cameraTarget;
 
-        const controllerPos = this.characterController.getPosition();
-        cameraTarget.setAbsolutePosition(controllerPos.clone());
+       // const controllerPos = this.characterController.getPosition();
+        cameraTarget.setAbsolutePosition(controllerPosition);
 
         // Get direction from camera to target
         const directionToTarget = cameraTarget.position.subtract(
@@ -673,12 +722,21 @@ export default class SceneComponent implements IScript {
 
         // Optional vertical follow:
         this.camera.position.y +=
-          (controllerPos.y + this.cameraOffsetY - this.camera.position.y) *
+          (controllerPosition.y + this.cameraOffsetY - this.camera.position.y) *
           this.cameraMotionRate;
-      });
-    });
-  }
-  public onUpdate(): void {
+
+          if (this.checkPlatform(this.platform1Aggregate!.transformNode)){
+            console.log("approached platform 1")
+          }
+          if (this.checkPlatform(this.platform2Aggregate!.transformNode)){
+            console.log("approached platform 2");
+           }
+           if (this.checkPlatform(this.platform2Aggregate!.transformNode)){
+            console.log("approached platform 3");
+           }
+      });    
+
+  }  public onUpdate(): void {
     // Nothing here action is all in onStart
   }
 }

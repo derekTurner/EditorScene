@@ -7,7 +7,7 @@
             "type": "Mesh",
             "position": [
                 0,
-                58.6947269065451,
+                43.18,
                 414.24280963714534
             ],
             "rotationQuaternion": [
@@ -17,9 +17,9 @@
                 1
             ],
             "scaling": [
-                0.7646185598450354,
-                2.3163256504005765,
-                0.7759044221313098
+                1,
+                1,
+                1
             ],
             "localMatrix": [
                 1,
@@ -65,23 +65,23 @@
             "geometryUniqueId": 1745379890740,
             "geometryId": "090856fa-cca2-4a1e-b033-4926c4e07a30",
             "subMeshes": null,
-            "materialUniqueId": 447,
+            "materialUniqueId": 466,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
                 "width": 100,
                 "depth": 100,
-                "height": 100,
+                "height": 10,
                 "physicsAggregate": {
                     "shape": {
                         "type": 3,
                         "density": 1000
                     },
                     "body": {
-                        "motionType": 0
+                        "motionType": 2
                     },
                     "massProperties": {
-                        "mass": 1.0099999904632568,
+                        "mass": 1,
                         "inertia": [
                             4972.8271484375,
                             988.8910522460938,
@@ -100,8 +100,8 @@
                         ]
                     },
                     "material": {
-                        "friction": 0.2,
-                        "restitution": 0.2
+                        "friction": 1,
+                        "restitution": 0
                     }
                 }
             },
@@ -122,12 +122,12 @@
             "delayLoadingFile": "assets/example.scene/geometries/090856fa-cca2-4a1e-b033-4926c4e07a30.babylonbinarymeshdata",
             "boundingBoxMaximum": [
                 50,
-                50,
+                5,
                 50
             ],
             "boundingBoxMinimum": [
                 -50,
-                -50,
+                -5,
                 -50
             ],
             "_binaryInfo": {
@@ -187,17 +187,17 @@
         "type": "Box",
         "width": 100,
         "depth": 100,
-        "height": 100,
+        "height": 10,
         "physicsAggregate": {
             "shape": {
                 "type": 3,
                 "density": 1000
             },
             "body": {
-                "motionType": 0
+                "motionType": 2
             },
             "massProperties": {
-                "mass": 1.0099999904632568,
+                "mass": 1,
                 "inertia": [
                     4972.8271484375,
                     988.8910522460938,
@@ -216,8 +216,8 @@
                 ]
             },
             "material": {
-                "friction": 0.2,
-                "restitution": 0.2
+                "friction": 1,
+                "restitution": 0
             }
         }
     },

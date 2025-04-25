@@ -5,6 +5,5 @@
 export const scriptsMap = {
     "scripts/box.ts": require("@/scripts/box"),
 	"scripts/gui.ts": require("@/scripts/gui"),
-	"scripts/collisions.ts": require("@/scripts/collisions"),
 	"scripts/farmerControlled.ts": require("@/scripts/farmerControlled")
 };

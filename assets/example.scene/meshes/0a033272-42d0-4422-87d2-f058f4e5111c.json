@@ -1,20 +1,19 @@
 {
     "meshes": [
         {
-            "name": "Cube2",
-            "id": "64c8cae2-5c43-4b34-a209-172dd92f2113",
-            "uniqueId": 1742386756857,
+            "name": "Activator",
+            "id": "0a033272-42d0-4422-87d2-f058f4e5111c",
+            "uniqueId": 1745510418077,
             "type": "Mesh",
             "position": [
-                193.0008808018751,
-                238.78334588941442,
-                53.14942566398997
+                0,
+                44.782372765640446,
+                415.0779158085739
             ],
-            "rotationQuaternion": [
+            "rotation": [
                 0,
                 0,
-                0,
-                1
+                0
             ],
             "scaling": [
                 1,
@@ -43,7 +42,7 @@
             "isVisible": true,
             "infiniteDistance": false,
             "pickable": true,
-            "receiveShadows": true,
+            "receiveShadows": false,
             "billboardMode": 0,
             "visibility": 1,
             "alwaysSelectAsActiveMesh": false,
@@ -62,48 +61,15 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "geometryUniqueId": 1742386756858,
-            "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
+            "geometryUniqueId": 1745510418078,
+            "geometryId": "1eac472c-ef86-4ac2-8cb5-d9ae8678aa05",
             "subMeshes": null,
             "materialUniqueId": 466,
             "materialId": "default material",
             "metadata": {
-                "type": "Box",
-                "width": 100,
-                "depth": 100,
-                "height": 100,
-                "physicsAggregate": {
-                    "shape": {
-                        "type": 3,
-                        "density": 1000
-                    },
-                    "body": {
-                        "motionType": 2
-                    },
-                    "massProperties": {
-                        "mass": 0.30000001192092896,
-                        "inertia": [
-                            1666.6666259765625,
-                            1666.6666259765625,
-                            1666.6666259765625
-                        ],
-                        "centerOfMass": [
-                            0,
-                            0,
-                            0
-                        ],
-                        "inertiaOrientation": [
-                            0,
-                            0,
-                            0,
-                            1
-                        ]
-                    },
-                    "material": {
-                        "friction": 0.2,
-                        "restitution": 0.5399999999999999
-                    }
-                }
+                "type": "Sphere",
+                "diameter": 15,
+                "segments": 32
             },
             "instances": [],
             "animations": [],
@@ -119,46 +85,46 @@
             ],
             "renderOverlay": true,
             "applyFog": true,
-            "delayLoadingFile": "assets/example.scene/geometries/e50f4437-5d41-471a-ac16-2b23dadd1a12.babylonbinarymeshdata",
+            "delayLoadingFile": "assets/example.scene/geometries/1eac472c-ef86-4ac2-8cb5-d9ae8678aa05.babylonbinarymeshdata",
             "boundingBoxMaximum": [
-                50,
-                50,
-                50
+                7.5,
+                7.5,
+                7.5
             ],
             "boundingBoxMinimum": [
-                -50,
-                -50,
-                -50
+                -7.5,
+                -7.5,
+                -7.5
             ],
             "_binaryInfo": {
                 "positionsAttrDesc": {
-                    "count": 72,
+                    "count": 7245,
                     "stride": 3,
                     "offset": 0,
                     "dataType": 1
                 },
                 "normalsAttrDesc": {
-                    "count": 72,
+                    "count": 7245,
                     "stride": 3,
-                    "offset": 288,
+                    "offset": 28980,
                     "dataType": 1
                 },
                 "uvsAttrDesc": {
-                    "count": 48,
+                    "count": 4830,
                     "stride": 2,
-                    "offset": 576,
+                    "offset": 57960,
                     "dataType": 1
                 },
                 "indicesAttrDesc": {
-                    "count": 36,
+                    "count": 13872,
                     "stride": 1,
-                    "offset": 768,
+                    "offset": 77280,
                     "dataType": 0
                 },
                 "subMeshesAttrDesc": {
                     "count": 1,
                     "stride": 5,
-                    "offset": 912,
+                    "offset": 132768,
                     "dataType": 0
                 }
             },
@@ -184,42 +150,9 @@
         "vertexData": []
     },
     "metadata": {
-        "type": "Box",
-        "width": 100,
-        "depth": 100,
-        "height": 100,
-        "physicsAggregate": {
-            "shape": {
-                "type": 3,
-                "density": 1000
-            },
-            "body": {
-                "motionType": 2
-            },
-            "massProperties": {
-                "mass": 0.30000001192092896,
-                "inertia": [
-                    1666.6666259765625,
-                    1666.6666259765625,
-                    1666.6666259765625
-                ],
-                "centerOfMass": [
-                    0,
-                    0,
-                    0
-                ],
-                "inertiaOrientation": [
-                    0,
-                    0,
-                    0,
-                    1
-                ]
-            },
-            "material": {
-                "friction": 0.2,
-                "restitution": 0.5399999999999999
-            }
-        }
+        "type": "Sphere",
+        "diameter": 15,
+        "segments": 32
     },
     "basePoseMatrix": [
         1,
