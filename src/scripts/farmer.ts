@@ -9,6 +9,7 @@ import {
   TransformNode,
   PhysicsAggregate,
   PhysicsShapeType,
+  FreeCamera,
 } from "@babylonjs/core";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 
@@ -20,6 +21,14 @@ export default class SceneComponent implements IScript {
   //stash for messages to other scripts via externalData
   public stash: { [key: string]: string } = { message: "Empty Stash" };
   public keyDownMap: { [key: string]: boolean } = {};
+
+  private camera!: FreeCamera;
+ //Camera
+ private cameraMaxDistance = 900;
+ private cameraMinDistance = 600;
+ private cameraMotionRate = 0.04;
+ private cameraOffsetY = 500; // hold camera above target
+
 
   private ratio: number;
   private stepf: Vector3 = new Vector3(0, 0, 9); // +z
@@ -92,6 +101,8 @@ export default class SceneComponent implements IScript {
     );
     this.playerAggregate.body.setCollisionCallbackEnabled(true);
     this.player! = this.playerAggregate.transformNode;
+
+    this.camera = this.scene.activeCamera as FreeCamera; 
 
     this.ratio = this.scene.getAnimationRatio();
     this.stepr = this.stepr.scale(this.ratio);
@@ -169,6 +180,8 @@ export default class SceneComponent implements IScript {
     this.deathAnim!.stop();
     this.idleAnim!.start(true);
 
+    
+
     this.scene.actionManager = new ActionManager(this.scene);
     this.scene.actionManager.registerAction(
       new ExecuteCodeAction(
@@ -194,6 +207,33 @@ export default class SceneComponent implements IScript {
         }
       )
     );
+
+//before rendereable
+this.scene.onBeforeRenderObservable.add(() => {
+
+     // camera following
+      // https://doc.babylonjs.com/typedoc/classes/BABYLON.FreeCamera
+      // camera direction is the direction the camera is moving towards
+      //
+      var cameraDirection = this.camera.getDirection(new Vector3(0, 0, 1));
+      cameraDirection.y = 0;
+      cameraDirection.normalize();
+      // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#lerp
+      this.camera.setTarget(
+        Vector3.Lerp(this.camera.getTarget(), this.player!.position.clone(), 0.1) // moves the target towards the mesh position
+      );
+      var dist = Vector3.Distance(this.camera.position, this.player!.position.clone()); // distance between camera and target
+      const amount =
+        (Math.min(dist - this.cameraMinDistance, 0) +
+          Math.max(dist - this.cameraMaxDistance, 0)) *
+        this.cameraMotionRate; // scaling factor for movement towads target
+      // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#scaleandaddtoref
+      cameraDirection.scaleAndAddToRef(amount, this.camera.position); //scales and moves the camera direction
+      this.camera.position.y +=
+        (this.player!.position.y + this.cameraOffsetY - this.camera.position.y) *
+        this.cameraMotionRate;
+    });
+
   }
 
   public onUpdate(): void {
