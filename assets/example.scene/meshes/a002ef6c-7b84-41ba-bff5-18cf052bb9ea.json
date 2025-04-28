@@ -8,18 +8,18 @@
             "position": [
                 109,
                 0,
-                794
+                -406.35375446664926
             ],
             "rotationQuaternion": [
                 0,
-                1,
                 0,
+                1,
                 0
             ],
             "scaling": [
                 100,
-                100,
-                -100
+                -100,
+                100
             ],
             "localMatrix": [
                 1,
@@ -62,13 +62,13 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 466,
+            "materialUniqueId": 452,
             "materialId": "default material",
             "metadata": {
                 "scripts": [
                     {
                         "enabled": true,
-                        "key": "scripts/farmerControlled.ts"
+                        "key": "scripts/farmer.ts"
                     }
                 ]
             },
@@ -95,7 +95,7 @@
         "scripts": [
             {
                 "enabled": true,
-                "key": "scripts/farmerControlled.ts"
+                "key": "scripts/farmer.ts"
             }
         ]
     },

@@ -1,4 +1,4 @@
-import { ActionManager, Color3, ExecuteCodeAction, Scene } from "@babylonjs/core";
+import { Scene } from "@babylonjs/core";
 import {
   Button,
   AdvancedDynamicTexture,
@@ -170,9 +170,9 @@ this.scene.registerBeforeRender(() => {
   // cant get to gui
   let mystash = this.scene.getExternalData("stash") as { [key: string]: string };
   let mystash2 = this.scene.getExternalData("stash2") as { [key: string]: string };
-  this.text1.text = mystash.message;
-  this.text2.text = mystash.x; // Desired direction
-  this.text3.text = mystash.z; // Desired direction
+  try{this.text1.text = mystash.message} catch {};
+  try{this.text2.text = mystash.x;} catch{}// Desired direction
+  try{this.text3.text = mystash.z;} catch {}// Desired direction
   
 });  }
 
