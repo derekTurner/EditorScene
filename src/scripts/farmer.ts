@@ -1,4 +1,7 @@
+// https://playground.babylonjs.com/#7XBR3M#9
 import {
+  Animation,
+  Animatable,
   AnimationGroup,
   Quaternion,
   Scene,
@@ -10,11 +13,18 @@ import {
   PhysicsAggregate,
   PhysicsShapeType,
   FreeCamera,
+  PhysicsPrestepType,
+  PhysicsViewer,
+  PhysicsMotionType,
 } from "@babylonjs/core";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
-
+import { DebugLayer } from "@babylonjs/core/Debug/debugLayer";
 import { IScript } from "babylonjs-editor-tools";
 
+interface PositionArray {
+  frame: number;
+  value: number;
+}
 
 export default class SceneComponent implements IScript {
   private scene!: Scene;
@@ -23,12 +33,11 @@ export default class SceneComponent implements IScript {
   public keyDownMap: { [key: string]: boolean } = {};
 
   private camera!: FreeCamera;
- //Camera
- private cameraMaxDistance = 900;
- private cameraMinDistance = 600;
- private cameraMotionRate = 0.04;
- private cameraOffsetY = 500; // hold camera above target
-
+  //Camera
+  private cameraMaxDistance = 900;
+  private cameraMinDistance = 600;
+  private cameraMotionRate = 0.04;
+  private cameraOffsetY = 500; // hold camera above target
 
   private ratio: number;
   private stepf: Vector3 = new Vector3(0, 0, 9); // +z
@@ -64,9 +73,97 @@ export default class SceneComponent implements IScript {
   private animating: boolean = false;
 
   //physics aggregates
-  private root = new TransformNode("root", this.scene);
+  private ground: Nullable<TransformNode> = null;
+  private platform1: Nullable<TransformNode> = null;
+  private platform2: Nullable<TransformNode> = null;
+  private platform3: Nullable<TransformNode> = null;
+  private cube1: Nullable<TransformNode> = null;
+  private cube2: Nullable<TransformNode> = null;
   private player: Nullable<TransformNode> = null;
+  private detector: Nullable<TransformNode> = null;
+  private activator: Nullable<TransformNode> = null;
+
+  private groundAggregate: Nullable<PhysicsAggregate> = null;
+  private platform1Aggregate: Nullable<PhysicsAggregate> = null;
+  private platform2Aggregate: Nullable<PhysicsAggregate> = null;
+  private platform3Aggregate: Nullable<PhysicsAggregate> = null;
+  private cube1Aggregate: Nullable<PhysicsAggregate> = null;
+  private cube2Aggregate: Nullable<PhysicsAggregate> = null;
   private playerAggregate: Nullable<PhysicsAggregate> = null;
+  private detectorAggregate: Nullable<PhysicsAggregate> = null;
+
+  private root = new TransformNode("root", this.scene);
+
+  //animation parameters
+  private frameRate: number = 30;
+  private anim1!: Animatable;
+  private time: number = 0;
+
+  // animation which can be pushed to the animations array of a mesh
+  private animation1 = () => {
+    const range = 200;
+    const xSlide = new Animation(
+      "xSlide",
+      "position.x",
+      this.frameRate,
+      Animation.ANIMATIONTYPE_FLOAT,
+      Animation.ANIMATIONLOOPMODE_CYCLE
+    );
+    const keyFramesX: PositionArray[] = [];
+    keyFramesX.push({ frame: 0, value: range });
+    keyFramesX.push({ frame: this.frameRate, value: -1 * range });
+    keyFramesX.push({
+      frame: 2 * this.frameRate - 1,
+      value:
+        -1 * range +
+        (2 * range * (this.frameRate / 2 - 1)) / (this.frameRate / 2),
+    });
+    xSlide.setKeys(keyFramesX);
+    return xSlide;
+  };
+
+  // functions to call on collision
+  private collideCB = (collision: {
+    // log collisions
+    collider: { transformNode: { name: any } };
+    collidedAgainst: { transformNode: { name: any } };
+    point: any;
+    distance: any;
+    impulse: any;
+    normal: any;
+  }) => {
+    console.log(
+      "collideCB",
+      collision.collider.transformNode.name,
+      collision.collidedAgainst.transformNode.name
+      //collision.point,
+      //collision.distance,
+      //collision.impulse,
+      //collision.normal
+    );
+    this.anim1 = this.scene.beginAnimation(
+      this.platform1,
+      0,
+      2 * this.frameRate,
+      true
+    );
+    //setTimeout(() => {this.anim1.stop()}, 5000);// loop for 5 seconds
+    this.anim1.onAnimationLoop = () => {
+      this.anim1.stop();
+    }; // stops on one cycle
+  };
+
+  // function to check if the player is close to a platform
+  private checkPlatform = (platform: TransformNode) => {
+    const playerPos = this.player!.position.clone();
+    const platformPos = platform.getAbsolutePosition();
+    const distance = Vector3.Distance(playerPos, platformPos);
+    if (distance < 100) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   private forward: Quaternion = Quaternion.RotationAxis(
     new Vector3(0, 1, 0),
@@ -96,13 +193,16 @@ export default class SceneComponent implements IScript {
     this.playerAggregate = new PhysicsAggregate(
       this.root,
       PhysicsShapeType.CAPSULE,
-      { mass: 0, restitution: 0.3, friction: 1 },
+      { mass: 0.9, restitution: 0.3, friction: 1 , radius :10 },
       this.scene
     );
     this.playerAggregate.body.setCollisionCallbackEnabled(true);
     this.player! = this.playerAggregate.transformNode;
+    this.playerAggregate!.body.setMotionType(PhysicsMotionType.DYNAMIC);
+    this.playerAggregate!.body.disablePreStep = false;
+    this.playerAggregate!.body.setMassProperties({ inertia: Vector3.ZeroReadOnly});
 
-    this.camera = this.scene.activeCamera as FreeCamera; 
+    this.camera = this.scene.activeCamera as FreeCamera;
 
     this.ratio = this.scene.getAnimationRatio();
     this.stepr = this.stepr.scale(this.ratio);
@@ -175,13 +275,136 @@ export default class SceneComponent implements IScript {
     this.walkAnim = this.scene.getAnimationGroupByName("Walk"); //wasd
     this.waveAnim = this.scene.getAnimationGroupByName("Wave"); //
   }
-
   public onStart(): void {
     this.deathAnim!.stop();
     this.idleAnim!.start(true);
 
-    
+    this.ground = this.scene.getMeshByName("ground");
+    this.ground?.setEnabled(true);
+    this.platform1 = this.scene.getMeshByName("Platform1");
+    this.platform1?.setEnabled(true);
+    this.platform2 = this.scene.getMeshByName("Platform2");
+    this.platform2?.setEnabled(true);
+    this.platform3 = this.scene.getMeshByName("Platform3");
+    this.platform3?.setEnabled(true);
+    this.cube1 = this.scene.getMeshByName("Cube1");
+    this.cube1?.setEnabled(true);
+    this.cube2 = this.scene.getMeshByName("Cube2");
+    this.cube2?.setEnabled(true);
+    this.detector = this.scene.getMeshByName("Detector");
+    this.detector?.setEnabled(true);
+    this.activator = this.scene.getMeshByName("Activator");
 
+    //physics aggregates
+
+    this.groundAggregate = new PhysicsAggregate(
+      this.ground!,
+      PhysicsShapeType.BOX,
+      { mass: 0, restitution: 0.2, friction: 0.7 },
+      this.scene
+    );
+    this.groundAggregate.body.setCollisionCallbackEnabled(false);
+
+    this.cube1Aggregate = new PhysicsAggregate(
+      this.cube1!,
+      PhysicsShapeType.BOX,
+      { mass: 0, restitution: 0.3, friction: 0.9 },
+      this.scene
+    );
+    this.cube1Aggregate.body.setCollisionCallbackEnabled(true);
+    this.cube1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+    this.cube1Aggregate.transformNode.animations.push(this.animation1());
+    //this.scene.beginAnimation(this.cube1, 0, 2 * this.frameRate, true);
+
+    this.cube2Aggregate = new PhysicsAggregate(
+      this.cube2!,
+      PhysicsShapeType.BOX,
+      { mass: 0.5, restitution: 0.3, friction: 0.9 },
+      this.scene
+    );
+    this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
+    this.cube2Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+
+    this.platform1Aggregate = new PhysicsAggregate(
+      this.platform1!,
+      PhysicsShapeType.BOX,
+      { mass: 0, restitution: 0.3, friction: 1 },
+      this.scene
+    );
+    this.platform1Aggregate.body.setCollisionCallbackEnabled(true);
+    this.platform1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+    this.platform1Aggregate.transformNode.animations.push(this.animation1());
+    //this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
+
+    this.platform2Aggregate = new PhysicsAggregate(
+      this.platform2!,
+      PhysicsShapeType.BOX,
+      { mass: 0, restitution: 0.3, friction: 1 },
+      this.scene
+    );
+    this.platform2Aggregate.body.setCollisionCallbackEnabled(true);
+
+    this.platform3Aggregate = new PhysicsAggregate(
+      this.platform3!,
+      PhysicsShapeType.BOX,
+      { mass: 0, restitution: 0.3, friction: 1 },
+      this.scene
+    );
+    this.platform3Aggregate.body.setCollisionCallbackEnabled(true);
+
+    this.cube2Aggregate = new PhysicsAggregate(
+      this.cube2!,
+      PhysicsShapeType.BOX,
+      { mass: 0.5, restitution: 0.3, friction: 1 },
+      this.scene
+    );
+    this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
+
+    // Filter grouping
+
+    const FILTER_GROUP_GROUND = 1;
+    const FILTER_GROUP_PLATFORM = 2;
+    const FILTER_GROUP_CUBE = 3;
+    const FILTER_GROUP_OBSTACLE = 4;
+    const FILTER_GROUP_PLAYER = 5;
+    // Filter masks
+    this.groundAggregate.shape.filterMembershipMask = FILTER_GROUP_GROUND;
+    this.platform1Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+    this.platform2Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+    this.platform3Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+    this.cube1Aggregate.shape.filterMembershipMask = FILTER_GROUP_CUBE;
+    this.cube2Aggregate.shape.filterMembershipMask = FILTER_GROUP_CUBE;
+    this.playerAggregate!.shape.filterMembershipMask = FILTER_GROUP_PLAYER;
+
+    this.platform1Aggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER;
+    this.platform2Aggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER;
+    this.platform3Aggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER;
+
+    this.cube1Aggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLATFORM | FILTER_GROUP_PLAYER;
+    this.cube2Aggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLATFORM | FILTER_GROUP_PLAYER;
+
+    this.playerAggregate!.shape.filterCollideMask =
+      FILTER_GROUP_PLATFORM | FILTER_GROUP_CUBE | FILTER_GROUP_OBSTACLE;
+    // Add collision mask for ground
+this.groundAggregate.shape.filterCollideMask = 
+FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER | FILTER_GROUP_OBSTACLE;    
+
+    //this.groundAggregate.body.getCollisionObservable().add(this.collideCB);
+    this.platform1Aggregate.body.getCollisionObservable().add(this.collideCB);
+    this.platform2Aggregate.body.getCollisionObservable().add(this.collideCB);
+    this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
+
+    //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
+
+    const physicsViewer = new PhysicsViewer();
+    const debugMesh = physicsViewer.showBody(this.playerAggregate!.body);
+
+    // setup action manager to handle key events
     this.scene.actionManager = new ActionManager(this.scene);
     this.scene.actionManager.registerAction(
       new ExecuteCodeAction(
@@ -208,10 +431,9 @@ export default class SceneComponent implements IScript {
       )
     );
 
-//before rendereable
-this.scene.onBeforeRenderObservable.add(() => {
-
-     // camera following
+    //setup before render observable to update camera position
+    this.scene.onBeforeRenderObservable.add(() => {
+      // camera following
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.FreeCamera
       // camera direction is the direction the camera is moving towards
       //
@@ -220,9 +442,16 @@ this.scene.onBeforeRenderObservable.add(() => {
       cameraDirection.normalize();
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#lerp
       this.camera.setTarget(
-        Vector3.Lerp(this.camera.getTarget(), this.player!.position.clone(), 0.1) // moves the target towards the mesh position
+        Vector3.Lerp(
+          this.camera.getTarget(),
+          this.player!.position.clone(),
+          0.1
+        ) // moves the target towards the mesh position
       );
-      var dist = Vector3.Distance(this.camera.position, this.player!.position.clone()); // distance between camera and target
+      var dist = Vector3.Distance(
+        this.camera.position,
+        this.player!.position.clone()
+      ); // distance between camera and target
       const amount =
         (Math.min(dist - this.cameraMinDistance, 0) +
           Math.max(dist - this.cameraMaxDistance, 0)) *
@@ -230,62 +459,86 @@ this.scene.onBeforeRenderObservable.add(() => {
       // https://doc.babylonjs.com/typedoc/classes/BABYLON.Vector3#scaleandaddtoref
       cameraDirection.scaleAndAddToRef(amount, this.camera.position); //scales and moves the camera direction
       this.camera.position.y +=
-        (this.player!.position.y + this.cameraOffsetY - this.camera.position.y) *
+        (this.player!.position.y +
+          this.cameraOffsetY -
+          this.camera.position.y) *
         this.cameraMotionRate;
     });
-
   }
-
   public onUpdate(): void {
     // GLTF use quaternions for rotation so not mesh.rotation.y = value;
     //https://doc.babylonjs.com/features/featuresDeepDive/mesh/transforms/center_origin/rotation_quaternions
     var keydown = false;
     if (this.keyDownMap!["j"] || this.keyDownMap!["ArrowLeft"]) {
-      this.idleAnim!.stop();
-      this.walkAnim!.start(true);
-      this.player!.position.addInPlace(this.stepl);
-      this.player!.rotationQuaternion = this.left;
-      console.log("left");
-      keydown = true;
+  
+        this.idleAnim!.stop();
+        this.walkAnim!.start(true);
+        this.playerAggregate!.body.setLinearVelocity(
+          new Vector3(-90 * this.ratio, 0, 0)
+        );
+        //this.player!.position.addInPlace(this.stepl);
+
+        this.player!.rotationQuaternion = this.left;
+        console.log("left");
+        keydown = true;
+      
     }
     if (this.keyDownMap!["k"] || this.keyDownMap!["ArrowDown"]) {
-      this.idleAnim!.stop();
-      this.walkAnim!.start(true);
-      this.player!.position.addInPlace(this.stepb);
-      this.player!.rotationQuaternion = this.backward;
-      console.log("down");
-      keydown = true;
+      
+        this.idleAnim!.stop();
+        this.walkAnim!.start(true);
+        this.playerAggregate!.body.setLinearVelocity(
+          new Vector3(0, 0, -90 * this.ratio)
+        );
+        //this.player!.position.addInPlace(this.stepb);
+        this.player!.rotationQuaternion = this.backward;
+        console.log("down");
+        keydown = true;
+      
     }
     if (this.keyDownMap!["l"] || this.keyDownMap!["ArrowRight"]) {
-      this.idleAnim!.stop();
-      this.walkAnim!.start(true);
-      this.player!.position.addInPlace(this.stepr);
-      this.player!.rotationQuaternion = this.right;
-      console.log("right");
-      keydown = true;
+     
+        this.idleAnim!.stop();
+        this.walkAnim!.start(true);
+        this.playerAggregate!.body.setLinearVelocity(
+          new Vector3(90 * this.ratio, 0, 0)
+        );
+        // this.player!.position.addInPlace(this.stepr);
+        this.player!.rotationQuaternion = this.right;
+        console.log("right");
+        keydown = true;
+      
     }
     if (this.keyDownMap!["i"] || this.keyDownMap!["ArrowUp"]) {
-      this.idleAnim!.stop();
-      this.walkAnim!.start(true);
-      this.player!.position.addInPlace(this.stepf);
-      this.player!.rotationQuaternion = this.forward;
-      console.log("up");
-      keydown = true;
+      
+        this.idleAnim!.stop();
+        this.walkAnim!.start(true);
+        this.playerAggregate!.body.setLinearVelocity(
+          new Vector3(0, 0, 90 * this.ratio)
+        );
+        //this.player!.position.addInPlace(this.stepf);
+        this.player!.rotationQuaternion = this.forward;
+        console.log("up");
+        keydown = true;
+      
     }
-  /*  if (this.keyDownMap![" "] ) {
-      //this.idleAnim!.stop();
-      //this.walkAnim!.start(true);
-      console.log("spacebar");
-      this.player!.applyImpulse(new Vector3(0, 100, 0), this.player!.position);
-      this.player!.rotationQuaternion = this.forward;
-      keydown = true;
-    }*/
+// Modify the spacebar handling
+if (this.keyDownMap![" "] ){
+  console.log("spacebar jump");
+  this.playerAggregate!.body.applyImpulse(
+      new Vector3(0, 900, 0),
+      this.player!.position
+  );
+  
+  keydown = true;
+}
 
     if (!keydown) {
       //stop walking animation if not moving
       if (this.walkAnim?.isPlaying) {
         this.walkAnim!.stop();
         this.idleAnim!.start(true);
+        this.playerAggregate!.body.setLinearVelocity(new Vector3(0, 0, 0));
       }
     }
 

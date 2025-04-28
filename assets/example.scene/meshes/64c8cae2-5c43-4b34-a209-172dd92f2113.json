@@ -6,9 +6,9 @@
             "uniqueId": 1742386756857,
             "type": "Mesh",
             "position": [
-                193.0008808018751,
-                238.78334588941442,
-                53.14942566398997
+                143.85130191606538,
+                205.4002086674068,
+                -124.76661337994241
             ],
             "rotationQuaternion": [
                 0,
@@ -65,7 +65,7 @@
             "geometryUniqueId": 1742386756858,
             "geometryId": "e50f4437-5d41-471a-ac16-2b23dadd1a12",
             "subMeshes": null,
-            "materialUniqueId": 441,
+            "materialUniqueId": 263,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
