@@ -78,23 +78,34 @@ export default class SceneComponent implements IScript {
   private platform1: Nullable<TransformNode> = null;
   private platform2: Nullable<TransformNode> = null;
   private platform3: Nullable<TransformNode> = null;
+  private platform4: Nullable<TransformNode> = null;
   private cube1: Nullable<TransformNode> = null;
   private cube2: Nullable<TransformNode> = null;
   private player: Nullable<TransformNode> = null;
-  private detector: Nullable<TransformNode> = null;
+
   private activator: Nullable<TransformNode> = null;
 
   private groundAggregate: Nullable<PhysicsAggregate> = null;
   private platform1Aggregate: Nullable<PhysicsAggregate> = null;
   private platform2Aggregate: Nullable<PhysicsAggregate> = null;
   private platform3Aggregate: Nullable<PhysicsAggregate> = null;
+  private platform4Aggregate: Nullable<PhysicsAggregate> = null;
   private cube1Aggregate: Nullable<PhysicsAggregate> = null;
   private cube2Aggregate: Nullable<PhysicsAggregate> = null;
   private playerAggregate: Nullable<PhysicsAggregate> = null;
-  private detectorAggregate: Nullable<PhysicsAggregate> = null;
 
   private root = new TransformNode("root", this.scene);
-  private display: Nullable<Mesh> = null;
+
+  //jumping parameters
+  private jumpHeight: number = 100; // height of jump
+  private jumpSpeed: number = 300; // speed of jump
+  private jumpTimeout: number = 3; // minimum gap between jump (seconds)
+  private jumpStart: number = 0; // start time of jump
+  private jumpEnd: number = 0; // end time of jump
+  private jumpDuration: number = 0; // duration of jump
+  private jumpUp: Vector3 = new Vector3(0, 1, 0); // direction of jump
+  private isJumping: Boolean = false;
+  private jumpEnabled: Boolean = true; // enable jumping
 
   //animation parameters
   private frameRate: number = 30;
@@ -188,17 +199,16 @@ export default class SceneComponent implements IScript {
     }
   };
 
-  // function to check if the player is close to a platform
-  private checkPlatform = (platform: TransformNode) => {
-    const playerPos = this.player!.position.clone();
-    const platformPos = platform.getAbsolutePosition();
-    const distance = Vector3.Distance(playerPos, platformPos);
-    if (distance < 100) {
-      return true;
-    } else {
-      return false;
+
+  private getDistanceToNode(checkNode: Nullable <TransformNode>): number {
+    if (!this.player || !checkNode) {
+      return Infinity; // Return a large value if either object doesn't exist
     }
-  };
+    
+    const playerPos = this.player.position.clone();
+    const activatorPos = checkNode.getAbsolutePosition();
+    return Vector3.Distance(playerPos, activatorPos);
+  }
 
   private forward: Quaternion = Quaternion.RotationAxis(
     new Vector3(0, 1, 0),
@@ -224,18 +234,6 @@ export default class SceneComponent implements IScript {
     this.root.position = this.mesh.position.clone();
     this.mesh.position = Vector3.Zero();
     this.mesh.parent = this.root;
-
-    this.display = MeshBuilder.CreateCapsule(
-      "display",
-      {
-        height: 200,
-        radius: 10,
-        tessellation: 32,
-      },
-      this.scene
-    );
-    this.display.parent = this.root;
-    this.display.position = new Vector3(0, 0, 0);
 
     this.playerAggregate = new PhysicsAggregate(
       this.root,
@@ -340,8 +338,8 @@ export default class SceneComponent implements IScript {
     this.cube1?.setEnabled(true);
     this.cube2 = this.scene.getMeshByName("Cube2");
     this.cube2?.setEnabled(true);
-    this.detector = this.scene.getMeshByName("Detector");
-    this.detector?.setEnabled(true);
+    this.platform4 = this.scene.getMeshByName("Platform4");
+    this.platform4?.setEnabled(true);
     this.activator = this.scene.getMeshByName("Activator");
     this.activator?.setEnabled(true);
     //physics aggregates
@@ -384,7 +382,6 @@ export default class SceneComponent implements IScript {
     this.platform1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
     this.platform1Aggregate.body.setMotionType(PhysicsMotionType.ANIMATED);
     this.platform1Aggregate.transformNode.animations.push(this.animation1());
-    //this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
 
     this.platform2Aggregate = new PhysicsAggregate(
       this.platform2!,
@@ -401,6 +398,15 @@ export default class SceneComponent implements IScript {
       this.scene
     );
     this.platform3Aggregate.body.setCollisionCallbackEnabled(true);
+
+    this.platform4Aggregate = new PhysicsAggregate(
+      this.platform4!,
+      PhysicsShapeType.BOX,
+      { mass: 0, restitution: 0.3, friction: 1 },
+      this.scene
+    );
+    this.platform4Aggregate.body.setCollisionCallbackEnabled(true);
+    this.platform4Aggregate.body.setMotionType(PhysicsMotionType.ANIMATED);
 
     this.cube2Aggregate = new PhysicsAggregate(
       this.cube2!,
@@ -422,6 +428,7 @@ export default class SceneComponent implements IScript {
     this.platform1Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
     this.platform2Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
     this.platform3Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
+    this.platform4Aggregate.shape.filterMembershipMask = FILTER_GROUP_PLATFORM;
     this.cube1Aggregate.shape.filterMembershipMask = FILTER_GROUP_CUBE;
     this.cube2Aggregate.shape.filterMembershipMask = FILTER_GROUP_CUBE;
     this.playerAggregate!.shape.filterMembershipMask = FILTER_GROUP_PLAYER;
@@ -431,6 +438,8 @@ export default class SceneComponent implements IScript {
     this.platform2Aggregate.shape.filterCollideMask =
       FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER;
     this.platform3Aggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER;
+    this.platform4Aggregate.shape.filterCollideMask =
       FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER;
 
     this.cube1Aggregate.shape.filterCollideMask =
@@ -451,8 +460,9 @@ export default class SceneComponent implements IScript {
 
     //this.cube2Aggregate.body.getCollisionObservable().add(this.collideCB);
 
-    const physicsViewer = new PhysicsViewer();
-    const debugMesh = physicsViewer.showBody(this.playerAggregate!.body);
+    // Uncomment to show the position of the player physics body in the scene for easier debugging
+    //const physicsViewer = new PhysicsViewer();
+    //const debugMesh = physicsViewer.showBody(this.playerAggregate!.body);
 
     // setup action manager to handle key events
     this.scene.actionManager = new ActionManager(this.scene);
@@ -513,7 +523,26 @@ export default class SceneComponent implements IScript {
           this.cameraOffsetY -
           this.camera.position.y) *
         this.cameraMotionRate;
+
+      //this.platform4!.physicsBody!.transformNode.position.y = 40 + (Math.cos(this.time * 1.3) + 1) * 100; // move platform up and down
+      
+      // move platform using setTargetTransform
+      const newY = 40 + (Math.cos(this.time * 1.3) + 1) * 100;
+      this.platform4Aggregate!.body.setTargetTransform(
+        new Vector3(
+          this.platform4!.position.x,
+          newY,
+          this.platform4!.position.z
+        ),
+        this.platform4!.rotationQuaternion || Quaternion.Identity()
+      );
+
+      this.time += this.scene.getEngine().getDeltaTime() / 1000; // update time
+
+      this.stash.message = this.getDistanceToNode(this.activator).toString(); // update stash with distance to activator
     });
+
+   
   }
   public onUpdate(): void {
     // GLTF use quaternions for rotation so not mesh.rotation.y = value;
@@ -566,14 +595,41 @@ export default class SceneComponent implements IScript {
       keydown = true;
     }
     // Modify the spacebar handling
-    if (this.keyDownMap![" "]) {
-      console.log("spacebar jump");
-      this.playerAggregate!.body.setLinearVelocity(
-        this.playerAggregate!.body.getLinearVelocity()
-          .clone()
-          .addInPlace(new Vector3(0, 90, 0 * this.ratio))
-      );
-
+    if (this.keyDownMap![" "] && this.jumpEnabled) {
+      if (!this.isJumping) {
+        //start jump
+        console.log("spacebar jump");
+        this.isJumping = true;
+        this.jumpStart = this.playerAggregate!.body.transformNode.position.y;
+        this.jumpEnd = this.jumpStart + this.jumpHeight;
+        this.jumpDuration = this.jumpHeight / (this.jumpSpeed * this.ratio);
+        this.playerAggregate!.body.setLinearVelocity(
+          this.playerAggregate!.body.getLinearVelocity()
+            .clone()
+            .addInPlace(new Vector3(0, this.jumpSpeed * this.ratio, 0)) // times this.ratio)
+        );
+      } else {
+        console.log("spacebarholding");
+        this.playerAggregate!.body.setLinearVelocity(
+          this.playerAggregate!.body.getLinearVelocity()
+            .clone()
+            .addInPlace(new Vector3(0, this.jumpSpeed * this.ratio, 0)) // times this.ratio)
+        );
+        //check if jump is finished
+        if (
+          this.playerAggregate!.body.transformNode.position.y >= this.jumpEnd
+        ) {
+          console.log("jump end");
+          this.isJumping = false;
+          // disable jumping for a short time
+          this.jumpEnabled = false;
+          // setTimeout to re-enable jumping after jumpDuration
+          setTimeout(() => {
+            this.jumpEnabled = true;
+          }, this.jumpTimeout * 1000);
+        }
+      }
+      //setTimeout(() => {this.isJumping = false;}, this.jumpDuration * 1000); // set isJumping to false after jumpDuration
       keydown = true;
     }
 

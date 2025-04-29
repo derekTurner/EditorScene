@@ -1,13 +1,13 @@
 {
     "meshes": [
         {
-            "name": "Detector",
+            "name": "Platform4",
             "id": "751c9afc-a50c-4e44-af57-1e79d10fafb3",
             "uniqueId": 1745379890739,
             "type": "Mesh",
             "position": [
                 0,
-                43.18,
+                43.31289937217065,
                 414.24280963714534
             ],
             "rotationQuaternion": [
@@ -65,7 +65,7 @@
             "geometryUniqueId": 1745379890740,
             "geometryId": "090856fa-cca2-4a1e-b033-4926c4e07a30",
             "subMeshes": null,
-            "materialUniqueId": 263,
+            "materialUniqueId": 444,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
