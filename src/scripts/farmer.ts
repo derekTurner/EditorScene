@@ -323,6 +323,9 @@ export default class SceneComponent implements IScript {
     this.waveAnim = this.scene.getAnimationGroupByName("Wave"); //
   }
   public onStart(): void {
+
+    this.scene.addExternalData("stash", this.stash);
+
     this.deathAnim!.stop();
     this.idleAnim!.start(true);
 
