@@ -16,6 +16,7 @@ import {
   PhysicsPrestepType,
   PhysicsViewer,
   PhysicsMotionType,
+  MeshBuilder,
 } from "@babylonjs/core";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 import { DebugLayer } from "@babylonjs/core/Debug/debugLayer";
@@ -93,33 +94,36 @@ export default class SceneComponent implements IScript {
   private detectorAggregate: Nullable<PhysicsAggregate> = null;
 
   private root = new TransformNode("root", this.scene);
+  private display: Nullable<Mesh> = null;
 
   //animation parameters
   private frameRate: number = 30;
   private anim1!: Animatable;
   private time: number = 0;
+  private isAnimating1: boolean = false;
 
   // animation which can be pushed to the animations array of a mesh
   private animation1 = () => {
     const range = 200;
-    const xSlide = new Animation(
-      "xSlide",
-      "position.x",
+    const frameCount = 2 * this.frameRate;
+    const startValue = this.platform1!.position.y;
+    const ySlide = new Animation(
+      "ySlide",
+      "position.y",
       this.frameRate,
       Animation.ANIMATIONTYPE_FLOAT,
       Animation.ANIMATIONLOOPMODE_CYCLE
     );
-    const keyFramesX: PositionArray[] = [];
-    keyFramesX.push({ frame: 0, value: range });
-    keyFramesX.push({ frame: this.frameRate, value: -1 * range });
-    keyFramesX.push({
-      frame: 2 * this.frameRate - 1,
+    const keyFramesY: PositionArray[] = [];
+    keyFramesY.push({ frame: 0, value: startValue });
+    keyFramesY.push({ frame: frameCount / 2, value: range });
+    keyFramesY.push({
+      frame: frameCount - 1,
       value:
-        -1 * range +
-        (2 * range * (this.frameRate / 2 - 1)) / (this.frameRate / 2),
+        startValue + (range * (this.frameRate / 2 - 1)) / (this.frameRate / 2),
     });
-    xSlide.setKeys(keyFramesX);
-    return xSlide;
+    ySlide.setKeys(keyFramesY);
+    return ySlide;
   };
 
   // functions to call on collision
@@ -141,16 +145,47 @@ export default class SceneComponent implements IScript {
       //collision.impulse,
       //collision.normal
     );
-    this.anim1 = this.scene.beginAnimation(
-      this.platform1,
-      0,
-      2 * this.frameRate,
-      true
+  };
+
+  private collideCB1 = (collision: {
+    // log collisions
+    collider: { transformNode: { name: any } };
+    collidedAgainst: { transformNode: { name: any } };
+    point: any;
+    distance: any;
+    impulse: any;
+    normal: any;
+  }) => {
+    console.log(
+      "collideCB1",
+      collision.collider.transformNode.name,
+      collision.collidedAgainst.transformNode.name
+      //collision.point,
+      //collision.distance,
+      //collision.impulse,
+      //collision.normal
     );
-    //setTimeout(() => {this.anim1.stop()}, 5000);// loop for 5 seconds
-    this.anim1.onAnimationLoop = () => {
-      this.anim1.stop();
-    }; // stops on one cycle
+    if (!this.isAnimating1) {
+      this.isAnimating1 = true;
+      this.anim1 = this.scene.beginAnimation(
+        this.platform1,
+        0,
+        2 * this.frameRate,
+        true
+      );
+
+      // Set flag to false when animation completes
+      this.anim1.onAnimationLoop = () => {
+        this.anim1.stop();
+        this.isAnimating1 = false;
+      };
+      //setTimeout(() => {this.anim1.stop()}, 5000);// loop for 5 seconds
+
+      // Also handle the case where animation ends without looping
+      this.anim1.onAnimationEnd = () => {
+        this.isAnimating1 = false;
+      };
+    }
   };
 
   // function to check if the player is close to a platform
@@ -190,17 +225,31 @@ export default class SceneComponent implements IScript {
     this.mesh.position = Vector3.Zero();
     this.mesh.parent = this.root;
 
+    this.display = MeshBuilder.CreateCapsule(
+      "display",
+      {
+        height: 200,
+        radius: 10,
+        tessellation: 32,
+      },
+      this.scene
+    );
+    this.display.parent = this.root;
+    this.display.position = new Vector3(0, 0, 0);
+
     this.playerAggregate = new PhysicsAggregate(
       this.root,
       PhysicsShapeType.CAPSULE,
-      { mass: 0.9, restitution: 0.3, friction: 1 , radius :10 },
+      { mass: 0.1, restitution: 0, friction: 1, radius: 10 },
       this.scene
     );
     this.playerAggregate.body.setCollisionCallbackEnabled(true);
     this.player! = this.playerAggregate.transformNode;
     this.playerAggregate!.body.setMotionType(PhysicsMotionType.DYNAMIC);
     this.playerAggregate!.body.disablePreStep = false;
-    this.playerAggregate!.body.setMassProperties({ inertia: Vector3.ZeroReadOnly});
+    this.playerAggregate!.body.setMassProperties({
+      inertia: Vector3.ZeroReadOnly,
+    });
 
     this.camera = this.scene.activeCamera as FreeCamera;
 
@@ -294,7 +343,7 @@ export default class SceneComponent implements IScript {
     this.detector = this.scene.getMeshByName("Detector");
     this.detector?.setEnabled(true);
     this.activator = this.scene.getMeshByName("Activator");
-
+    this.activator?.setEnabled(true);
     //physics aggregates
 
     this.groundAggregate = new PhysicsAggregate(
@@ -308,7 +357,7 @@ export default class SceneComponent implements IScript {
     this.cube1Aggregate = new PhysicsAggregate(
       this.cube1!,
       PhysicsShapeType.BOX,
-      { mass: 0, restitution: 0.3, friction: 0.9 },
+      { mass: 0.5, restitution: 0.3, friction: 0.9 },
       this.scene
     );
     this.cube1Aggregate.body.setCollisionCallbackEnabled(true);
@@ -319,7 +368,7 @@ export default class SceneComponent implements IScript {
     this.cube2Aggregate = new PhysicsAggregate(
       this.cube2!,
       PhysicsShapeType.BOX,
-      { mass: 0.5, restitution: 0.3, friction: 0.9 },
+      { mass: 0.5, restitution: 0.4, friction: 0.6 },
       this.scene
     );
     this.cube2Aggregate.body.setCollisionCallbackEnabled(true);
@@ -333,6 +382,7 @@ export default class SceneComponent implements IScript {
     );
     this.platform1Aggregate.body.setCollisionCallbackEnabled(true);
     this.platform1Aggregate.body.setPrestepType(PhysicsPrestepType.ACTION);
+    this.platform1Aggregate.body.setMotionType(PhysicsMotionType.ANIMATED);
     this.platform1Aggregate.transformNode.animations.push(this.animation1());
     //this.scene.beginAnimation(this.platform1, 0, 2 * this.frameRate, true);
 
@@ -391,11 +441,11 @@ export default class SceneComponent implements IScript {
     this.playerAggregate!.shape.filterCollideMask =
       FILTER_GROUP_PLATFORM | FILTER_GROUP_CUBE | FILTER_GROUP_OBSTACLE;
     // Add collision mask for ground
-this.groundAggregate.shape.filterCollideMask = 
-FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER | FILTER_GROUP_OBSTACLE;    
+    this.groundAggregate.shape.filterCollideMask =
+      FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER | FILTER_GROUP_OBSTACLE;
 
     //this.groundAggregate.body.getCollisionObservable().add(this.collideCB);
-    this.platform1Aggregate.body.getCollisionObservable().add(this.collideCB);
+    this.platform1Aggregate.body.getCollisionObservable().add(this.collideCB1);
     this.platform2Aggregate.body.getCollisionObservable().add(this.collideCB);
     this.platform3Aggregate.body.getCollisionObservable().add(this.collideCB);
 
@@ -470,68 +520,62 @@ FILTER_GROUP_CUBE | FILTER_GROUP_PLAYER | FILTER_GROUP_OBSTACLE;
     //https://doc.babylonjs.com/features/featuresDeepDive/mesh/transforms/center_origin/rotation_quaternions
     var keydown = false;
     if (this.keyDownMap!["j"] || this.keyDownMap!["ArrowLeft"]) {
-  
-        this.idleAnim!.stop();
-        this.walkAnim!.start(true);
-        this.playerAggregate!.body.setLinearVelocity(
-          new Vector3(-90 * this.ratio, 0, 0)
-        );
-        //this.player!.position.addInPlace(this.stepl);
+      this.idleAnim!.stop();
+      this.walkAnim!.start(true);
+      this.playerAggregate!.body.setLinearVelocity(
+        new Vector3(-90 * this.ratio, 0, 0)
+      );
+      //this.player!.position.addInPlace(this.stepl);
 
-        this.player!.rotationQuaternion = this.left;
-        console.log("left");
-        keydown = true;
-      
+      this.player!.rotationQuaternion = this.left;
+      console.log("left");
+      keydown = true;
     }
     if (this.keyDownMap!["k"] || this.keyDownMap!["ArrowDown"]) {
-      
-        this.idleAnim!.stop();
-        this.walkAnim!.start(true);
-        this.playerAggregate!.body.setLinearVelocity(
-          new Vector3(0, 0, -90 * this.ratio)
-        );
-        //this.player!.position.addInPlace(this.stepb);
-        this.player!.rotationQuaternion = this.backward;
-        console.log("down");
-        keydown = true;
-      
+      this.idleAnim!.stop();
+      this.walkAnim!.start(true);
+      this.playerAggregate!.body.setLinearVelocity(
+        new Vector3(0, 0, -90 * this.ratio)
+      );
+      //this.player!.position.addInPlace(this.stepb);
+      this.player!.rotationQuaternion = this.backward;
+      console.log("down");
+      keydown = true;
     }
     if (this.keyDownMap!["l"] || this.keyDownMap!["ArrowRight"]) {
-     
-        this.idleAnim!.stop();
-        this.walkAnim!.start(true);
-        this.playerAggregate!.body.setLinearVelocity(
-          new Vector3(90 * this.ratio, 0, 0)
-        );
-        // this.player!.position.addInPlace(this.stepr);
-        this.player!.rotationQuaternion = this.right;
-        console.log("right");
-        keydown = true;
-      
+      this.idleAnim!.stop();
+      this.walkAnim!.start(true);
+      this.playerAggregate!.body.setLinearVelocity(
+        new Vector3(90 * this.ratio, 0, 0)
+      );
+      // this.player!.position.addInPlace(this.stepr);
+      this.player!.rotationQuaternion = this.right;
+      console.log("right");
+      keydown = true;
     }
     if (this.keyDownMap!["i"] || this.keyDownMap!["ArrowUp"]) {
-      
-        this.idleAnim!.stop();
-        this.walkAnim!.start(true);
-        this.playerAggregate!.body.setLinearVelocity(
-          new Vector3(0, 0, 90 * this.ratio)
-        );
-        //this.player!.position.addInPlace(this.stepf);
-        this.player!.rotationQuaternion = this.forward;
-        console.log("up");
-        keydown = true;
-      
+      this.idleAnim!.stop();
+      this.walkAnim!.start(true);
+
+      this.playerAggregate!.body.setLinearVelocity(
+        new Vector3(0, 0, 90 * this.ratio)
+      );
+      //this.player!.position.addInPlace(this.stepf);
+      this.player!.rotationQuaternion = this.forward;
+      console.log("up");
+      keydown = true;
     }
-// Modify the spacebar handling
-if (this.keyDownMap![" "] ){
-  console.log("spacebar jump");
-  this.playerAggregate!.body.applyImpulse(
-      new Vector3(0, 900, 0),
-      this.player!.position
-  );
-  
-  keydown = true;
-}
+    // Modify the spacebar handling
+    if (this.keyDownMap![" "]) {
+      console.log("spacebar jump");
+      this.playerAggregate!.body.setLinearVelocity(
+        this.playerAggregate!.body.getLinearVelocity()
+          .clone()
+          .addInPlace(new Vector3(0, 90, 0 * this.ratio))
+      );
+
+      keydown = true;
+    }
 
     if (!keydown) {
       //stop walking animation if not moving
