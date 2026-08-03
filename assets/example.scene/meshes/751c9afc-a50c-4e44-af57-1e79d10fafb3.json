@@ -65,7 +65,6 @@
             "geometryUniqueId": 1745379890740,
             "geometryId": "090856fa-cca2-4a1e-b033-4926c4e07a30",
             "subMeshes": null,
-            "materialUniqueId": 427,
             "materialId": "default material",
             "metadata": {
                 "type": "Box",
@@ -117,7 +116,7 @@
                 0,
                 0
             ],
-            "renderOverlay": true,
+            "renderOverlay": false,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/090856fa-cca2-4a1e-b033-4926c4e07a30.babylonbinarymeshdata",
             "boundingBoxMaximum": [

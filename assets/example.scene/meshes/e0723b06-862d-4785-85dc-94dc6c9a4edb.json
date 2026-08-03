@@ -67,6 +67,7 @@
             "materialUniqueId": 1740502453840,
             "materialId": "0cea8dca-852d-477c-8b4e-be6084d953da",
             "skeletonId": "4b0704a1-ba9d-4e40-8b9e-bdb1fd320f2f",
+            "skeletonUniqueId": 138,
             "numBoneInfluencers": 4,
             "metadata": {
                 "parentId": 1740502453819
@@ -77,9 +78,9 @@
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
             "hasVertexAlpha": false,
-            "overlayAlpha": 0.5,
+            "overlayAlpha": 1,
             "overlayColor": [
-                1,
+                0,
                 0,
                 0
             ],
@@ -182,6 +183,7 @@
                 0.30946895480155945,
                 0.2015562802553177
             ],
+            "baseWeight": 1,
             "reflectivity": [
                 1,
                 1,
@@ -219,7 +221,7 @@
             "parallaxScaleBias": 0.05,
             "disableLighting": false,
             "forceIrradianceInFragment": false,
-            "maxSimultaneousLights": 32,
+            "maxSimultaneousLights": 8,
             "invertNormalMapX": false,
             "invertNormalMapY": false,
             "twoSidedLighting": true,
@@ -273,7 +275,9 @@
                 "_ditheringIntensity": 0.00392156862745098,
                 "_skipFinalColorClamp": false,
                 "_applyByPostProcess": false,
-                "_isEnabled": false
+                "_isEnabled": false,
+                "outputTextureWidth": 0,
+                "outputTextureHeight": 0
             },
             "id": "0cea8dca-852d-477c-8b4e-be6084d953da",
             "name": "Beige",
@@ -283,8 +287,17 @@
             "state": "",
             "alpha": 1,
             "backFaceCulling": false,
+            "textureRepetitionMode": 0,
+            "textureRepetitionHexTilingParams": [
+                1,
+                0.6,
+                7,
+                0.5
+            ],
             "cullBackFaces": true,
-            "alphaMode": 2,
+            "_alphaMode": [
+                2
+            ],
             "_needDepthPrePass": false,
             "disableDepthWrite": false,
             "disableColorWrite": false,
@@ -297,15 +310,20 @@
             "zOffsetUnits": 0,
             "pointsCloud": false,
             "fillMode": 0,
+            "_isVertexOutputInvariant": false,
             "transparencyMode": 0,
             "stencil": {
                 "tags": null,
                 "func": 519,
+                "backFunc": 519,
                 "funcRef": 1,
                 "funcMask": 255,
                 "opStencilFail": 7680,
                 "opDepthFail": 7680,
                 "opStencilDepthPass": 7681,
+                "backOpStencilFail": 7680,
+                "backOpDepthFail": 7680,
+                "backOpStencilDepthPass": 7681,
                 "mask": 255,
                 "enabled": false
             },
@@ -317,6 +335,11 @@
                     "useSmithVisibilityHeightCorrelated": true,
                     "useSphericalHarmonics": true,
                     "useSpecularGlossinessInputEnergyConservation": true,
+                    "mixIblRadianceWithIrradiance": true,
+                    "useLegacySpecularEnergyConservation": true,
+                    "baseDiffuseModel": 0,
+                    "dielectricSpecularModel": 0,
+                    "conductorSpecularModel": 0,
                     "name": "PBRBRDF",
                     "priority": 90,
                     "resolveIncludes": false,
@@ -418,6 +441,8 @@
                     ],
                     "useMaskFromThicknessTexture": false,
                     "useGltfStyleTextures": true,
+                    "applyAlbedoAfterSubSurface": false,
+                    "legacyTranslucency": false,
                     "name": "PBRSubSurface",
                     "priority": 130,
                     "resolveIncludes": false,
@@ -432,13 +457,6 @@
                     "isEnabled": false,
                     "name": "DetailMap",
                     "priority": 140,
-                    "resolveIncludes": false,
-                    "registerForExtraEvents": false
-                },
-                "DepthSensingMaterialPlugin": {
-                    "tags": null,
-                    "name": "DepthSensing",
-                    "priority": 222,
                     "resolveIncludes": false,
                     "registerForExtraEvents": false
                 }

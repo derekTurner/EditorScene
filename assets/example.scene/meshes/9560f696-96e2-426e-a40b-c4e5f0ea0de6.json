@@ -62,7 +62,6 @@
             "isBlocker": false,
             "sideOrientation": 1,
             "isUnIndexed": false,
-            "materialUniqueId": 427,
             "materialId": "default material",
             "metadata": {
                 "parentId": 1740501089195
@@ -73,9 +72,9 @@
             "layerMask": 268435455,
             "alphaIndex": 1.7976931348623157e+308,
             "hasVertexAlpha": false,
-            "overlayAlpha": 0.5,
+            "overlayAlpha": 1,
             "overlayColor": [
-                1,
+                0,
                 0,
                 0
             ],

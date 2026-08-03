@@ -81,7 +81,7 @@
                 0,
                 0
             ],
-            "renderOverlay": true,
+            "renderOverlay": false,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/7538d54c-c8a3-4b26-afce-703e0f2118e2.babylonbinarymeshdata",
             "boundingBoxMaximum": [
@@ -196,6 +196,7 @@
                 "animations": [],
                 "invertY": false,
                 "samplingMode": 3,
+                "_creationFlags": 0,
                 "_useSRGBBuffer": false,
                 "internalTextureLabel": "Leaves_NormalTree_C",
                 "noMipmap": false
@@ -221,6 +222,7 @@
                 1,
                 1
             ],
+            "baseWeight": 1,
             "reflectivity": [
                 1,
                 1,
@@ -258,7 +260,7 @@
             "parallaxScaleBias": 0.05,
             "disableLighting": false,
             "forceIrradianceInFragment": false,
-            "maxSimultaneousLights": 32,
+            "maxSimultaneousLights": 8,
             "invertNormalMapX": false,
             "invertNormalMapY": false,
             "twoSidedLighting": true,
@@ -312,7 +314,9 @@
                 "_ditheringIntensity": 0.00392156862745098,
                 "_skipFinalColorClamp": false,
                 "_applyByPostProcess": false,
-                "_isEnabled": false
+                "_isEnabled": false,
+                "outputTextureWidth": 0,
+                "outputTextureHeight": 0
             },
             "id": "d43d3857-7dae-455e-90f4-46cdae048239",
             "name": "Leaves_NormalTree",
@@ -322,8 +326,17 @@
             "state": "",
             "alpha": 1,
             "backFaceCulling": false,
+            "textureRepetitionMode": 0,
+            "textureRepetitionHexTilingParams": [
+                1,
+                0.6,
+                7,
+                0.5
+            ],
             "cullBackFaces": true,
-            "alphaMode": 2,
+            "_alphaMode": [
+                2
+            ],
             "_needDepthPrePass": false,
             "disableDepthWrite": false,
             "disableColorWrite": false,
@@ -336,15 +349,20 @@
             "zOffsetUnits": 0,
             "pointsCloud": false,
             "fillMode": 0,
+            "_isVertexOutputInvariant": false,
             "transparencyMode": 1,
             "stencil": {
                 "tags": null,
                 "func": 519,
+                "backFunc": 519,
                 "funcRef": 1,
                 "funcMask": 255,
                 "opStencilFail": 7680,
                 "opDepthFail": 7680,
                 "opStencilDepthPass": 7681,
+                "backOpStencilFail": 7680,
+                "backOpDepthFail": 7680,
+                "backOpStencilDepthPass": 7681,
                 "mask": 255,
                 "enabled": false
             },
@@ -356,6 +374,11 @@
                     "useSmithVisibilityHeightCorrelated": true,
                     "useSphericalHarmonics": true,
                     "useSpecularGlossinessInputEnergyConservation": true,
+                    "mixIblRadianceWithIrradiance": true,
+                    "useLegacySpecularEnergyConservation": true,
+                    "baseDiffuseModel": 0,
+                    "dielectricSpecularModel": 0,
+                    "conductorSpecularModel": 0,
                     "name": "PBRBRDF",
                     "priority": 90,
                     "resolveIncludes": false,
@@ -457,6 +480,8 @@
                     ],
                     "useMaskFromThicknessTexture": false,
                     "useGltfStyleTextures": true,
+                    "applyAlbedoAfterSubSurface": false,
+                    "legacyTranslucency": false,
                     "name": "PBRSubSurface",
                     "priority": 130,
                     "resolveIncludes": false,
@@ -471,13 +496,6 @@
                     "isEnabled": false,
                     "name": "DetailMap",
                     "priority": 140,
-                    "resolveIncludes": false,
-                    "registerForExtraEvents": false
-                },
-                "DepthSensingMaterialPlugin": {
-                    "tags": null,
-                    "name": "DepthSensing",
-                    "priority": 222,
                     "resolveIncludes": false,
                     "registerForExtraEvents": false
                 }

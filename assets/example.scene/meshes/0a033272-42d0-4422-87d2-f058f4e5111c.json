@@ -64,7 +64,6 @@
             "geometryUniqueId": 1745510418078,
             "geometryId": "1eac472c-ef86-4ac2-8cb5-d9ae8678aa05",
             "subMeshes": null,
-            "materialUniqueId": 427,
             "materialId": "default material",
             "metadata": {
                 "type": "Sphere",
@@ -83,7 +82,7 @@
                 0,
                 0
             ],
-            "renderOverlay": true,
+            "renderOverlay": false,
             "applyFog": true,
             "delayLoadingFile": "assets/example.scene/geometries/1eac472c-ef86-4ac2-8cb5-d9ae8678aa05.babylonbinarymeshdata",
             "boundingBoxMaximum": [

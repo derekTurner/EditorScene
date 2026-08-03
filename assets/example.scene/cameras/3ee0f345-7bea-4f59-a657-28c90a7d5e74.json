@@ -12,7 +12,6 @@
     ],
     "checkCollisions": false,
     "applyGravity": false,
-    "ignoreParentScaling": false,
     "updateUpVectorFromRotation": false,
     "rotation": [
         0.13716683763979895,
@@ -39,6 +38,7 @@
     "layerMask": 268435455,
     "fovMode": 0,
     "cameraRigMode": 0,
+    "ignoreCameraMaxZ": false,
     "name": "camera1",
     "id": "3ee0f345-7bea-4f59-a657-28c90a7d5e74",
     "state": "",

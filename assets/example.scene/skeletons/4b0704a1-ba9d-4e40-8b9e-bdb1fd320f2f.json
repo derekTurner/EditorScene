@@ -1,12 +1,14 @@
 {
     "name": "CharacterArmature",
     "id": "4b0704a1-ba9d-4e40-8b9e-bdb1fd320f2f",
+    "uniqueId": 138,
     "bones": [
         {
             "parentBoneIndex": -1,
             "index": 0,
             "name": "Root",
             "id": "a8ae4a14-4a92-4c43-b63b-957a66ef20cd",
+            "uniqueId": 139,
             "matrix": [
                 0.9999999999999432,
                 0,
@@ -43,13 +45,15 @@
                 0.07228865474462509,
                 1
             ],
-            "linkedTransformNodeId": "57088adb-a3f6-43a8-a3df-6df6cab1285c"
+            "linkedTransformNodeId": "57088adb-a3f6-43a8-a3df-6df6cab1285c",
+            "linkedTransformNodeUniqueId": 1740502453814
         },
         {
             "parentBoneIndex": 0,
             "index": 1,
             "name": "Body",
             "id": "dd1d8036-cbf1-4dfb-9073-a04be3aa2996",
+            "uniqueId": 140,
             "matrix": [
                 0.9999999999996589,
                 0,
@@ -86,13 +90,15 @@
                 -0.04560568183660507,
                 1
             ],
-            "linkedTransformNodeId": "4d154c55-6424-4418-aa48-699fab98dbb7"
+            "linkedTransformNodeId": "4d154c55-6424-4418-aa48-699fab98dbb7",
+            "linkedTransformNodeUniqueId": 1740502453809
         },
         {
             "parentBoneIndex": 1,
             "index": 2,
             "name": "Hips",
             "id": "76f82b0a-ca9b-4198-8d55-2e42539186a8",
+            "uniqueId": 141,
             "matrix": [
                 1.000000000000095,
                 -2.459068426603939e-8,
@@ -129,13 +135,15 @@
                 0.03307492658495903,
                 1
             ],
-            "linkedTransformNodeId": "c67a8c4e-5589-4c58-9492-a5fe98411f6f"
+            "linkedTransformNodeId": "c67a8c4e-5589-4c58-9492-a5fe98411f6f",
+            "linkedTransformNodeUniqueId": 1740502453804
         },
         {
             "parentBoneIndex": 2,
             "index": 3,
             "name": "Abdomen",
             "id": "5e697284-d111-4ada-9044-bf2c06db0b9d",
+            "uniqueId": 142,
             "matrix": [
                 0.9999999999990743,
                 1.004629539223161e-7,
@@ -172,13 +180,15 @@
                 -7.641332899765985e-9,
                 1
             ],
-            "linkedTransformNodeId": "5a747196-d580-4469-9339-f8908c447fd6"
+            "linkedTransformNodeId": "5a747196-d580-4469-9339-f8908c447fd6",
+            "linkedTransformNodeUniqueId": 1740502453803
         },
         {
             "parentBoneIndex": 3,
             "index": 4,
             "name": "Torso",
             "id": "40c51a96-8cc2-46c3-bd90-05df13bec18a",
+            "uniqueId": 143,
             "matrix": [
                 0.999999999998988,
                 -3.334384236868471e-8,
@@ -215,13 +225,15 @@
                 1.226817047950135e-8,
                 1
             ],
-            "linkedTransformNodeId": "fb765393-be7e-47bf-ad75-04b4a56312cc"
+            "linkedTransformNodeId": "fb765393-be7e-47bf-ad75-04b4a56312cc",
+            "linkedTransformNodeUniqueId": 1740502453802
         },
         {
             "parentBoneIndex": 4,
             "index": 5,
             "name": "Chest",
             "id": "1e1b3e2c-2af8-4cf0-b831-910b2673f5c2",
+            "uniqueId": 144,
             "matrix": [
                 1,
                 -4.132384099041872e-9,
@@ -258,13 +270,15 @@
                 -1.1810221245411867e-8,
                 1
             ],
-            "linkedTransformNodeId": "53eabede-1404-4674-a7f0-9bf2bf7fbd63"
+            "linkedTransformNodeId": "53eabede-1404-4674-a7f0-9bf2bf7fbd63",
+            "linkedTransformNodeUniqueId": 1740502453801
         },
         {
             "parentBoneIndex": 5,
             "index": 6,
             "name": "Neck",
             "id": "cd0b3ad6-a913-4ce1-b503-958cb7e040ef",
+            "uniqueId": 145,
             "matrix": [
                 0.9999999999989866,
                 -1.4588037178934297e-8,
@@ -301,13 +315,15 @@
                 -6.363095383932205e-9,
                 1
             ],
-            "linkedTransformNodeId": "8d2ff7ce-ec55-4211-a86d-e3f2e1e51364"
+            "linkedTransformNodeId": "8d2ff7ce-ec55-4211-a86d-e3f2e1e51364",
+            "linkedTransformNodeUniqueId": 1740502453754
         },
         {
             "parentBoneIndex": 6,
             "index": 7,
             "name": "Head",
             "id": "1c0752f2-f37b-49b6-ae32-20853895d30a",
+            "uniqueId": 146,
             "matrix": [
                 0.9999998756792723,
                 -1.0262248596168507e-12,
@@ -344,13 +360,15 @@
                 1.5117368690198418e-8,
                 1
             ],
-            "linkedTransformNodeId": "af9a12dc-e87f-4eee-851b-19e6181fa0b6"
+            "linkedTransformNodeId": "af9a12dc-e87f-4eee-851b-19e6181fa0b6",
+            "linkedTransformNodeUniqueId": 1740502453753
         },
         {
             "parentBoneIndex": 5,
             "index": 8,
             "name": "Shoulder.L",
             "id": "2b731374-1348-44d0-9f35-3e1c0e4f194b",
+            "uniqueId": 147,
             "matrix": [
                 -0.4348360349516689,
                 0.7082800370129934,
@@ -387,13 +405,15 @@
                 0.02127569541335106,
                 1
             ],
-            "linkedTransformNodeId": "42abbc8c-08c2-4cfa-972c-6aafab9c1e5f"
+            "linkedTransformNodeId": "42abbc8c-08c2-4cfa-972c-6aafab9c1e5f",
+            "linkedTransformNodeUniqueId": 1740502453777
         },
         {
             "parentBoneIndex": 8,
             "index": 9,
             "name": "UpperArm.L",
             "id": "626df8ae-1855-4940-94b1-bdfd033b0481",
+            "uniqueId": 148,
             "matrix": [
                 0.560299958546562,
                 -0.041593446023079884,
@@ -430,13 +450,15 @@
                 -4.153247701310647e-8,
                 1
             ],
-            "linkedTransformNodeId": "14f7971b-d373-426e-9685-804e7f50fe38"
+            "linkedTransformNodeId": "14f7971b-d373-426e-9685-804e7f50fe38",
+            "linkedTransformNodeUniqueId": 1740502453776
         },
         {
             "parentBoneIndex": 9,
             "index": 10,
             "name": "LowerArm.L",
             "id": "c382cf5a-81a4-4ca9-888f-b12b24f6c035",
+            "uniqueId": 149,
             "matrix": [
                 0.9892625828876083,
                 -0.14581827761366176,
@@ -473,13 +495,15 @@
                 -1.931380211317446e-8,
                 1
             ],
-            "linkedTransformNodeId": "bdf909ff-8c84-4fd4-b9ba-bb6c355e6daa"
+            "linkedTransformNodeId": "bdf909ff-8c84-4fd4-b9ba-bb6c355e6daa",
+            "linkedTransformNodeUniqueId": 1740502453775
         },
         {
             "parentBoneIndex": 10,
             "index": 11,
             "name": "Wrist.L",
             "id": "a6fdc3e5-e689-4fc1-a19a-2d2c8459482c",
+            "uniqueId": 150,
             "matrix": [
                 0.9960073529852095,
                 0.07900864626023198,
@@ -516,13 +540,15 @@
                 1.7904699944892855e-8,
                 1
             ],
-            "linkedTransformNodeId": "57f34c6e-7f24-487f-ada3-021cc6daefab"
+            "linkedTransformNodeId": "57f34c6e-7f24-487f-ada3-021cc6daefab",
+            "linkedTransformNodeUniqueId": 1740502453774
         },
         {
             "parentBoneIndex": 11,
             "index": 12,
             "name": "Index1.L",
             "id": "3ddc0867-4e63-4c6e-8d3d-de684cb36cd6",
+            "uniqueId": 151,
             "matrix": [
                 0.9821786042233135,
                 -0.18605070041924157,
@@ -559,13 +585,15 @@
                 -1.965470985965112e-8,
                 1
             ],
-            "linkedTransformNodeId": "6067af7e-841d-4570-9c6c-f878e578ed39"
+            "linkedTransformNodeId": "6067af7e-841d-4570-9c6c-f878e578ed39",
+            "linkedTransformNodeUniqueId": 1740502453758
         },
         {
             "parentBoneIndex": 12,
             "index": 13,
             "name": "Index2.L",
             "id": "54a53595-139b-46db-af6f-baad10b8a83a",
+            "uniqueId": 152,
             "matrix": [
                 0.9868965128815861,
                 0.1336305769117932,
@@ -602,13 +630,15 @@
                 5.895091526042506e-9,
                 1
             ],
-            "linkedTransformNodeId": "4eef088f-5320-463d-9561-2ff624a3a60f"
+            "linkedTransformNodeId": "4eef088f-5320-463d-9561-2ff624a3a60f",
+            "linkedTransformNodeUniqueId": 1740502453757
         },
         {
             "parentBoneIndex": 13,
             "index": 14,
             "name": "Index3.L",
             "id": "eb0238c8-d321-476e-a5dc-cd84b4d9908f",
+            "uniqueId": 153,
             "matrix": [
                 0.9993603508149277,
                 0.03558166126797207,
@@ -645,13 +675,15 @@
                 -6.98626152484394e-8,
                 1
             ],
-            "linkedTransformNodeId": "855ab80f-30ef-4028-b458-bb5529d7eb6a"
+            "linkedTransformNodeId": "855ab80f-30ef-4028-b458-bb5529d7eb6a",
+            "linkedTransformNodeUniqueId": 1740502453756
         },
         {
             "parentBoneIndex": 14,
             "index": 15,
             "name": "Index4.L",
             "id": "b65f7233-6a1b-4cc1-8a9d-18603f15351a",
+            "uniqueId": 154,
             "matrix": [
                 0.9999804353277367,
                 0.0031435149393075484,
@@ -688,13 +720,15 @@
                 1.5972182154655457e-7,
                 1
             ],
-            "linkedTransformNodeId": "ef1c1ca2-678c-4952-b897-56fd2be15c8f"
+            "linkedTransformNodeId": "ef1c1ca2-678c-4952-b897-56fd2be15c8f",
+            "linkedTransformNodeUniqueId": 1740502453755
         },
         {
             "parentBoneIndex": 11,
             "index": 16,
             "name": "Middle1.L",
             "id": "7afb8399-4ae7-451d-a112-0e139cd8b1ba",
+            "uniqueId": 155,
             "matrix": [
                 0.998674559547741,
                 0.032800356894943934,
@@ -731,13 +765,15 @@
                 1.1090792284562667e-8,
                 1
             ],
-            "linkedTransformNodeId": "e28c8a6d-1b2d-4a04-adf3-63115440c571"
+            "linkedTransformNodeId": "e28c8a6d-1b2d-4a04-adf3-63115440c571",
+            "linkedTransformNodeUniqueId": 1740502453762
         },
         {
             "parentBoneIndex": 16,
             "index": 17,
             "name": "Middle2.L",
             "id": "40175252-0513-43a9-9df4-6d926f7d9e07",
+            "uniqueId": 156,
             "matrix": [
                 0.9994313563495097,
                 0.0173533189439167,
@@ -774,13 +810,15 @@
                 1.461669629776452e-8,
                 1
             ],
-            "linkedTransformNodeId": "8c3bdafe-8a92-4922-9db2-5639a879628b"
+            "linkedTransformNodeId": "8c3bdafe-8a92-4922-9db2-5639a879628b",
+            "linkedTransformNodeUniqueId": 1740502453761
         },
         {
             "parentBoneIndex": 17,
             "index": 18,
             "name": "Middle3.L",
             "id": "0573e6cf-65e6-4be3-9767-705eb19bdd96",
+            "uniqueId": 157,
             "matrix": [
                 0.999914475859828,
                 -0.005454320880373237,
@@ -817,13 +855,15 @@
                 1.0478308354322508e-7,
                 1
             ],
-            "linkedTransformNodeId": "951b5068-34b7-438d-a685-23207751b7af"
+            "linkedTransformNodeId": "951b5068-34b7-438d-a685-23207751b7af",
+            "linkedTransformNodeUniqueId": 1740502453760
         },
         {
             "parentBoneIndex": 18,
             "index": 19,
             "name": "Middle4.L",
             "id": "148b6f9b-5869-4426-8588-adfc2e3c1b31",
+            "uniqueId": 158,
             "matrix": [
                 0.9999441006234455,
                 -0.006944646249028205,
@@ -860,13 +900,15 @@
                 -1.1318416426320255e-7,
                 1
             ],
-            "linkedTransformNodeId": "6130a378-9ac7-4f93-a08b-0e9a4210dc7e"
+            "linkedTransformNodeId": "6130a378-9ac7-4f93-a08b-0e9a4210dc7e",
+            "linkedTransformNodeUniqueId": 1740502453759
         },
         {
             "parentBoneIndex": 11,
             "index": 20,
             "name": "Ring1.L",
             "id": "597fe146-16e5-46cf-94f2-80eb854bb6fb",
+            "uniqueId": 159,
             "matrix": [
                 0.9621853634923695,
                 0.252555461372886,
@@ -903,13 +945,15 @@
                 1.2463753584768256e-8,
                 1
             ],
-            "linkedTransformNodeId": "913d3ce2-5f01-458c-b991-a5baa85c1d47"
+            "linkedTransformNodeId": "913d3ce2-5f01-458c-b991-a5baa85c1d47",
+            "linkedTransformNodeUniqueId": 1740502453766
         },
         {
             "parentBoneIndex": 20,
             "index": 21,
             "name": "Ring2.L",
             "id": "1335167d-3e84-4e3b-a7f6-c7a7acdaba52",
+            "uniqueId": 160,
             "matrix": [
                 0.9727239182785273,
                 -0.04343323514688513,
@@ -946,13 +990,15 @@
                 -1.0113812010104084e-7,
                 1
             ],
-            "linkedTransformNodeId": "16fda932-0639-414a-bb2d-ab22acf661e7"
+            "linkedTransformNodeId": "16fda932-0639-414a-bb2d-ab22acf661e7",
+            "linkedTransformNodeUniqueId": 1740502453765
         },
         {
             "parentBoneIndex": 21,
             "index": 22,
             "name": "Ring3.L",
             "id": "4808de1e-fbaf-47a7-81d0-41a60d0a2a80",
+            "uniqueId": 161,
             "matrix": [
                 0.9995534685002984,
                 -0.025673613971290005,
@@ -989,13 +1035,15 @@
                 -4.377216100692749e-8,
                 1
             ],
-            "linkedTransformNodeId": "1fc63a50-9c31-425a-b88c-fd66fb0bcd7e"
+            "linkedTransformNodeId": "1fc63a50-9c31-425a-b88c-fd66fb0bcd7e",
+            "linkedTransformNodeUniqueId": 1740502453764
         },
         {
             "parentBoneIndex": 22,
             "index": 23,
             "name": "Ring4.L",
             "id": "e848a63e-fb41-4a30-b464-a2c291614c59",
+            "uniqueId": 162,
             "matrix": [
                 0.9998171711105707,
                 0.01800970415972193,
@@ -1032,13 +1080,15 @@
                 8.549017849190932e-8,
                 1
             ],
-            "linkedTransformNodeId": "0c8e056c-8c61-444e-a6a0-9b1512903567"
+            "linkedTransformNodeId": "0c8e056c-8c61-444e-a6a0-9b1512903567",
+            "linkedTransformNodeUniqueId": 1740502453763
         },
         {
             "parentBoneIndex": 11,
             "index": 24,
             "name": "Pinky1.L",
             "id": "8de919cc-8424-4417-b8a7-868629d61b70",
+            "uniqueId": 163,
             "matrix": [
                 0.8871783161193639,
                 0.4372456618112345,
@@ -1075,13 +1125,15 @@
                 1.533630289429766e-8,
                 1
             ],
-            "linkedTransformNodeId": "7979382f-4817-4e9f-a2e0-bb631a7219fa"
+            "linkedTransformNodeId": "7979382f-4817-4e9f-a2e0-bb631a7219fa",
+            "linkedTransformNodeUniqueId": 1740502453770
         },
         {
             "parentBoneIndex": 24,
             "index": 25,
             "name": "Pinky2.L",
             "id": "5fe08d3e-2c09-493e-8316-f76b001a8636",
+            "uniqueId": 164,
             "matrix": [
                 0.9292868606254774,
                 -0.11436848223055568,
@@ -1118,13 +1170,15 @@
                 3.450126584425561e-8,
                 1
             ],
-            "linkedTransformNodeId": "9f1858ab-d00a-49a1-8185-e527ee8057bc"
+            "linkedTransformNodeId": "9f1858ab-d00a-49a1-8185-e527ee8057bc",
+            "linkedTransformNodeUniqueId": 1740502453769
         },
         {
             "parentBoneIndex": 25,
             "index": 26,
             "name": "Pinky3.L",
             "id": "aa5a08e7-c3cd-451f-912d-e8895892e40f",
+            "uniqueId": 165,
             "matrix": [
                 0.9992753247494023,
                 0.030352099878017624,
@@ -1161,13 +1215,15 @@
                 -9.56004964081103e-9,
                 1
             ],
-            "linkedTransformNodeId": "a5ffd488-5ee5-47a2-bf4b-8e56fc0404cb"
+            "linkedTransformNodeId": "a5ffd488-5ee5-47a2-bf4b-8e56fc0404cb",
+            "linkedTransformNodeUniqueId": 1740502453768
         },
         {
             "parentBoneIndex": 26,
             "index": 27,
             "name": "Pinky4.L",
             "id": "e96b6399-2ec9-4869-9ce4-7a092766e39b",
+            "uniqueId": 166,
             "matrix": [
                 0.9999955830113386,
                 0.0023437685751354076,
@@ -1204,13 +1260,15 @@
                 -4.749681892235458e-8,
                 1
             ],
-            "linkedTransformNodeId": "ba1afaa3-2592-4973-a458-d5b09daf34bf"
+            "linkedTransformNodeId": "ba1afaa3-2592-4973-a458-d5b09daf34bf",
+            "linkedTransformNodeUniqueId": 1740502453767
         },
         {
             "parentBoneIndex": 11,
             "index": 28,
             "name": "Thumb1.L",
             "id": "c7694dc4-a750-4a68-8bed-46251efcdabc",
+            "uniqueId": 167,
             "matrix": [
                 0.6082409617696113,
                 -0.7514903701334629,
@@ -1247,13 +1305,15 @@
                 4.14068175302873e-8,
                 1
             ],
-            "linkedTransformNodeId": "3e3d09d3-12bb-466b-aaf8-279ea38cbf29"
+            "linkedTransformNodeId": "3e3d09d3-12bb-466b-aaf8-279ea38cbf29",
+            "linkedTransformNodeUniqueId": 1740502453773
         },
         {
             "parentBoneIndex": 28,
             "index": 29,
             "name": "Thumb2.L",
             "id": "81b6b9ed-c274-4a9a-8e4e-a958e68d0475",
+            "uniqueId": 168,
             "matrix": [
                 0.9557129234659134,
                 0.15813350673365895,
@@ -1290,13 +1350,15 @@
                 1.1640518948752288e-7,
                 1
             ],
-            "linkedTransformNodeId": "a3a31971-33e3-4af7-9087-fbaa787e5c48"
+            "linkedTransformNodeId": "a3a31971-33e3-4af7-9087-fbaa787e5c48",
+            "linkedTransformNodeUniqueId": 1740502453772
         },
         {
             "parentBoneIndex": 29,
             "index": 30,
             "name": "Thumb3.L",
             "id": "20cd2aa4-9efb-4717-a2a8-d51bc2882457",
+            "uniqueId": 169,
             "matrix": [
                 0.9897171115274043,
                 0.13779094724372432,
@@ -1333,13 +1395,15 @@
                 -2.16434585809111e-7,
                 1
             ],
-            "linkedTransformNodeId": "5cad1406-f1e3-4431-a137-cca4795edde2"
+            "linkedTransformNodeId": "5cad1406-f1e3-4431-a137-cca4795edde2",
+            "linkedTransformNodeUniqueId": 1740502453771
         },
         {
             "parentBoneIndex": 5,
             "index": 31,
             "name": "Shoulder.R",
             "id": "87ad6ab6-01ab-4dd8-a296-15c91c996c8f",
+            "uniqueId": 170,
             "matrix": [
                 -0.43483663427812047,
                 -0.7082800225903401,
@@ -1376,13 +1440,15 @@
                 0.02127576619386673,
                 1
             ],
-            "linkedTransformNodeId": "cd5575c6-b134-4675-8415-41d9ead4f0fc"
+            "linkedTransformNodeId": "cd5575c6-b134-4675-8415-41d9ead4f0fc",
+            "linkedTransformNodeUniqueId": 1740502453800
         },
         {
             "parentBoneIndex": 31,
             "index": 32,
             "name": "UpperArm.R",
             "id": "8b4462a7-6835-4bbe-ac83-507cacb0c524",
+            "uniqueId": 171,
             "matrix": [
                 0.5602998353371655,
                 0.04159354482679861,
@@ -1419,13 +1485,15 @@
                 7.321867911969093e-8,
                 1
             ],
-            "linkedTransformNodeId": "4173ab3d-20ef-4fd8-b7d3-1ced6d061c98"
+            "linkedTransformNodeId": "4173ab3d-20ef-4fd8-b7d3-1ced6d061c98",
+            "linkedTransformNodeUniqueId": 1740502453799
         },
         {
             "parentBoneIndex": 32,
             "index": 33,
             "name": "LowerArm.R",
             "id": "127e44b4-1229-464a-8da1-eade94d99d1f",
+            "uniqueId": 172,
             "matrix": [
                 0.9892625167108446,
                 0.14581825616279293,
@@ -1462,13 +1530,15 @@
                 1.1251416509594492e-7,
                 1
             ],
-            "linkedTransformNodeId": "f41db36a-4f2d-4703-abee-5cf04527d430"
+            "linkedTransformNodeId": "f41db36a-4f2d-4703-abee-5cf04527d430",
+            "linkedTransformNodeUniqueId": 1740502453798
         },
         {
             "parentBoneIndex": 33,
             "index": 34,
             "name": "Wrist.R",
             "id": "b449722d-378f-4368-a692-da004aa616e4",
+            "uniqueId": 173,
             "matrix": [
                 0.9960073558722286,
                 -0.07900867323457245,
@@ -1505,13 +1575,15 @@
                 1.0528048655089606e-8,
                 1
             ],
-            "linkedTransformNodeId": "c95f6732-09b0-413e-95d5-66c493004134"
+            "linkedTransformNodeId": "c95f6732-09b0-413e-95d5-66c493004134",
+            "linkedTransformNodeUniqueId": 1740502453797
         },
         {
             "parentBoneIndex": 34,
             "index": 35,
             "name": "Index1.R",
             "id": "021ec819-33c7-4323-a715-c35c18111a85",
+            "uniqueId": 174,
             "matrix": [
                 0.9821785976428314,
                 0.18605070312125668,
@@ -1548,13 +1620,15 @@
                 -1.5860951663171363e-8,
                 1
             ],
-            "linkedTransformNodeId": "5f70c371-c1fd-4274-9ef9-e4d1156da960"
+            "linkedTransformNodeId": "5f70c371-c1fd-4274-9ef9-e4d1156da960",
+            "linkedTransformNodeUniqueId": 1740502453781
         },
         {
             "parentBoneIndex": 35,
             "index": 36,
             "name": "Index2.R",
             "id": "bec70944-e156-49be-97c3-8b8fff57b462",
+            "uniqueId": 175,
             "matrix": [
                 0.9868965885320282,
                 -0.13363052853330126,
@@ -1591,13 +1665,15 @@
                 -7.35170857524281e-9,
                 1
             ],
-            "linkedTransformNodeId": "140d9bbb-65fb-4d48-b7df-7d4b3632c78e"
+            "linkedTransformNodeId": "140d9bbb-65fb-4d48-b7df-7d4b3632c78e",
+            "linkedTransformNodeUniqueId": 1740502453780
         },
         {
             "parentBoneIndex": 36,
             "index": 37,
             "name": "Index3.R",
             "id": "0cb78203-bdb1-4be0-bcbc-17e0806f8b37",
+            "uniqueId": 176,
             "matrix": [
                 0.9993602949333538,
                 -0.03558165808362142,
@@ -1634,13 +1710,15 @@
                 -6.901640858814062e-8,
                 1
             ],
-            "linkedTransformNodeId": "e8088450-afc9-4e69-9133-ec6567ec4b8e"
+            "linkedTransformNodeId": "e8088450-afc9-4e69-9133-ec6567ec4b8e",
+            "linkedTransformNodeUniqueId": 1740502453779
         },
         {
             "parentBoneIndex": 37,
             "index": 38,
             "name": "Index4.R",
             "id": "65bc4e35-9ec8-4337-a6a3-9145867f6297",
+            "uniqueId": 177,
             "matrix": [
                 0.9999804953495738,
                 -0.003143515241873021,
@@ -1677,13 +1755,15 @@
                 1.423081812390592e-7,
                 1
             ],
-            "linkedTransformNodeId": "5715adfb-9fbc-4ddb-a3d8-846a00f569bc"
+            "linkedTransformNodeId": "5715adfb-9fbc-4ddb-a3d8-846a00f569bc",
+            "linkedTransformNodeUniqueId": 1740502453778
         },
         {
             "parentBoneIndex": 34,
             "index": 39,
             "name": "Middle1.R",
             "id": "4ce09ac9-9043-46a0-8e6a-bca895e656a0",
+            "uniqueId": 178,
             "matrix": [
                 0.9986745636472983,
                 -0.032800329892294616,
@@ -1720,13 +1800,15 @@
                 1.5133991837501526e-8,
                 1
             ],
-            "linkedTransformNodeId": "2babc975-4e6d-4566-96cd-9b9558b52a9c"
+            "linkedTransformNodeId": "2babc975-4e6d-4566-96cd-9b9558b52a9c",
+            "linkedTransformNodeUniqueId": 1740502453785
         },
         {
             "parentBoneIndex": 39,
             "index": 40,
             "name": "Middle2.R",
             "id": "2191b6b6-ff2b-4cd0-92dc-55e3459fa004",
+            "uniqueId": 179,
             "matrix": [
                 0.9994314154577236,
                 -0.01735332030942761,
@@ -1763,13 +1845,15 @@
                 -1.1506321229148853e-8,
                 1
             ],
-            "linkedTransformNodeId": "8e0c3ed5-be3e-488d-a678-e9408c969284"
+            "linkedTransformNodeId": "8e0c3ed5-be3e-488d-a678-e9408c969284",
+            "linkedTransformNodeUniqueId": 1740502453784
         },
         {
             "parentBoneIndex": 40,
             "index": 41,
             "name": "Middle3.R",
             "id": "004e51a2-4ea0-438d-9217-089eea38063d",
+            "uniqueId": 180,
             "matrix": [
                 0.9999145357564624,
                 0.00545432316812734,
@@ -1806,13 +1890,15 @@
                 -1.5132609121337737e-7,
                 1
             ],
-            "linkedTransformNodeId": "aa00f1ce-9756-43e2-bf7c-b15a6ea33abd"
+            "linkedTransformNodeId": "aa00f1ce-9756-43e2-bf7c-b15a6ea33abd",
+            "linkedTransformNodeUniqueId": 1740502453783
         },
         {
             "parentBoneIndex": 41,
             "index": 42,
             "name": "Middle4.R",
             "id": "7e3fe6a1-0143-4eff-abd9-119363d16855",
+            "uniqueId": 181,
             "matrix": [
                 0.9999440400934322,
                 0.006944643799998004,
@@ -1849,13 +1935,15 @@
                 -1.157886586611312e-7,
                 1
             ],
-            "linkedTransformNodeId": "c8d34b08-1ee7-4ab5-863e-a43255593a4b"
+            "linkedTransformNodeId": "c8d34b08-1ee7-4ab5-863e-a43255593a4b",
+            "linkedTransformNodeUniqueId": 1740502453782
         },
         {
             "parentBoneIndex": 34,
             "index": 43,
             "name": "Ring1.R",
             "id": "b7369e1f-f67f-40ea-9467-a81669b67e7d",
+            "uniqueId": 182,
             "matrix": [
                 0.9621855224565279,
                 -0.2525554665811903,
@@ -1892,13 +1980,15 @@
                 4.447218771019834e-8,
                 1
             ],
-            "linkedTransformNodeId": "48d3000c-2f2a-43ed-9a8a-3c18c58f0c56"
+            "linkedTransformNodeId": "48d3000c-2f2a-43ed-9a8a-3c18c58f0c56",
+            "linkedTransformNodeUniqueId": 1740502453789
         },
         {
             "parentBoneIndex": 43,
             "index": 44,
             "name": "Ring2.R",
             "id": "25fcd5ac-f331-423f-ac9d-d153f5693c22",
+            "uniqueId": 183,
             "matrix": [
                 0.9727239130493417,
                 0.04343319947735888,
@@ -1935,13 +2025,15 @@
                 -3.639787848896958e-8,
                 1
             ],
-            "linkedTransformNodeId": "fb074fd3-81eb-44b3-b7c9-a695f2006788"
+            "linkedTransformNodeId": "fb074fd3-81eb-44b3-b7c9-a695f2006788",
+            "linkedTransformNodeUniqueId": 1740502453788
         },
         {
             "parentBoneIndex": 44,
             "index": 45,
             "name": "Ring3.R",
             "id": "7b4f197b-f7e8-46fd-99bb-f7fa2246f33a",
+            "uniqueId": 184,
             "matrix": [
                 0.9995534582539259,
                 0.02567358042718948,
@@ -1978,13 +2070,15 @@
                 8.901773895786391e-8,
                 1
             ],
-            "linkedTransformNodeId": "88d75b3d-4f26-4861-b9fa-8f25508f49e3"
+            "linkedTransformNodeId": "88d75b3d-4f26-4861-b9fa-8f25508f49e3",
+            "linkedTransformNodeUniqueId": 1740502453787
         },
         {
             "parentBoneIndex": 45,
             "index": 46,
             "name": "Ring4.R",
             "id": "1b375d7d-bd45-4732-ac08-205ff79bc3cc",
+            "uniqueId": 185,
             "matrix": [
                 0.9998171737179036,
                 -0.018009701980981632,
@@ -2021,13 +2115,15 @@
                 -1.3134343390674985e-8,
                 1
             ],
-            "linkedTransformNodeId": "f0f36d79-3bb4-49d0-b916-f20ab0c408f7"
+            "linkedTransformNodeId": "f0f36d79-3bb4-49d0-b916-f20ab0c408f7",
+            "linkedTransformNodeUniqueId": 1740502453786
         },
         {
             "parentBoneIndex": 34,
             "index": 47,
             "name": "Pinky1.R",
             "id": "242b2ef4-bd1f-48e8-9264-36846f354dea",
+            "uniqueId": 186,
             "matrix": [
                 0.8871783966445447,
                 -0.437245611874653,
@@ -2064,13 +2160,15 @@
                 1.543991068331252e-8,
                 1
             ],
-            "linkedTransformNodeId": "504cd649-f6fb-42f0-b26c-c7c9564521c7"
+            "linkedTransformNodeId": "504cd649-f6fb-42f0-b26c-c7c9564521c7",
+            "linkedTransformNodeUniqueId": 1740502453793
         },
         {
             "parentBoneIndex": 47,
             "index": 48,
             "name": "Pinky2.R",
             "id": "a136c5d0-9d79-433e-a102-5d7f018f0f63",
+            "uniqueId": 187,
             "matrix": [
                 0.9292867944769163,
                 0.11436844875670349,
@@ -2107,13 +2205,15 @@
                 3.127433245708744e-8,
                 1
             ],
-            "linkedTransformNodeId": "9bd74b2a-9881-48cf-9405-ce648d58b4e5"
+            "linkedTransformNodeId": "9bd74b2a-9881-48cf-9405-ce648d58b4e5",
+            "linkedTransformNodeUniqueId": 1740502453792
         },
         {
             "parentBoneIndex": 48,
             "index": 49,
             "name": "Pinky3.R",
             "id": "074fc8fc-a9c2-4f10-b3c4-443f02c2fb9b",
+            "uniqueId": 188,
             "matrix": [
                 0.9992753739489662,
                 -0.030352076239903825,
@@ -2150,13 +2250,15 @@
                 -3.3879927752167305e-9,
                 1
             ],
-            "linkedTransformNodeId": "3ed1c487-c77c-4e68-bdd6-47a8b667747b"
+            "linkedTransformNodeId": "3ed1c487-c77c-4e68-bdd6-47a8b667747b",
+            "linkedTransformNodeUniqueId": 1740502453791
         },
         {
             "parentBoneIndex": 49,
             "index": 50,
             "name": "Pinky4.R",
             "id": "08c14263-af8a-4bb8-888b-396bcef39712",
+            "uniqueId": 189,
             "matrix": [
                 0.9999956157927619,
                 -0.00234388623241627,
@@ -2193,13 +2295,15 @@
                 2.0000666722808091e-7,
                 1
             ],
-            "linkedTransformNodeId": "826c4e01-a06e-4842-961e-e690082ebc81"
+            "linkedTransformNodeId": "826c4e01-a06e-4842-961e-e690082ebc81",
+            "linkedTransformNodeUniqueId": 1740502453790
         },
         {
             "parentBoneIndex": 34,
             "index": 51,
             "name": "Thumb1.R",
             "id": "a795ddc6-647e-4daa-9842-716bdb80ebf4",
+            "uniqueId": 190,
             "matrix": [
                 0.6082410900627683,
                 0.751490293915102,
@@ -2236,13 +2340,15 @@
                 1.5133991837501526e-8,
                 1
             ],
-            "linkedTransformNodeId": "310eb7f9-df8c-4ccb-9d13-5002bb7e8c1d"
+            "linkedTransformNodeId": "310eb7f9-df8c-4ccb-9d13-5002bb7e8c1d",
+            "linkedTransformNodeUniqueId": 1740502453796
         },
         {
             "parentBoneIndex": 51,
             "index": 52,
             "name": "Thumb2.R",
             "id": "da1c4aeb-9ea7-48fb-ab0f-594fb94308ea",
+            "uniqueId": 191,
             "matrix": [
                 0.9557130442039476,
                 -0.15813338545247885,
@@ -2279,13 +2385,15 @@
                 -1.0231371305735593e-7,
                 1
             ],
-            "linkedTransformNodeId": "e14c3c85-5455-42f4-9c41-6e37148bdeea"
+            "linkedTransformNodeId": "e14c3c85-5455-42f4-9c41-6e37148bdeea",
+            "linkedTransformNodeUniqueId": 1740502453795
         },
         {
             "parentBoneIndex": 52,
             "index": 53,
             "name": "Thumb3.R",
             "id": "24ce92e1-f674-4280-9cf8-d47886b6f6bf",
+            "uniqueId": 192,
             "matrix": [
                 0.9897172147382862,
                 -0.13779078585077542,
@@ -2322,13 +2430,15 @@
                 1.1160072688198852e-7,
                 1
             ],
-            "linkedTransformNodeId": "13844fc5-818a-4e8c-a4d2-e4ed2d98734f"
+            "linkedTransformNodeId": "13844fc5-818a-4e8c-a4d2-e4ed2d98734f",
+            "linkedTransformNodeUniqueId": 1740502453794
         },
         {
             "parentBoneIndex": 1,
             "index": 54,
             "name": "UpperLeg.L",
             "id": "fea84254-3a28-47fa-b5a3-e2714083b9bc",
+            "uniqueId": 193,
             "matrix": [
                 5.264544430155977e-7,
                 -0.09777037787972064,
@@ -2365,13 +2475,15 @@
                 0.01838092878460884,
                 1
             ],
-            "linkedTransformNodeId": "77e44d01-fe65-41e6-a8e4-6e7778594d92"
+            "linkedTransformNodeId": "77e44d01-fe65-41e6-a8e4-6e7778594d92",
+            "linkedTransformNodeUniqueId": 1740502453806
         },
         {
             "parentBoneIndex": 54,
             "index": 55,
             "name": "LowerLeg.L",
             "id": "0490955f-f59b-4ec2-9cdf-6f1eed25d27c",
+            "uniqueId": 194,
             "matrix": [
                 -7.525893565012734e-7,
                 8.914243663107786e-8,
@@ -2408,13 +2520,15 @@
                 -3.531784642518687e-8,
                 1
             ],
-            "linkedTransformNodeId": "baefde87-56c9-4f10-8201-e3e43234c003"
+            "linkedTransformNodeId": "baefde87-56c9-4f10-8201-e3e43234c003",
+            "linkedTransformNodeUniqueId": 1740502453805
         },
         {
             "parentBoneIndex": 1,
             "index": 56,
             "name": "UpperLeg.R",
             "id": "23762007-7542-4993-a714-71309fdfa536",
+            "uniqueId": 195,
             "matrix": [
                 -8.522958157767602e-7,
                 0.0977703836081123,
@@ -2451,13 +2565,15 @@
                 0.018380748108029366,
                 1
             ],
-            "linkedTransformNodeId": "f3e12584-4094-4340-bf0f-7001474fb019"
+            "linkedTransformNodeId": "f3e12584-4094-4340-bf0f-7001474fb019",
+            "linkedTransformNodeUniqueId": 1740502453808
         },
         {
             "parentBoneIndex": 56,
             "index": 57,
             "name": "LowerLeg.R",
             "id": "162d35c8-a58c-4744-8fbb-37684a7d70fe",
+            "uniqueId": 196,
             "matrix": [
                 -7.545184460816843e-7,
                 -8.915223917503397e-8,
@@ -2494,13 +2610,15 @@
                 -1.6210449871323362e-8,
                 1
             ],
-            "linkedTransformNodeId": "6881c474-d48c-45a5-b28c-b74d6bfd6853"
+            "linkedTransformNodeId": "6881c474-d48c-45a5-b28c-b74d6bfd6853",
+            "linkedTransformNodeUniqueId": 1740502453807
         },
         {
             "parentBoneIndex": 0,
             "index": 58,
             "name": "Foot.L",
             "id": "be8c352c-7b7d-451a-8eb0-8fecb9138cb9",
+            "uniqueId": 197,
             "matrix": [
                 0.9999999968744161,
                 0.0000559066635360799,
@@ -2537,13 +2655,15 @@
                 -0.18702766299247742,
                 1
             ],
-            "linkedTransformNodeId": "baab4b37-c733-4fc4-83ff-a2d1cb1c8ae6"
+            "linkedTransformNodeId": "baab4b37-c733-4fc4-83ff-a2d1cb1c8ae6",
+            "linkedTransformNodeUniqueId": 1740502453810
         },
         {
             "parentBoneIndex": 0,
             "index": 59,
             "name": "PT.L",
             "id": "d5d4c616-c4b6-43a2-b42d-0456044c8a68",
+            "uniqueId": 198,
             "matrix": [
                 0.999999995399095,
                 -3.6208503487046873e-7,
@@ -2580,13 +2700,15 @@
                 0.22707660496234894,
                 1
             ],
-            "linkedTransformNodeId": "bf837cc0-bcd3-421b-a826-59e32793f450"
+            "linkedTransformNodeId": "bf837cc0-bcd3-421b-a826-59e32793f450",
+            "linkedTransformNodeUniqueId": 1740502453811
         },
         {
             "parentBoneIndex": 0,
             "index": 60,
             "name": "Foot.R",
             "id": "a0f07f2d-80cd-489c-9eb0-1e13ac1e26f4",
+            "uniqueId": 199,
             "matrix": [
                 0.9999999968743188,
                 -0.00005590655925316393,
@@ -2623,13 +2745,15 @@
                 0.17368552088737488,
                 1
             ],
-            "linkedTransformNodeId": "2fda62d2-6682-444c-b12a-0774bcde0649"
+            "linkedTransformNodeId": "2fda62d2-6682-444c-b12a-0774bcde0649",
+            "linkedTransformNodeUniqueId": 1740502453812
         },
         {
             "parentBoneIndex": 0,
             "index": 61,
             "name": "PT.R",
             "id": "31bdd2dd-3432-47cc-99e4-5307ac099e79",
+            "uniqueId": 200,
             "matrix": [
                 0.9999999953666945,
                 3.646348909885151e-7,
@@ -2666,7 +2790,8 @@
                 0.6589406132698059,
                 1
             ],
-            "linkedTransformNodeId": "640e05b1-4261-4e90-a7fc-298cc218147c"
+            "linkedTransformNodeId": "640e05b1-4261-4e90-a7fc-298cc218147c",
+            "linkedTransformNodeUniqueId": 1740502453813
         }
     ],
     "needInitialSkinMatrix": false,
